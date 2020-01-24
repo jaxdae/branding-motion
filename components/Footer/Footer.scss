@@ -1,0 +1,65 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.Footer{
+  &__wrapper{
+    width: 100%;
+    height: 160px;
+    background-color: $dark-blue;
+    border-radius: 0 0 15px 15px;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top:60px;
+  }
+  &__copyright{
+    height: 60px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Merriweather Sans";
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 28px;
+    color: $dark-grey;
+  }
+  &__links, &__share{
+    width:100%;
+    display:flex;
+    justify-content: center;
+  }
+  &__link{
+    @include font-caps($dark-peach);
+    text-decoration: none;
+    font-weight:normal;
+    padding-right:45px;
+    &:visited{
+      text-decoration: none;
+    }
+    &:last-child{
+      padding-right:0;
+    }
+  }
+  &__share{
+    margin-top:20px;
+  }
+  &__facebook{
+    &::after{
+      font-family: iconfont;
+      font-size:28px;
+      content: "\e905";
+      color: $white;
+      padding-right:45px;
+    }
+  }
+  &__instagram{
+    &::after{
+      font-family: iconfont;
+      font-size:28px;
+      content: "\e906";
+      color: $white;
+    }
+  }
+}

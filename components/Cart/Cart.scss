@@ -1,0 +1,19 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/colors.scss';
+
+.Cart{
+&__button{
+        border: 1px solid $dark-peach;
+        border-radius: 20px;
+        width:23%;
+        @include font-caps($dark-peach);
+        &::after{
+           font-family: iconfont;
+            content: "\e900";
+            font-size:18px;
+            position: relative;
+            top:4px;
+            padding-left:10px;
+        }
+    }
+  }

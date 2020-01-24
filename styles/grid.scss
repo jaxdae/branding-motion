@@ -1,0 +1,27 @@
+$outer-gutter: 80px;
+$grid-width: 1200px;
+
+$grid-columns: 12;
+$grid-gutter: 16px;
+$grid-space: 200px;
+$grid-space-content: 80px;
+
+@function grid-span($grid-number) {
+  @return $grid-number * 100 / $grid-columns + 0%;
+}
+
+@mixin grid-width() {
+  padding-left: $grid-gutter;
+  padding-right: $grid-gutter;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $grid-width;
+}
+
+@mixin grid-content() {
+
+}
+
+@mixin grid-space() {
+
+}

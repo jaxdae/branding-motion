@@ -1,0 +1,25 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.AddButton{
+  @include font-caps($dark-peach);
+  position: absolute;
+  right:30px;
+  bottom:30px;
+  border: 1px solid $dark-peach;
+  padding: 4px 15px;
+  border-radius: 20px;
+  &:hover{
+    cursor: pointer;
+  }
+  &::after{
+        font-family: iconfont;
+        font-size:16px;
+        content: "\e908";
+        font-weight: bold;
+        color: $dark-peach;
+        position: relative;
+        margin-left:90px;
+        top:1px;
+      }
+}

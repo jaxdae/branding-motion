@@ -1,0 +1,65 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.Detail{
+   &__brandtraits{
+     width:23%;
+     border-radius: 0 15px 15px 0;	
+   }
+   &__left{
+     width:23%;
+     height: 100%;
+   }
+   &__adjustments{
+      border-radius: 15px 0 0 15px;	
+      height:calc(100% - 80px);
+   }
+   &__cart{
+     width:100%;
+     margin-bottom:45px;
+   }
+   &__wrapper{
+     margin-top:60px;
+     display:flex;
+     height: 700px;
+     position: relative;
+     justify-content: space-between;
+   }
+   &__animation{
+     width:calc(54% - 120px);
+     height:100%;
+     background: rgba($light-grey, 0.7);
+     border-radius: 15px;
+     display:flex;
+     position: relative;
+   }
+   &__animation.wider{
+     width: calc(72% - 120px);
+   }
+   &__component{
+     margin:auto;
+   }
+   &__switcher{
+      position: relative;
+      top: calc(50% - 30px);
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px 0 $dark-peach;
+      background-color: $dark-peach;
+      &:hover{
+        cursor: pointer;
+      }
+      &::after{
+        font-family: iconfont;
+        font-size:26px;
+        content: "\e903";
+        font-weight: bold;
+        color: $white;
+        position: relative;
+        top: calc(50% - 13px);
+        left: calc(50% - 13px);
+      }
+   }
+}

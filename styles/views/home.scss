@@ -1,0 +1,30 @@
+.Home{
+  padding:60px 60px 0 60px;
+  &__right{
+    top:140px;
+    position: -webkit-sticky;
+    position: sticky;
+
+  }
+  &__filters{
+    position: absolute;
+    right:0;
+    top:75px;
+    width:23%;
+  }
+  &__cart{
+    position: absolute;
+    right:0;
+    top:20px;
+  }
+  &__wrapper{
+    position: relative;
+  }
+  &__topfilter{
+    padding-bottom:30px;
+     top:0;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 99999;
+  }
+}

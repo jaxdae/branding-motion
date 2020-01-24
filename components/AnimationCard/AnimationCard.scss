@@ -1,0 +1,106 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.AnimationCard{
+  &__wrapper{
+    transition: ease-in-out 0.2s;
+    height: 275px;
+    background-color: $white;
+    box-shadow: 0 0 15px 2px rgba(229,221,221,0.6);
+    border-radius: 15px;
+    position: relative;
+    &:hover{
+      box-shadow: 0 0 30px 3px rgba(229,221,221,0.8);
+    }
+  }
+  &__content{
+    width:60%;
+    position:absolute;
+    right:0;
+    top:0;
+    padding:35px;
+  }
+  &__tag{
+    border-radius: 15px;
+    margin-right: 15px;
+    background-color: $bright-yellow;
+    @include font-caps($white);
+    display:inline-block;
+    padding: 0 15px;
+  }
+  &__headline{
+    @include card-headline($dark-grey);
+    margin-top:15px;
+  }
+  &__description{
+    margin-top:15px;
+    @include font-blocktext($dark-grey);
+  }
+  &__video{
+    height:275px;
+    width:40%;
+    border-radius: 15px 0 0 15px;
+  }
+  &__heart{
+    &:hover{
+      cursor: pointer;
+    }
+    &:hover.AnimationCard__heart::after{
+      color: $dark-peach;
+    }
+    &::after{
+    transition: ease-in-out 0.3s;
+    font-family: iconfont;
+    font-size:24px;
+    content: "\e907";
+    -webkit-text-fill-color: $white;
+    -webkit-text-stroke-width: 1px;
+    color: $taupe;
+    position: absolute;
+    z-index: +1;
+    right:30px;
+    top:30px;
+    }
+    &--full{
+      &:hover{
+      cursor: pointer;
+    }
+      &::after{
+      font-family: iconfont;
+    font-size:24px;
+    content: "\e907";
+    opacity: 0;
+    color: $dark-peach;
+    position: absolute;
+    right:30px;
+    top:30px;
+      }
+    }
+  }
+  .saved{
+    &::after{
+      animation: 0.4s scale-in-out ease-in-out;
+      color: $dark-peach;
+      -webkit-text-fill-color: $dark-peach;
+      -webkit-text-stroke-width: 1px;
+    }
+  }
+  .savedbg{
+    color: $dark-peach;
+    &::after{
+      animation: 0.6s fade-in-out ease-in-out;
+    }
+  }
+  @keyframes fade-in-out {
+    0% {opacity:0; transform: translateY(0)}
+    30% {opacity:0.75}
+    50% {opacity:0.75}
+    100% {opacity:0; transform: translateY(-50px)}
+  }
+  @keyframes scale-in-out {
+     0% {transform:scale(1)}
+    30% {transform:scale(1.2)}
+    50% {transform:scale(1.2)}
+    100% {transform:scale(1)}
+  }
+}

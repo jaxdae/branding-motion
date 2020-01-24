@@ -1,0 +1,268 @@
+@import "../../styles/fonts.scss";
+@import "../../styles/colors.scss";
+@import "../../styles/grid.scss";
+
+@function randomNum($min, $max) {
+  $rand: random();
+  $randomNum: $min + floor($rand * (($max - $min) + 1));
+  @return $randomNum;
+}
+@function randomDirection($num) {
+  @if $num == 1 {
+     @return reverse;
+  } @else {
+      @return normal;
+  }
+}
+
+.Hero{
+  height: 700px;
+  background-color: $dark-blue;
+  border-radius: 15px 15px 0 0;
+  display:flex;
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+  &__content{
+    height:100%;
+    padding-top: 60px;
+  }
+
+  &__left{
+    position: relative;
+    padding-right: 30px;
+  }
+  &__middle{
+    height:100%;
+    top:0;
+    z-index: +1;
+    width:422px;
+    overflow: hidden;
+    background-color: $white;
+  }
+  &__intro{
+    height:80%;
+    position: relative;
+    top:20%;
+  }
+
+&__subheadline{
+  @include font-caps($dark-peach);
+   width:346px;
+}
+&__headline{
+  padding-bottom:20px;
+  width:346px;
+  &--left{
+    @include font-headline($white);
+  }
+  &--right{
+    @include font-headline($dark-grey);
+  }
+}
+&__description{
+   width:346px;
+  &--left{
+    @include font-blocktext($white);
+  }
+  &--right{
+     @include font-blocktext($dark-grey);
+  }
+}
+&__info{
+  background-color: $light-grey;
+  width: 492px;
+  height: 80%;
+  border-radius: 0 0 15px 0;
+  padding: 45px;
+  margin-bottom:30%;
+  z-index: 2;
+}
+&__scroll{
+  position: absolute;
+  bottom:0;
+  right:-30px;
+  
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow:row wrap;
+  background-color: $bright-yellow;
+  height: 140px;
+  width: 103px;
+  border-radius: 15px 0 0 0;
+ @include font-caps($white);
+
+}
+&__scroll-text{
+width:100%;
+text-align: center;
+ &::after{
+   font-family: iconfont;
+    font-size:24px;
+    content: "\e909";
+    width:100%;
+    height:24px;
+    animation: scrollDown 1.5s infinite ease-in-out;
+    display: block;
+    position: relative;
+    top:10px;
+ } 
+}
+
+&__single-video{
+  width:100%;
+  height:100%;
+}
+&__waves{
+  width: 100%;
+  position: absolute;
+  top: 20%;
+  z-index: 0;
+  pointer-events: none;
+}
+&__wave {
+  fill: transparent;
+  stroke: $dark-peach;
+  stroke-width: 0.1;
+
+   @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+        animation: wave randomNum(3, 9) * 1s randomDirection(randomNum(0,1)) linear infinite;
+        opacity: randomNum(2, 4) * 0.1;
+    }
+  }
+  
+}
+&__logo{
+    position: absolute;
+    top:30px;
+    right:30px;
+    background-image: url('../../assets/images/logo.svg');
+    width:128px;
+    height:24px;
+    background-size:cover;
+  }
+&__main {
+  display:flex;
+  position: relative;
+  width: $grid-width;
+  border-radius: 15px 15px 0 0;
+}
+
+}
+@keyframes wave {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scrollDown {
+  from {
+    transform: translateY(-10px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+    outline: none;
+}
+
+  .slick-arrow{
+    position: absolute;
+  }
+
+  .slick-next{
+    cursor: pointer;
+    bottom:50%;
+    right:-90px;
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+    z-index: 999;
+    background-color:transparent;
+    font-size: 0;
+    &::after{
+      font-family: iconfont;
+    font-size:24px;
+    content: "\e90b";
+    color: $white;
+    }
+  }
+
+.slick-dots {
+	display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 999;
+    right:420px;
+    bottom:7.5%;
+	
+	margin: 0;
+	padding: 1rem 0;
+	
+	list-style-type: none;
+	
+		li {
+			margin: 0 0.5rem;
+		}
+	
+		button {
+			display: block;
+			width: 0.5rem;
+			height: 0.5rem;
+			padding: 0;
+			
+			border: none;
+			border-radius: 100%;
+			background-color: rgba($light-grey, 0.1);
+			
+			text-indent: -9999px;
+		}
+	
+		li.slick-active button {
+			background-color: $bright-yellow;
+		}
+	
+}
+
+.bounce-enter-active{
+  animation: bounce-in 0.4s 0.15s;
+}
+.bounce-leave-active{
+  animation: bounce-out 0.15s;
+}
+.bounce-leave-to{
+  transform: translateX(-4%);
+}
+.bounce-enter-to{
+  transform: translateX(0);
+  opacity:1;
+}
+@keyframes bounce-in {
+  0% {
+    transform: translateX(-4%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-4%);
+    opacity: 0.8;
+  }
+}

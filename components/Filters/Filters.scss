@@ -1,0 +1,104 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+@import '../../styles/grid.scss';
+
+.Filters.collapsed{
+  width:5%;
+  height: 100%;
+}
+
+.Filters{
+  position: relative;
+  background-color: rgba($light-grey, 0.7);
+  padding:30px 45px;
+  &__headline{
+    @include font-caps($dark-peach);
+    display:inline-block;
+  }
+  &__headline.collapsed{
+    transform: translate(-130px, 30px) rotate(270deg);
+    transform-origin: right;
+    display: block;
+    width:130px;
+  }
+  &__filtergroup{
+    padding-top:25px;
+  }
+  &__labels, &__radiogroup{
+    display:flex;
+    justify-content: space-between;
+  }
+  &__labels{
+    @include font-blocktext($dark-blue);
+    padding-bottom:5px;
+  }
+  &__radiogroup{
+    position: relative;
+    &::before{
+      content:"";
+      display:block;
+      width: 100%;
+      top: 6px;
+      border-bottom: 1px solid $taupe;
+      position: absolute;
+      z-index: 0;
+    }
+  }
+  &__input::after{
+    content:'';
+    background: $light-grey;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border: 1px solid $dark-blue;
+    border-radius: 50%;
+    position: relative;
+    transition: all .2s linear;
+    opacity: 1;
+    top:-1px;
+  }
+  &__collapse{
+    float:right;
+    &:hover{
+        cursor: pointer;
+      }
+    &::after{
+      font-family: iconfont;
+      content: "\e90e";
+      font-size:25px;
+      position: relative;
+      color:$dark-peach;
+    }
+  }
+  &__collapse.collapsed{
+    &::after{
+    font-family: iconfont;
+    content: "\e90c";
+    font-size: 25px;
+    position: relative;
+    color: #d9af99;
+    top: -25px;
+    left: 50%;
+    }
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  background-color:transparent;
+    opacity: 1;
+    position: relative;
+    z-index: +1;
+    width:9px;
+    height:9px;
+    top:2px;
+    &:hover{
+      cursor: pointer;
+    }
+}
+
+input[type="checkbox"]:checked.Filters__input::after,
+input[type="radio"]:checked.Filters__input::after {
+    background-color: $bright-yellow;
+    border-color: $bright-yellow;
+}

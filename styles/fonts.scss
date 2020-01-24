@@ -1,0 +1,37 @@
+@mixin font-caps($color) {
+  color: $color;
+  font-family: "Merriweather Sans";
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+@mixin font-headline($color){
+    color: $color;
+  font-family: "Futura";
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 80px;
+}
+
+@mixin card-headline($color){
+  font-family: "Futura";	
+  color: $color;
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 39px;
+}
+
+@mixin font-blocktext($color){
+    font-family: "Merriweather Sans";	
+    font-size: 14px;	
+    font-weight: 300;	
+    line-height: 28px;
+    color: $color;
+}
+
+.caps {
+  text-transform: uppercase;
+}
