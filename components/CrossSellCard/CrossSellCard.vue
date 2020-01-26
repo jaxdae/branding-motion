@@ -1,6 +1,6 @@
 <template>
   <div class="CrossSellCard">
-    <nuxt-link to="/detail" class="CrossSellCard__link">
+    <nuxt-link :to="id.toString()" class="CrossSellCard__link">
       <div class="CrossSellCard__wrapper">
         <video autoplay muted loop class="CrossSellCard__video">
           <source :src="video" type="video/mp4" />
@@ -35,16 +35,16 @@ export default {
   name: 'CrossSellCard',
   components: {},
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
     },
     description: {
       type: String,
-      required: true
-    },
-    tags: {
-      type: Array,
       required: true
     },
     video: {
@@ -55,23 +55,12 @@ export default {
       type: Object,
       default: () => {}
       //  required:true
-    },
-    html: {
-      type: String,
-      default: ''
-    },
-    css: {
-      type: String,
-      default: ''
-    },
-    js: {
-      type: String,
-      default: ''
     }
   },
   data() {
     return {
-      isSaved: false
+      isSaved: false,
+      tags: []
     };
   },
   methods: {
@@ -81,7 +70,20 @@ export default {
       } else {
         this.isSaved = false;
       }
+    },
+    getTags() {
+      this.$axios.get('/api/animationtags/' + this.id)
+       .then(response => {
+         this.tags = response.data.map(tag => {
+          return tag.name;
+        })
+      }).catch((error) => {
+        console.log(error);
+      })
     }
+  },
+  mounted(){
+    this.getTags();
   }
 };
 </script>

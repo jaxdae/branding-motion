@@ -30,7 +30,6 @@
         :id="card.id"
         :name="card.name"
         :description="card.description"
-        :tags="card.tags"
         :video="card.video"
         class="Feed__card"
       >
@@ -62,32 +61,7 @@ export default {
     return {
       number: 6,
       searchTerm: 'Hover',
-      cards: {
-        firstCard: {
-          id: 1,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../../assets/videos/animation.mp4')
-        },
-        secondCard: {
-          id: 2,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../../assets/videos/animation.mp4')
-        },
-        thirdCard: {
-          id: 3,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../../assets/videos/animation.mp4')
-        }
-      }
+      cards: []
     };
   },
   methods: {
@@ -96,7 +70,18 @@ export default {
     },
     removeCategory(index) {
       this.categories.splice(index, 1);
-    }
+    },
+    getAnimations() {
+      this.$axios.get('/api/animations')
+       .then(response => {
+        this.cards = response.data;
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+  },
+  mounted() {
+    this.getAnimations();
   }
 };
 </script>

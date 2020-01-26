@@ -64,25 +64,33 @@ export default {
     return {
       categories: null,
       elements: null,
-      optionsElements: [
-        'Button',
-        'Link',
-        'Grid',
-        'Hero',
-        'Footer',
-        'Form',
-        'Menu',
-        'Wishlist',
-        'Background',
-        'Slider'
-      ],
-      optionsCategories: ['Hover', 'Click']
+      optionsElements: [],
+      optionsCategories: []
     };
   },
   methods: {
     input() {
       this.$emit('tags', this.categories, this.elements);
     }
+  },
+  mounted() {
+       this.$axios.get('/api/tags/elements')
+       .then(response => {
+        this.optionsElements = response.data.map(tag => {
+          return tag.name
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+
+      this.$axios.get('/api/tags/categories')
+       .then(response => {
+        this.optionsCategories = response.data.map(tag => {
+          return tag.name
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
   }
 };
 </script>

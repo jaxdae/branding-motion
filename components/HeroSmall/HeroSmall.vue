@@ -18,7 +18,7 @@
     </svg>
     <div class="HeroSmall__main">
       <div class="HeroSmall__intro">
-        <div v-for="tag in animation.tags" :key="tag" class="HeroSmall__tag">
+        <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
           {{ tag }}
         </div>
         <div class="HeroSmall__headline HeroSmall__headline--left">
@@ -42,6 +42,10 @@ export default {
     animation: {
       type: Object,
       default: () => {}
+    },
+    tags: {
+      type: Array,
+      default: []
     }
   },
   data() {

@@ -6,6 +6,7 @@
       <cross-sell-card
         v-for="card in cards"
         :key="card.id"
+        :id="card.id"
         :name="card.name"
         :description="card.description"
         :tags="card.tags"
@@ -32,8 +33,8 @@ export default {
       default: () => []
     },
     cards: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: []
     }
   },
   data() {

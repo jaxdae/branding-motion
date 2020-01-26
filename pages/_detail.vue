@@ -1,6 +1,6 @@
 <template>
   <div class="Detail">
-    <HeroSmall :animation="cards.firstCard"></HeroSmall>
+    <HeroSmall :animation="card" :tags="tags"></HeroSmall>
     <top-filter></top-filter>
     <div class="Detail__wrapper">
       <filters
@@ -11,13 +11,13 @@
       >
       </filters>
       <Effect
-        :type="Object.values(effects)[0].type"
+        :type="effect.type"
         :class="{ wider: !isCollapsed }"
         class="Detail__animation"
       >
         <!-- eslint-disable-next-line vue/require-component-is -->
         <component
-          :is="Object.values(effects)[0].name"
+          :is="effect.name"
           class="Detail__component"
         />
         <div @click="switchView" class="Detail__switcher"></div>
@@ -34,13 +34,13 @@
         </filters>
         <Code
           v-else
-          :html="Object.values(effects)[0].html"
-          :css="Object.values(effects)[0].css"
+          :html="effect.html"
+          :css="effect.css"
         >
         </Code>
       </div>
     </div>
-    <cross-ref-slider :cards="cards"></cross-ref-slider>
+    <cross-ref-slider :cards="crossRefs"></cross-ref-slider>
     <Footer></Footer>
   </div>
 </template>
@@ -76,49 +76,12 @@ export default {
       name: '',
       isCollapsed: true,
       designerView: true,
+      effect: {},
       effects,
-      cards: {
-        firstCard: {
-          id: 1,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../assets/videos/animation.mp4')
-        },
-        secondCard: {
-          id: 2,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../assets/videos/animation.mp4')
-        },
-        thirdCard: {
-          id: 3,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../assets/videos/animation.mp4')
-        },
-        fourthCard: {
-          id: 4,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../assets/videos/animation.mp4')
-        },
-        fifthCard: {
-          id: 5,
-          name: 'Button background expand hover effect',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy dolor sit amet dolor.',
-          tags: ['Button', 'Hover'],
-          video: require('../assets/videos/animation.mp4')
-        }
-      },
+      card: {},
+      cards: [],
+      tags: [],
+      crossRefs: [],
       filteroptions: {
         slow: {
           left: 'slow',
@@ -191,7 +154,46 @@ export default {
       } else {
         this.designerView = true;
       }
+    },
+    getAnimation() {
+      this.$axios.get('/api/animations/' + this.$route.params.detail)
+       .then(response => {
+          this.card = response.data;
+          this.getCode();
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    getTags() {
+      this.$axios.get('/api/animationtags/' + this.$route.params.detail)
+       .then(response => {
+         this.tags = response.data.map(tag => {
+          return tag.name;
+        })
+      }).catch((error) => {
+        console.log(error);
+      })
+    },
+    getCode() {
+      Object.values(effects).forEach(effect => {
+        if(effect.name == this.card.componentName){
+          this.effect = effect;
+        };
+      })
+    },
+    getCrossRefs() {
+      this.$axios.get('/api/crossrefs/' + this.$route.params.detail)
+       .then(response => {
+         this.crossRefs = response.data;
+      }).catch((error) => {
+        console.log(error);
+      })
     }
+  },
+  mounted() {
+    this.getAnimation();
+    this.getTags();
+    this.getCrossRefs();
   }
 };
 </script>

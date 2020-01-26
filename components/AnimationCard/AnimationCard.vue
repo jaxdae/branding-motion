@@ -1,7 +1,7 @@
 <template>
   <div class="AnimationCard">
     <div class="AnimationCard__wrapper">
-      <nuxt-link to="/detail" class="AnimationCard__link">
+      <nuxt-link :to="id.toString()" class="AnimationCard__link">
         <video autoplay muted loop class="AnimationCard__video">
           <source :src="video" type="video/mp4" />
         </video>
@@ -22,7 +22,7 @@
           :class="{ savedbg: isSaved }"
           class="AnimationCard__heart--full"
         ></div>
-        <nuxt-link to="/detail" class="AnimationCard__link">
+        <nuxt-link :to="id.toString()" class="AnimationCard__link">
           <div class="AnimationCard__headline">{{ name }}</div>
           <div class="AnimationCard__description">{{ description }}</div>
         </nuxt-link>
@@ -37,16 +37,16 @@ export default {
   name: 'AnimationCard',
   components: {},
   props: {
+    id:{
+      type: Number,
+      default: null
+    },
     name: {
       type: String,
       required: true
     },
     description: {
       type: String,
-      required: true
-    },
-    tags: {
-      type: Array,
       required: true
     },
     video: {
@@ -73,7 +73,8 @@ export default {
   },
   data() {
     return {
-      isSaved: false
+      isSaved: false,
+      tags: []
     };
   },
   methods: {
@@ -83,7 +84,20 @@ export default {
       } else {
         this.isSaved = false;
       }
+    },
+    getTags() {
+      this.$axios.get('/api/animationtags/' + this.id)
+       .then(response => {
+         this.tags = response.data.map(tag => {
+          return tag.name;
+        })
+      }).catch((error) => {
+        console.log(error);
+      })
     }
+  },
+  mounted() {
+    this.getTags();     
   }
 };
 </script>
