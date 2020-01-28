@@ -56,7 +56,6 @@ export default {
     valueSet: {
       type: Object,
       default: () => {}
-      //  required:true
     },
     html: {
       type: String,

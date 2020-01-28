@@ -4,7 +4,10 @@
 .Detail{
    &__brandtraits{
      width:23%;
-     border-radius: 0 15px 15px 0;	
+     height:100%;
+   }
+   &__background.collapsed, .Detail__brandtraits.collapsed{
+     width: 5%;
    }
    &__left{
      width:23%;
@@ -62,4 +65,11 @@
         left: calc(50% - 13px);
       }
    }
+   &__background{
+     border-radius: 0 15px 15px 0;
+     height: 100%;
+   }
+   .fade-in-enter-active{
+  opacity: 0.3;
+}
 }

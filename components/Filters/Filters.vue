@@ -80,6 +80,10 @@ export default {
     name: {
       type: String,
       default: 'Brand identity'
+    },
+    valueset: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
@@ -88,9 +92,15 @@ export default {
       isCollapsed: false
     };
   },
+  watch: {
+    valueset: function(){
+      console.log(this.valueset)
+      console.log(this.checkboxValues)
+      this.checkboxValues = this.valueset;
+    }
+  },
   methods: {
     check(valueset, index) { 
-         
       if (parseInt(this.checkboxValues[valueset]) === index) {
         this.checkboxValues[valueset] = null;
         delete this.checkboxValues[valueset];

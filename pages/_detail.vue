@@ -3,13 +3,17 @@
     <HeroSmall :animation="card" :tags="tags"></HeroSmall>
     <top-filter></top-filter>
     <div class="Detail__wrapper">
-      <filters
-        :filteroptions="brandtraits"
-        @isCollapsed="collapse"
-        collapse
-        class="Detail__brandtraits"
-      >
-      </filters>
+      <transition-group name="fade-in" mode="out-in" :class="{ collapsed: !isCollapsed }" class="Detail__brandtraits">
+        <filters
+          :filteroptions="brandtraits"
+          :valueset="valueSet"
+          :key=1
+          @isCollapsed="collapse"
+          collapse
+          class="Detail__background"
+        >
+        </filters>
+      </transition-group>
       <Effect
         :type="effect.type"
         :class="{ wider: !isCollapsed }"
@@ -82,6 +86,7 @@ export default {
       cards: [],
       tags: [],
       crossRefs: [],
+      valueSet: {},
       filteroptions: {
         slow: {
           left: 'slow',
@@ -155,11 +160,24 @@ export default {
         this.designerView = true;
       }
     },
+    getValueSet() {
+      this.valueSet = {
+        rational: this.card.rational,
+        innovative: this.card.innovative,
+        personal: this.card.personal,
+        maskuline: this.card.maskuline,
+        serious: this.card.serious,
+        luxurious: this.card.luxurious,
+        delicate: this.card.delicate,
+        simple: this.card.simple,
+      }
+    },
     getAnimation() {
       this.$axios.get('/api/animations/' + this.$route.params.detail)
        .then(response => {
           this.card = response.data;
           this.getCode();
+          this.getValueSet();
       }).catch((error) => {
         console.log(error)
       })

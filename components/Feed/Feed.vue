@@ -25,12 +25,13 @@
     </div>
     <div class="Feed__cards">
       <Card
-        v-for="card in cards"
+        v-for="(card, index) in cards"
         :key="card.id"
         :id="card.id"
         :name="card.name"
         :description="card.description"
         :video="card.video"
+        :valueset="getValueSet(index)"
         class="Feed__card"
       >
       </Card>
@@ -61,7 +62,8 @@ export default {
     return {
       number: 6,
       searchTerm: 'Hover',
-      cards: []
+      cards: [],
+      valueSet: {}
     };
   },
   methods: {
@@ -70,6 +72,18 @@ export default {
     },
     removeCategory(index) {
       this.categories.splice(index, 1);
+    },
+    getValueSet(index){
+      return {
+        rational: this.cards[index].rational,
+        innovative: this.cards[index].innovative,
+        personal: this.cards[index].personal,
+        maskuline: this.cards[index].maskuline,
+        serious: this.cards[index].serious,
+        luxurious: this.cards[index].luxurious,
+        delicate: this.cards[index].delicate,
+        simple: this.cards[index].simple,
+      }
     },
     getAnimations() {
       this.$axios.get('/api/animations')
