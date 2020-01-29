@@ -57,23 +57,14 @@ export default {
       type: Object,
       default: () => {}
     },
-    html: {
-      type: String,
-      default: ''
-    },
-    css: {
-      type: String,
-      default: ''
-    },
-    js: {
-      type: String,
-      default: ''
+    tags: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      isSaved: false,
-      tags: []
+      isSaved: false
     };
   },
   methods: {
@@ -83,20 +74,7 @@ export default {
       } else {
         this.isSaved = false;
       }
-    },
-    getTags() {
-      this.$axios.get('/api/animationtags/' + this.id)
-       .then(response => {
-         this.tags = response.data.map(tag => {
-          return tag.name;
-        })
-      }).catch((error) => {
-        console.log(error);
-      })
     }
-  },
-  mounted() {
-    this.getTags();     
   }
 };
 </script>

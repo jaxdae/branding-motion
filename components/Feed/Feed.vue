@@ -29,6 +29,7 @@
         :key="card.id"
         :id="card.id"
         :name="card.name"
+        :tags="card.tags"
         :description="card.description"
         :video="card.video"
         :valueset="getValueSet(index)"
@@ -89,14 +90,36 @@ export default {
         simple: this.cards[index].simple,
       }
     },
+    // getAnimations() {
+    //   this.$axios.get('/api/animations')
+    //    .then(response => {
+    //     this.cards = response.data;
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    // },
     getAnimations() {
       this.$axios.get('/api/animations')
        .then(response => {
-        this.cards = response.data;
+         this.cards = response.data;
+        response.data.forEach((animation, index) => {
+          this.getTags(animation.id, index);
+        });
       }).catch((error) => {
         console.log(error)
       })
     },
+    getTags(id, index) {
+      this.$axios.get('/api/animationtags/' + id)
+       .then(response => {
+         this.cards[index].tags = response.data.map(tag => {
+          return tag.name;
+        });
+        console.log(this.cards)
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
   },
   mounted() {
     this.getAnimations();
