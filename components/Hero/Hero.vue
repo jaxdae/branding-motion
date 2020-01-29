@@ -141,12 +141,12 @@ export default {
           description:
             'A lightweight, feminine feel with a touch of luxury. This animation set includes: Button, Link, Slider, Add to wishlist, Add to cart, Page transition, …',
           videos: {
-            video1: require('../../assets/videos/animation.mp4'),
-            video2: require('../../assets/videos/animation.mp4'),
-            video3: require('../../assets/videos/animation.mp4'),
-            video4: require('../../assets/videos/animation.mp4'),
-            video5: require('../../assets/videos/animation.mp4'),
-            video6: require('../../assets/videos/animation.mp4')
+            video1: '/animation.mp4',
+            video2: '/animation.mp4',
+            video3: '/animation.mp4',
+            video4: '/animation.mp4',
+            video5: '/animation.mp4',
+            video6: '/animation.mp4'
           }
         },
         set1: {
@@ -157,9 +157,9 @@ export default {
           description:
             'A lightweight, feminine feel with a touch of luxury. This animation set includes: Button, Link, Slider, Add to wishlist, Add to cart, Page transition, …',
           videos: {
-            video1: require('../../assets/videos/animation.mp4'),
-            video2: require('../../assets/videos/animation.mp4'),
-            video3: require('../../assets/videos/animation.mp4')
+            video1: '/animation.mp4',
+            video2: '/animation.mp4',
+            video3: '/animation.mp4'
           }
         }
       }

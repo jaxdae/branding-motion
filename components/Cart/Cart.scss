@@ -26,7 +26,6 @@
           transition: ease-out 0.2s;
            width:100%;
            background-color: $dark-peach;
-           border-radius: 20px;
            content: "";
            height:33px;
            display:block;
@@ -35,6 +34,7 @@
            left:-100%;
            opacity: 0.2;
            z-index:-1;
+           border: 2px solid $dark-peach;
         }
         &:hover.Cart__button::after{
             transform: translateX(100%);

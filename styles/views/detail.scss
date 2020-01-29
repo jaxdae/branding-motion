@@ -15,15 +15,16 @@
      position: relative;
      overflow: hidden;
    }
-   &__adjustments{
+   &__adjustments, &__code{
       border-radius: 15px 0 0 15px;	
-      height:calc(100% - 80px);
-      margin-top:45px;
+      height:calc(100% - 60px);
+      margin-top:60px;
    }
    &__cart{
-     width:100%;
-     overflow: hidden;
-   }
+    position: absolute;
+    right:0;
+    width:100%;
+  }
    &__wrapper{
      margin-top:60px;
      display:flex;
@@ -71,6 +72,7 @@
    &__background{
      border-radius: 0 15px 15px 0;
      height: 100%;
+     width:23%;
    }
 }
 

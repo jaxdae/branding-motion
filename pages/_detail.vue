@@ -3,17 +3,15 @@
     <HeroSmall :animation="card" :tags="tags"></HeroSmall>
     <top-filter></top-filter>
     <div class="Detail__wrapper">
-      <transition-group name="fade-in" mode="out-in" :class="{ collapsed: !isCollapsed }" class="Detail__brandtraits">
-        <filters
-          :filteroptions="brandtraits"
-          :valueset="valueSet"
-          :key=1
-          @isCollapsed="collapse"
-          collapse
-          class="Detail__background"
-        >
-        </filters>
-      </transition-group>
+      <filters
+        :filteroptions="brandtraits"
+        :valueset="valueSet"
+        :key=1
+        @isCollapsed="collapse"
+        collapse
+        class="Detail__background"
+      >
+      </filters>
       <Effect
         :type="effect.type"
         :class="{ wider: !isCollapsed }"
@@ -38,6 +36,7 @@
         </filters>
         <Code
           v-else
+          class="Detail__code"
           :html="effect.html"
           :css="effect.css"
         >
