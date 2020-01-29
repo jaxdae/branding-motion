@@ -210,3 +210,14 @@ a:focus {
     opacity: 0.8;
   }
 }
+
+.fade-in-up-enter, .fade-in-up-leave-to{
+  opacity: 0;
+}
+.fade-in-up-enter-to, .fade-in-up-leave{
+  opacity: 1;
+}
+
+.fade-in-up-enter-active{
+  transition: all .3s ease;
+}

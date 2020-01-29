@@ -2,18 +2,43 @@
 @import '../../styles/colors.scss';
 
 .Cart{
+  &__button-wrapper{
+    width: 23%;
+    border-radius: 20px;
+   overflow: hidden;
+    background: $white;
+    border: 1px solid $dark-peach;
+  }
 &__button{
-        border: 1px solid $dark-peach;
-        border-radius: 20px;
-        width:23%;
+        width:100%;
+        overflow: hidden;
+         border:none;
+         z-index: 1;
+        &:hover{
+          color: $white;
+          z-index: +1;
+        }
         @include font-caps($dark-peach);
-        &::after{
-           font-family: iconfont;
-            content: "\e900";
-            font-size:18px;
-            position: relative;
-            top:4px;
-            padding-left:10px;
+         
+        &::before{
+          transition: ease-in-out 0.3s;
+           width:100%;
+           background-color: $dark-peach;
+           border-radius: 20px;
+           content: "";
+           height:33px;
+           display:block;
+           position: absolute;
+           top:0;
+           left:-100%;
+           opacity: 0.2;
+           z-index: 0;
+        }
+        &:hover.Cart__button::before{
+            cursor: pointer;
+            transform: translateX(100%);
+            opacity:1;
+          
         }
     }
   }

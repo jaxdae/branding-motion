@@ -1,5 +1,7 @@
 <template>
-  <button class="Cart__button">View animation set</button>
+  <nuxt-link to="/list" class="Cart__button-wrapper">
+    <button class="Cart__button">View animation set</button>
+  </nuxt-link>
 </template>
 
 <script>

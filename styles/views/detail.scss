@@ -12,14 +12,17 @@
    &__left{
      width:23%;
      height: 100%;
+     position: relative;
+     overflow: hidden;
    }
    &__adjustments{
       border-radius: 15px 0 0 15px;	
       height:calc(100% - 80px);
+      margin-top:45px;
    }
    &__cart{
      width:100%;
-     margin-bottom:45px;
+     overflow: hidden;
    }
    &__wrapper{
      margin-top:60px;
@@ -69,7 +72,32 @@
      border-radius: 0 15px 15px 0;
      height: 100%;
    }
-   .fade-in-enter-active{
-  opacity: 0.3;
 }
+
+   .fade-in-enter-active .fade.in-leave.active{
+  transition: opacity 0.5s;
+}
+.fade-in-enter .fade-in-leave-to{
+  opacity: 0;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translateX(-4%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-4%);
+    opacity: 0.8;
+  }
 }

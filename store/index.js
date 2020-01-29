@@ -8,7 +8,8 @@ export const state = () => ({
     luxurious: null,
     delicate: null,
     simple: null,
-  }
+  },
+  savedAnimations: {}
 })
 
 export const mutations = {

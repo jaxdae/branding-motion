@@ -1,6 +1,6 @@
 <template>
   <div class="Feed">
-    <div class="Feed__search-results">
+    <div v-if="!onList" class="Feed__search-results">
       {{ `${number} results for "${searchTerm}"` }}
     </div>
     <div class="Feed__filter-wrapper">
@@ -56,6 +56,10 @@ export default {
     categories: {
       type: Array,
       default: () => []
+    },
+    onList: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

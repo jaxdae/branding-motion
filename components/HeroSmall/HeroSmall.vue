@@ -17,17 +17,27 @@
       ></use>
     </svg>
     <div class="HeroSmall__main">
-      <div class="HeroSmall__intro">
-        <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
-          {{ tag }}
+      <transition name="fade-in-up">
+        <div v-if="animation" class="HeroSmall__intro">
+          <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
+            {{ tag }}
+          </div>
+          <div class="HeroSmall__headline HeroSmall__headline--left">
+            {{ animation.name }}
+          </div>
+          <div class="HeroSmall__description HeroSmall__description--left">
+            {{ animation.description }}
+          </div>
         </div>
-        <div class="HeroSmall__headline HeroSmall__headline--left">
-          {{ animation.name }}
+        <div v-else class="HeroSmall__intro">
+          <div class="HeroSmall__headline HeroSmall__headline--left">
+            Animation Set
+          </div>
+          <div class="HeroSmall__description HeroSmall__description--left">
+            Go through all of your saved animations, edit them and export the complete set once your set is completed.
+          </div>
         </div>
-        <div class="HeroSmall__description HeroSmall__description--left">
-          {{ animation.description }}
-        </div>
-      </div>
+      </transition>
     </div>
     <div class="HeroSmall__logo"></div>
   </div>
@@ -45,7 +55,7 @@ export default {
     },
     tags: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   data() {
