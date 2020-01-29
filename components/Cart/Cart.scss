@@ -6,22 +6,24 @@
     width: 23%;
     border-radius: 20px;
    overflow: hidden;
-    background: $white;
     border: 1px solid $dark-peach;
   }
 &__button{
         width:100%;
         overflow: hidden;
          border:none;
-         z-index: 1;
+         z-index: 7;
+         transition: ease-out 0.2s;
+         cursor: pointer;
         &:hover{
           color: $white;
-          z-index: +1;
+          z-index: 7;
+          background:transparent;
         }
         @include font-caps($dark-peach);
          
-        &::before{
-          transition: ease-in-out 0.3s;
+        &::after{
+          transition: ease-out 0.2s;
            width:100%;
            background-color: $dark-peach;
            border-radius: 20px;
@@ -32,13 +34,11 @@
            top:0;
            left:-100%;
            opacity: 0.2;
-           z-index: 0;
+           z-index:-1;
         }
-        &:hover.Cart__button::before{
-            cursor: pointer;
+        &:hover.Cart__button::after{
             transform: translateX(100%);
             opacity:1;
-          
         }
     }
   }
