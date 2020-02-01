@@ -8,9 +8,10 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Elements</h2>
         <multiselect
-          v-model="elements"
+          :value="activeTagsElements"
           :options="optionsElements"
-          @input="input"
+          @input="addElement"
+          @remove="removeElement"
           :multiple="true"
           :close-on-select="false"
           :clear-on-select="true"
@@ -30,9 +31,10 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Categories</h2>
         <multiselect
-          v-model="categories"
+          :value="activeTagsCategories"
           :options="optionsCategories"
-          @input="input"
+          @input="addCategory"
+          @remove="removeCategory"
           :multiple="true"
           :close-on-select="false"
           :clear-on-select="true"
@@ -57,6 +59,7 @@
 <script>
 import Multiselect from 'vue-multiselect';
 import '../../assets/fonts/iconfont.scss';
+import { mapState } from 'vuex';
 export default {
   name: 'TopFilter',
   components: { Multiselect },
@@ -68,10 +71,21 @@ export default {
       optionsCategories: []
     };
   },
+  computed: {
+    ...mapState(['activeTagsCategories', 'activeTagsElements'])
+  },
   methods: {
-    input(event) {
-      this.$emit('tags', this.categories, this.elements);
-      this.$store.commit('addTag', event);
+    addElement(event) {
+      this.$store.commit('addTagElements', event);
+    },
+    addCategory(event) {
+      this.$store.commit('addTagCategories', event);
+    },
+     removeElement(event) {
+      this.$store.commit('removeTagElementsByName', event);
+    },
+    removeCategory(event) {
+      this.$store.commit('removeTagCategoriesByName', event);
     }
   },
   mounted() {

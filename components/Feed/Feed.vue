@@ -6,7 +6,7 @@
     <div class="Feed__filter-wrapper">
       <div class="Feed__left">
         <div
-          v-for="(filter, index) in elements"
+          v-for="(filter, index) in $store.getters.activeTagsElements"
           :key="filter.id"
           class="Feed__filter"
         >
@@ -14,7 +14,7 @@
           <span @click="removeElement(index)" class="Feed__close"></span>
         </div>
         <div
-          v-for="(filter, index) in categories"
+          v-for="(filter, index) in $store.getters.activeTagsCategories"
           :key="filter.id"
           class="Feed__filter"
         >
@@ -94,10 +94,10 @@ export default {
   },
   methods: {
     removeElement(index) {
-      this.elements.splice(index, 1);
+     this.$store.commit('removeTagElements', index);
     },
     removeCategory(index) {
-      this.categories.splice(index, 1);
+      this.$store.commit('removeTagCategories', index);
     },
     getValueSet(index){
       return {

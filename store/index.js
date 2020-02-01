@@ -10,13 +10,17 @@ export const state = () => ({
     simple: null,
   },
   savedAnimations: {},
-  activeTags: [],
+  activeTagsElements: [],
+  activeTagsCategories: [],
   anyFilterSelected: false,
 })
 
 export const getters = {
-  activeTags: state => {
-    return state.activeTags;
+  activeTagsElements: state => {
+    return state.activeTagsElements;
+  },
+   activeTagsCategories: state => {
+     return state.activeTagsCategories;
   }
 }
 export const mutations = {
@@ -28,16 +32,32 @@ export const mutations = {
     state.currentBrandSet[identity] = null;
     console.log(state.currentBrandSet);
   },
-  addTag(state, tag){
+  addTagElements(state, tag){
     tag.forEach(singleTag => {
-      if(state.activeTags.includes(singleTag)){
-        state.activeTags.push(singleTag);
+      if(!state.activeTagsElements.includes(singleTag)){
+        state.activeTagsElements.push(singleTag);
       }
     })
-    console.log(state.activeTags);
   },
-  removeTag(state, tag) {
-    state.activeTags.splice(tag,1);
-    console.log(state.activeTags);
+  addTagCategories(state, tag) {
+    tag.forEach(singleTag => {
+      console.log(state.activeTagsCategories, singleTag)
+      if (!state.activeTagsCategories.includes(singleTag)) {
+        state.activeTagsCategories.push(singleTag);
+      }
+    })
+  },
+  removeTagElements(state, tag) {
+    state.activeTagsElements.splice(tag,1);
+  },
+    removeTagCategories(state, tag) {
+    state.activeTagsCategories.splice(tag, 1);
+  },
+    removeTagElementsByName(state, tag) {
+    state.activeTagsElements.splice(state.activeTagsElements.indexOf(tag), 1);
+  },
+  removeTagCategoriesByName(state, tag) {
+    console.log('cate')
+    state.activeTagsCategories.splice(state.activeTagsCategories.indexOf(tag), 1);
   }
 }
