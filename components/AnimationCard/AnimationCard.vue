@@ -8,7 +8,7 @@
       </nuxt-link>
       <div class="AnimationCard__content">
         <div class="AnimationCard__tags">
-          <div v-for="tag in tags" :key="tag.id" class="AnimationCard__tag">
+          <div v-if="tags" v-for="tag in tags" :key="tag.id" class="AnimationCard__tag">
             {{ tag }}
           </div>
         </div>

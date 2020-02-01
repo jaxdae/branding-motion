@@ -28,23 +28,20 @@ async function start() {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended : false }))
 
-  // app.post('/api/tags', (req, res) => {
-  //   console.log(req.body);
-  //   models.tags.create({ name: req.body.name, isCategory: req.body.category})
-  // })
-
-  // app.post('/api/animations', (req, res) => {
-  //   console.log(req.body);
-  //   models.animations.create({ name: req.body.name, description: req.body.desc, video: req.body.video, componentName: req.body.comp })
-  // })
-
-  app.get('/api/animations', (req, res) => {
-    models.animations.findAll().then(animations => {
+  app.get('/api/animations/initial', (req, res) => {
+    models.animations.findAll({
+      limit: 12
+    }).then(animations => {
+      res.send(animations);
+    });
+  })
+  app.get('/api/animations/all', (req, res) => {
+    models.animations.findAll()
+    .then(animations => {
       res.send(animations);
     });
   })
   app.get('/api/animations/:id', (req, res) => {
-    //console.log(req.params);
     models.animations.findOne({
       where: {
         id: req.params.id

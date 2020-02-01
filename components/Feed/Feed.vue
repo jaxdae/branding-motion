@@ -23,9 +23,25 @@
         </div>
       </div>
     </div>
-    <div class="Feed__cards">
+    <div v-if="cards && !$store.state.anyFilterSelected" class="Feed__cards">
       <Card
         v-for="(card, index) in cards"
+        v-if="initialLoad"
+        :key="card.id"
+        :id="card.id"
+        :name="card.name"
+        :tags="card.tags"
+        :description="card.description"
+        :video="card.video"
+        :valueset="getValueSet(index)"
+        class="Feed__card"
+      >
+      </Card>
+    </div>
+    <div v-else class="Feed__cards">
+      <Card
+        v-for="(card, index) in allCards"
+        v-if="allLoad"
         :key="card.id"
         :id="card.id"
         :name="card.name"
@@ -67,9 +83,14 @@ export default {
     return {
       number: 6,
       searchTerm: 'Hover',
-      cards: [],
-      valueSet: {}
-    };
+      cards: {},
+      allCards: {},
+      valueSet: {},
+      initialLoad: false,
+      allLoad: false,
+      initialinitialMaxIndex: null,
+      allinitialMaxIndex: null,
+    }
   },
   methods: {
     removeElement(index) {
@@ -90,39 +111,50 @@ export default {
         simple: this.cards[index].simple,
       }
     },
-    // getAnimations() {
-    //   this.$axios.get('/api/animations')
-    //    .then(response => {
-    //     this.cards = response.data;
-    //   }).catch((error) => {
-    //     console.log(error)
-    //   })
-    // },
-    getAnimations() {
-      this.$axios.get('/api/animations')
+    getAllAnimations() {
+      this.$axios.get('/api/animations/all')
        .then(response => {
-         this.cards = response.data;
+        this.allCards = response.data;
+        this.allMaxIndex = response.data.length - 1;
         response.data.forEach((animation, index) => {
-          this.getTags(animation.id, index);
+          this.getTags(animation.id, index, this.allCards, this.allMaxIndex, 'all');
         });
       }).catch((error) => {
         console.log(error)
       })
     },
-    getTags(id, index) {
+    getInitialAnimations() {
+      this.$axios.get('/api/animations/initial')
+       .then(response => {
+        this.cards = response.data;
+        this.initialMaxIndex = response.data.length - 1;
+        response.data.forEach((animation, index) => {
+          this.getTags(animation.id, index, this.cards, this.initialMaxIndex, 'initial');
+        });
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    getTags(id, index, slot, max, type) {
       this.$axios.get('/api/animationtags/' + id)
        .then(response => {
-         this.cards[index].tags = response.data.map(tag => {
+         slot[index].tags = response.data.map(tag => {
           return tag.name;
         });
-        console.log(this.cards)
+        if(index == max && type == 'initial'){
+          this.initialLoad = true;
+          
+        } else if(index == max && type == 'all') {
+          this.allLoad = true;
+        }
       }).catch((error) => {
         console.log(error);
       })
     }
   },
   mounted() {
-    this.getAnimations();
+    this.getInitialAnimations();
+    this.getAllAnimations();
   }
 };
 </script>

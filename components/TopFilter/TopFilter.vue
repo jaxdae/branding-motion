@@ -69,8 +69,9 @@ export default {
     };
   },
   methods: {
-    input() {
+    input(event) {
       this.$emit('tags', this.categories, this.elements);
+      this.$store.commit('addTag', event);
     }
   },
   mounted() {
