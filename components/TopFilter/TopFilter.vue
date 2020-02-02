@@ -10,7 +10,7 @@
         <multiselect
           :value="activeTagsElements"
           :options="optionsElements"
-          @input="addElement"
+          @select="addElement"
           @remove="removeElement"
           :multiple="true"
           :close-on-select="false"
@@ -33,7 +33,7 @@
         <multiselect
           :value="activeTagsCategories"
           :options="optionsCategories"
-          @input="addCategory"
+          @select="addCategory"
           @remove="removeCategory"
           :multiple="true"
           :close-on-select="false"
@@ -75,12 +75,16 @@ export default {
     ...mapState(['activeTagsCategories', 'activeTagsElements'])
   },
   methods: {
-    addElement(event) {
-      this.$store.commit('addTagElements', event);
+    addElement(value) {
+      let tags = [];
+      tags.push(value)
+      this.$store.commit('addTagElements', tags);
       this.$store.commit('enableFilter', event);
     },
-    addCategory(event) {
-      this.$store.commit('addTagCategories', event);
+    addCategory(value) {
+      let tags = [];
+      tags.push(value)
+      this.$store.commit('addTagCategories', tags);
       this.$store.commit('enableFilter', event);
     },
      removeElement(event) {

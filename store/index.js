@@ -64,9 +64,9 @@ export const mutations = {
   enableFilter(state){
     state.anyFilterSelected = true;
   },
-  disableFilter(state){
-    if(!state.activeTagsElements && !state.activeTagsCategories){
+  disableFilter(state) {
+    if (state.activeTagsCategories.length < 1 && state.activeTagsElements.length < 1) {
       state.anyFilterSelected = false;
     }
-  }
+  },
 }
