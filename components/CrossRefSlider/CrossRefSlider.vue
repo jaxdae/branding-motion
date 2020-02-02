@@ -2,7 +2,7 @@
   <div class="CrossRefSlider">
     <div class="CrossRefSlider__subheadline">Discover more animations</div>
     <div class="CrossRefSlider__headline">Want to complete your set?</div>
-    <slick ref="slick" :options="slickOptions">
+    <slick ref="slick" :options="slickOptions" v-if="cards.length >= 1">
       <cross-sell-card
         v-for="card in cards"
         :key="card.id"
@@ -28,13 +28,9 @@ export default {
     Slick
   },
   props: {
-    crossSells: {
-      type: Array,
-      default: () => []
-    },
     cards: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   data() {

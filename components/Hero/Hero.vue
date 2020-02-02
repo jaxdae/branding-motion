@@ -85,7 +85,7 @@
         </transition-group>
       </div>
     </div>
-    <div class="Hero__logo"></div>
+    <nuxt-link to="/" class="HeroSmall__logo"></nuxt-link>
   </div>
 </template>
 

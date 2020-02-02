@@ -39,7 +39,7 @@
         </div>
       </transition>
     </div>
-    <div class="HeroSmall__logo"></div>
+    <nuxt-link to="/" class="HeroSmall__logo"></nuxt-link>
   </div>
 </template>
 

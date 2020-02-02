@@ -43,7 +43,7 @@
         </Code>
       </div>
     </div>
-    <cross-ref-slider :cards="crossRefs"></cross-ref-slider>
+    <cross-ref-slider v-if="crossRefs" :cards="crossRefs"></cross-ref-slider>
     <Footer></Footer>
   </div>
 </template>
