@@ -94,8 +94,6 @@ export default {
   },
   watch: {
     valueset: function(){
-      console.log(this.valueset)
-      console.log(this.checkboxValues)
       this.checkboxValues = this.valueset;
     }
   },
@@ -118,7 +116,6 @@ export default {
         this.$emit('isCollapsed', true);
       } else {
         this.isCollapsed = true;
-        console.log('emit');
         this.$emit('isCollapsed', false);
       }
     }

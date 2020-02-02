@@ -77,15 +77,19 @@ export default {
   methods: {
     addElement(event) {
       this.$store.commit('addTagElements', event);
+      this.$store.commit('enableFilter', event);
     },
     addCategory(event) {
       this.$store.commit('addTagCategories', event);
+      this.$store.commit('enableFilter', event);
     },
      removeElement(event) {
       this.$store.commit('removeTagElementsByName', event);
+      this.$store.commit('disableFilter');
     },
     removeCategory(event) {
       this.$store.commit('removeTagCategoriesByName', event);
+      this.$store.commit('disableFilter');
     }
   },
   mounted() {

@@ -59,5 +59,14 @@ export const mutations = {
   removeTagCategoriesByName(state, tag) {
     console.log('cate')
     state.activeTagsCategories.splice(state.activeTagsCategories.indexOf(tag), 1);
+  },
+
+  enableFilter(state){
+    state.anyFilterSelected = true;
+  },
+  disableFilter(state){
+    if(!state.activeTagsElements && !state.activeTagsCategories){
+      state.anyFilterSelected = false;
+    }
   }
 }

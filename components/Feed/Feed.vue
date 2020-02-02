@@ -40,8 +40,7 @@
     </div>
     <div v-else class="Feed__cards">
       <Card
-        v-for="(card, index) in allCards"
-        v-if="allLoad"
+        v-for="(card, index) in filteredCards"
         :key="card.id"
         :id="card.id"
         :name="card.name"
@@ -59,6 +58,7 @@
 <script>
 import '../../assets/fonts/iconfont.scss';
 import Card from '../AnimationCard/AnimationCard';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Feed',
@@ -88,16 +88,34 @@ export default {
       valueSet: {},
       initialLoad: false,
       allLoad: false,
+      shouldBeRendered: false,
       initialinitialMaxIndex: null,
       allinitialMaxIndex: null,
+    }
+  },
+  computed: {
+    ...mapState(['activeTagsCategories', 'activeTagsElements']),
+    filteredCards() {
+      let filtered = {};
+      this.allCards.forEach((card, index) => {
+        card.tags.forEach(tag => {
+          if(this.activeTagsElements.includes(tag)){
+            console.log("one")
+            filtered[index] = card;
+          }
+        })
+      })
+      return(filtered)
     }
   },
   methods: {
     removeElement(index) {
      this.$store.commit('removeTagElements', index);
+     this.$store.commit('disableFilter');
     },
     removeCategory(index) {
       this.$store.commit('removeTagCategories', index);
+      this.$store.commit('disableFilter');
     },
     getValueSet(index){
       return {
