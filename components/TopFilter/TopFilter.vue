@@ -1,6 +1,6 @@
 <template>
   <div class="TopFilter__filter-wrapper">
-    <div class="TopFilter__filters">
+    <div v-if="!isDetail" class="TopFilter__filters TopFilter__filters--home">
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Quick search</h2>
         <input class="TopFilter__input" placeholder="Enter search term" />
@@ -53,6 +53,44 @@
       </div>
       <div class="TopFilter__search-button"></div>
     </div>
+
+    <!-- detail component -->
+
+    <div v-else class="TopFilter__filters TopFilter__filters--detail">
+      <div class="TopFilter__back-button"></div>
+      <div class="TopFilter__filter-box">
+        <h2 class="TopFilter__filter-headline caps">Programming language</h2>
+        <multiselect
+        disabled
+          :value="activeTagsElements"
+          :options="optionsElements"
+          @select="addElement"
+          @remove="removeElement"
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="true"
+          :preselect-first="true"
+          placeholder="Select elements"
+        >
+          <template slot="selection" slot-scope="{ values, search, isOpen }">
+            <span
+              v-if="values.length &amp;&amp; !isOpen"
+              class="multiselect__single"
+            >
+              {{ values.length }} elements selected
+            </span>
+          </template>
+        </multiselect>
+      </div>
+      <div class="TopFilter__filter-box">
+        <h2 class="TopFilter__filter-headline">Primary color</h2>
+        <input class="TopFilter__input" placeholder="Enter search term" />
+      </div>
+      <div class="TopFilter__filter-box">
+        <h2 class="TopFilter__filter-headline">Secondary color</h2>
+        <input class="TopFilter__input" placeholder="Enter search term" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,6 +101,12 @@ import { mapState } from 'vuex';
 export default {
   name: 'TopFilter',
   components: { Multiselect },
+  props: {
+    isDetail: {
+      type: Boolean,
+      default: false,
+    }
+  },
   data() {
     return {
       categories: null,

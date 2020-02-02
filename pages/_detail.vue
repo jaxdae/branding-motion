@@ -1,7 +1,7 @@
 <template>
   <div class="Detail">
     <HeroSmall :animation="card" :tags="tags"></HeroSmall>
-    <top-filter></top-filter>
+    <top-filter isDetail></top-filter>
     <div class="Detail__wrapper">
       <filters
         :filteroptions="brandtraits"

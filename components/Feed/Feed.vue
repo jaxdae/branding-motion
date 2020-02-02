@@ -66,14 +66,6 @@ export default {
     Card
   },
   props: {
-    elements: {
-      type: Array,
-      default: () => []
-    },
-    categories: {
-      type: Array,
-      default: () => []
-    },
     onList: {
       type: Boolean,
       default: false

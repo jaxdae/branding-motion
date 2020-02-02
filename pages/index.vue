@@ -1,13 +1,13 @@
 <template>
   <div class="Home">
     <Hero></Hero>
-    <TopFilter @tags="tags" class="Home__topfilter"></TopFilter>
+    <TopFilter class="Home__topfilter"></TopFilter>
     <div class="Home__wrapper">
       <div class="Home__right">
         <Cart class="Home__cart"></Cart>
         <Filters :filteroptions="filteroptions" class="Home__filters"></Filters>
       </div>
-      <Feed :elements="elements" :categories="categories" class="Home__left">
+      <Feed class="Home__left">
       </Feed>
     </div>
     <Footer></Footer>
