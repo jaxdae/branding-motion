@@ -29,7 +29,7 @@
     justify-content: space-between;
   }
   &__labels{
-    @include font-blocktext($dark-blue);
+    @include font-blocktext($white);
     padding-bottom:5px;
   }
   &__radiogroup{
@@ -50,7 +50,7 @@
     width: 10px;
     height: 10px;
     display: inline-block;
-    border: 1px solid $dark-blue;
+    border: 1px solid $white;
     border-radius: 50%;
     position: relative;
     transition: all .2s linear;

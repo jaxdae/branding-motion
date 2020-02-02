@@ -57,7 +57,7 @@
     <!-- detail component -->
 
     <div v-else class="TopFilter__filters TopFilter__filters--detail">
-      <div class="TopFilter__back-button"></div>
+      <nuxt-link to="/"><div class="TopFilter__back-button"></div></nuxt-link>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Programming language</h2>
         <multiselect

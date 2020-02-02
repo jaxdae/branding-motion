@@ -13,10 +13,11 @@
         overflow: hidden;
          border:none;
          z-index: 7;
+         background: $dark-blue;
          transition: ease-out 0.2s;
          cursor: pointer;
         &:hover{
-          color: $white;
+          color: $dark-blue;
           z-index: 7;
           background:transparent;
         }

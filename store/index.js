@@ -13,6 +13,10 @@ export const state = () => ({
   activeTagsElements: [],
   activeTagsCategories: [],
   anyFilterSelected: false,
+  initialCards: {},
+  initialLoad: false,
+  allCards: {},
+  allLoad: false,
 })
 
 export const getters = {
@@ -21,7 +25,13 @@ export const getters = {
   },
    activeTagsCategories: state => {
      return state.activeTagsCategories;
-  }
+  },
+  initialCards: state => {
+    return state.initialCards;
+  },
+  allCards: state => {
+    return state.allCards;
+  },
 }
 export const mutations = {
   changeValues(state, identity) {
@@ -57,7 +67,6 @@ export const mutations = {
     state.activeTagsElements.splice(state.activeTagsElements.indexOf(tag), 1);
   },
   removeTagCategoriesByName(state, tag) {
-    console.log('cate')
     state.activeTagsCategories.splice(state.activeTagsCategories.indexOf(tag), 1);
   },
 
@@ -68,5 +77,65 @@ export const mutations = {
     if (state.activeTagsCategories.length < 1 && state.activeTagsElements.length < 1) {
       state.anyFilterSelected = false;
     }
+  },
+  setInitialCards: (state, cards) => {
+    state.initialCards = cards;
+  },
+  setInitialLoad: (state, bool) => {
+    state.initialLoad = bool;
+  } ,
+  setAllCards: (state, cards) => {
+    state.allCards = cards;
+  },
+  setAllLoad: (state, bool) => {
+    state.allLoad = bool;
+    console.log(state.allLoad)
+  } 
+}
+
+export const actions = {
+  async getInitialCards({commit}) {
+    let { data } = await this.$axios.get('/api/animations/initial')
+    for(let i = 0; i<data.length; i++){
+      data.valueSet = {
+        rational: data[i].rational,
+        innovative: data[i].innovative,
+        personal: data[i].personal,
+        maskuline: data[i].maskuline,
+        serious: data[i].serious,
+        luxurious: data[i].luxurious,
+        delicate: data[i].delicate,
+        simple: data[i].simple,
+      } 
+      let test = await this.$axios.get('/api/animationtags/' + data[i].id)
+      data[i].tags = test.data.map(tag => {
+        return tag.name;
+      });
+    }
+ 
+    commit('setInitialCards', data);
+    commit('setInitialLoad', true);
+  },
+  async getAllCards({ commit }) {
+    let { data } = await this.$axios.get('/api/animations/all')
+    for (let i = 0; i < data.length; i++) {
+      data.valueSet = {
+        rational: data[i].rational,
+        innovative: data[i].innovative,
+        personal: data[i].personal,
+        maskuline: data[i].maskuline,
+        serious: data[i].serious,
+        luxurious: data[i].luxurious,
+        delicate: data[i].delicate,
+        simple: data[i].simple,
+      }
+      let test = await this.$axios.get('/api/animationtags/' + data[i].id)
+      data[i].tags = test.data.map(tag => {
+        return tag.name;
+      });
+    }
+
+    commit('setAllCards', data);
+    commit('setAllLoad', true);
   },
 }

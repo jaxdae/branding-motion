@@ -17,7 +17,7 @@
 
 .Hero{
   height: 700px;
-  background-color: $dark-blue;
+  background-color: $light-grey;
   border-radius: 15px 15px 0 0;
   display:flex;
   position: relative;
@@ -57,7 +57,7 @@
     @include font-headline($white);
   }
   &--right{
-    @include font-headline($dark-grey);
+    @include font-headline($dark-blue);
   }
 }
 &__description{
@@ -66,11 +66,11 @@
     @include font-blocktext($white);
   }
   &--right{
-     @include font-blocktext($dark-grey);
+     @include font-blocktext($dark-blue);
   }
 }
 &__info{
-  background-color: $light-grey;
+  background-color: $light;
   width: 492px;
   height: 80%;
   border-radius: 0 0 15px 0;
@@ -222,7 +222,7 @@ a:focus {
 			
 			border: none;
 			border-radius: 100%;
-			background-color: rgba($light-grey, 0.1);
+			background-color: rgba($light, 0.1);
 			
 			text-indent: -9999px;
 		}

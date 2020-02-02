@@ -2,7 +2,7 @@
 @import '../../styles/fonts.scss';
 
 .Code{
-  background-color: $dark-blue;
+  background-color: $light-grey;
   overflow: scroll;
   width:100%;
   height: calc(100% - 80px);
@@ -30,7 +30,7 @@
 .hljs-regexp,
 .hljs-literal,
 .hljs-link {
-  color: $light-grey;
+  color: $white;
 }
 
 .hljs-code,
@@ -52,7 +52,7 @@
 .hljs-selector-tag,
 .hljs-name,
 .hljs-attr {
-  color: $light-grey;
+  color: $white;
 }
 
 .hljs-symbol,

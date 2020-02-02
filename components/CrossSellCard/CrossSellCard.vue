@@ -1,31 +1,33 @@
 <template>
   <div class="CrossSellCard">
-    <nuxt-link :to="id.toString()" class="CrossSellCard__link">
-      <div class="CrossSellCard__wrapper">
+    <div class="CrossSellCard__wrapper">
+      <nuxt-link :to="id.toString()" class="CrossSellCard__link">
         <video autoplay muted loop class="CrossSellCard__video">
           <source :src="video" type="video/mp4" />
         </video>
-        <div class="CrossSellCard__content">
-          <div class="CrossSellCard__tags">
-            <div v-for="tag in tags" :key="tag.id" class="CrossSellCard__tag">
-              {{ tag }}
-            </div>
+      </nuxt-link>
+      <div class="CrossSellCard__content">
+        <div class="CrossSellCard__tags">
+          <div v-for="tag in tags" :key="tag.id" class="CrossSellCard__tag">
+            {{ tag }}
           </div>
-          <div
-            @click="save"
-            :class="{ saved: isSaved }"
-            class="CrossSellCard__heart"
-          ></div>
-          <div
-            @click="save"
-            :class="{ savedbg: isSaved }"
-            class="CrossSellCard__heart--full"
-          ></div>
+        </div>
+        <div
+          @click="save"
+          :class="{ saved: isSaved }"
+          class="CrossSellCard__heart"
+        ></div>
+        <div
+          @click="save"
+          :class="{ savedbg: isSaved }"
+          class="CrossSellCard__heart--full"
+        ></div>
+        <nuxt-link :to="id.toString()" class="CrossSellCard__link">
           <div class="CrossSellCard__headline">{{ name }}</div>
           <div class="CrossSellCard__description">{{ description }}</div>
-        </div>
+        </nuxt-link>
       </div>
-    </nuxt-link>
+    </div>
   </div>
 </template>
 

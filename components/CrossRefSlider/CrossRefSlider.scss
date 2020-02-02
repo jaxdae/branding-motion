@@ -11,7 +11,7 @@
     margin-top:90px;
   }
   &__headline{
-    @include font-headline($dark-blue);
+    @include font-headline($white);
     margin-bottom:30px;
   }
   .slick-slider{

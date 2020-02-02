@@ -5,8 +5,8 @@
   display:flex;
   display:inline-block;
   &__wrapper{
-    background-color: $white;
-    box-shadow: 0 0 18px 2px rgba(229,221,221,0.6);
+    background-color: $light-grey;
+    box-shadow: 0 0 18px 2px rgba($light-grey,0.6);
     border-radius: 15px;
   }
   &__content{
@@ -56,7 +56,7 @@
     font-family: iconfont;
     font-size:24px;
     content: "\e907";
-    -webkit-text-fill-color: $white;
+    -webkit-text-fill-color: $light-grey;
     -webkit-text-stroke-width: 1px;
     color: $taupe;
     position: absolute;
