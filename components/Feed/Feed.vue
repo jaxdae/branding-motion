@@ -1,6 +1,6 @@
 <template>
   <div class="Feed">
-    <div v-if="!onList" class="Feed__search-results">
+    <div v-show="!onList && searchTerm" class="Feed__search-results">
       {{ `${number} results for "${searchTerm}"` }}
     </div>
     <div class="Feed__filter-wrapper">
@@ -74,8 +74,7 @@ export default {
   },
   data() {
     return {
-      number: 6,
-      searchTerm: 'Hover',
+      number: null,
     }
   },
   computed: {
@@ -88,29 +87,135 @@ export default {
     ]),
     ...mapGetters([
       'initialCards',
-      'allCards'
+      'allCards',
+      'searchTerm',
+      'currentBrandSet',
+      'activeSearch',
+      'activeElement',
+      'activeCategory',
     ]),
-    filteredCards() {
+      filteredCards() {
+        console.log(this.activeSearch, this.activeElement, this.activeCategory)
       let filtered = {};
-      this.allCards.forEach((card, index) => {
-        console.log(card)
-        card.tags.forEach(tag => {
-          if(this.activeTagsElements.includes(tag)){
-            filtered[index] = card;
+      if(this.activeSearch){
+        let searchedCards = {};
+        this.allCards.forEach((card, index) => {
+          if(card.name.includes(this.searchTerm)){
+          searchedCards[index] = card;
           }
         })
-      })
-      return(filtered)
-    }
+        if(this.activeElement && !this.activeCategory || this.activeCategory && !this.activeElement){
+          if(this.activeElement){
+            let searchedElementCards = {};
+            Object.values(searchedCards).forEach((card, index) => {
+              card.tags.forEach(tag => {
+                if(this.activeTagsElements.includes(tag)){
+                  searchedElementCards[index] = card;
+                }
+              })
+            })
+            this.number = Object.values(searchedElementCards).length;
+            return searchedElementCards;
+          }
+          else {
+            let searchedCategoryCards = {};
+            Object.values(searchedCards).forEach((card, index) => {
+              card.tags.forEach(tag => {
+                if(this.activeTagsCategories.includes(tag)){
+                  searchedCategoryCards[index] = card;
+                }
+              })
+            })
+            this.number = Object.values(searchedCategoryCards).length;
+            return searchedCategoryCards;
+          }
+        }
+        else if(this.activeElement && this.activeCategory){
+          let searchedElementCards = {};
+          Object.values(searchedCards).forEach((card, index) => {
+            card.tags.forEach(tag => {
+              if(this.activeTagsElements.includes(tag)){
+                searchedElementCards[index] = card;
+              }
+            })
+          })
+          let searchedElementCategoryCards = {};
+          Object.values(searchedElementCards).forEach((card, index) => {
+            card.tags.forEach(tag => {
+              if(this.activeTagsCategories.includes(tag)){
+                searchedElementCategoryCards[index] = card;
+              }
+            })
+          })
+          this.number = Object.values(searchedElementCategoryCards).length;
+          return searchedElementCategoryCards;
+        }
+        else{
+          this.number = Object.values(searchedCards).length;
+          return searchedCards;
+        }
+      }
+      else {
+        if(this.activeElement && !this.activeCategory || this.activeCategory && !this.activeElement){
+          if(this.activeElement){
+            let elementCards = {};
+             this.allCards.forEach((card, index) => {
+              card.tags.forEach(tag => {
+                if(this.activeTagsElements.includes(tag)){
+                  elementCards[index] = card;
+                }
+              })
+            })
+            return elementCards;
+          }
+          else {
+            let categoryCards = {};
+              this.allCards.forEach((card, index) => {
+              card.tags.forEach(tag => {
+                if(this.activeTagsCategories.includes(tag)){
+                  categoryCards[index] = card;
+                }
+              })
+            })
+            return categoryCards;
+          }
+        }
+        else if(this.activeElement && this.activeCategory){
+          let elementCategoryCards = {};
+          let elementCards = {};
+          this.allCards.forEach((card, index) => {
+              card.tags.forEach(tag => {
+              if(this.activeTagsElements.includes(tag)){
+                  elementCards[index] = card;
+              }
+            })
+          })
+          Object.values(elementCards).forEach((card, index) => {
+            card.tags.forEach(tag => {
+              if(this.activeTagsCategories.includes(tag)){
+                  elementCategoryCards[index] = card;
+              }
+            })
+          })
+          return elementCategoryCards;
+        }
+        else{
+          return this.allCards;
+        }
+      }
+      
+    },
   },
   methods: {
     removeElement(index) {
      this.$store.commit('removeTagElements', index);
      this.$store.commit('disableFilter');
+     this.$store.commit('deactivateElement');
     },
     removeCategory(index) {
       this.$store.commit('removeTagCategories', index);
       this.$store.commit('disableFilter');
+      this.$store.commit('deactivateCategory');
     }
   },
   mounted() {

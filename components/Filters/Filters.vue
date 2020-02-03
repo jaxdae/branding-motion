@@ -103,11 +103,13 @@ export default {
         this.checkboxValues[valueset] = null;
         delete this.checkboxValues[valueset];
         this.$store.commit('removeValue', valueset);
+        this.$store.commit('disableFilter');
       } else {
         let identity = {};
         identity.name = valueset;
         identity.value = index;
         this.$store.commit('changeValues', identity);
+        this.$store.commit('enableFilter');
       }
     },
     collapseTraits() {

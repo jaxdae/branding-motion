@@ -14,7 +14,7 @@ padding-top:10px;
   bottom: 0;
   width: $grid-width;
   border-radius: 0 0 15px 15px;
-  box-shadow: 0 0 30px 2px rgba($dark-grey, 0.1);
+  box-shadow: 0 0 30px 2px rgba($dark-blue, 0.1);
   display: flex;
   height: 95px;
   position: relative;
@@ -38,7 +38,7 @@ padding-top:10px;
 &__search-button {
   width: grid-span(1);
   height: 100%;
-  background-color: rgba($light-grey,0.7);
+  background-color: $light;
   position: absolute;
   top:0;
   right: 0;
@@ -46,13 +46,18 @@ padding-top:10px;
   cursor: pointer;
   border-radius: 0 0 15px 0;
   &:hover{
+    transition: 0.2s all ease-out;
     background-color: $bright-yellow;
+  }
+  &:hover::before{
+    transition: 0.2s all ease-out;
+    color: $white;
   }
   &::before {
     transition: 0.2s all ease-out;
     font-family: iconfont;
     content: "\e90a";
-    color: $dark-grey;
+    color: $dark-blue;
     position: absolute;
     font-size: 40px;
     font-weight: bold;
@@ -66,7 +71,7 @@ padding-top:10px;
 &__back-button {
   width: grid-span(1);
   height: 100%;
-  background-color: rgba($light-grey,0.7);
+  background-color: $light;
   position: absolute;
   transform: rotate(180deg);
   top:0;
@@ -77,14 +82,17 @@ padding-top:10px;
   &:hover{
     background-color: $bright-yellow;
   }
+   &:hover::before{
+    transition: 0.2s all ease-out;
+    color: $white;
+  }
   &::before {
     transition: 0.2s all ease-out;
     font-family: iconfont;
     content: "\e90b";
-    color: $dark-grey;
+    color: $dark-blue;
     position: absolute;
     font-size: 40px;
-    font-weight: bold;
     top: calc(50% - 20px);
     left: calc(50% - 20px);
     height: 100%;
@@ -100,9 +108,9 @@ padding-top:10px;
   padding:0 0 0 20px;
   position: absolute;
   bottom:0;
-  @include font-blocktext($dark-grey);
+  @include font-blocktext($dark-blue);
   &::placeholder{
-    color: $dark-grey;
+    color: $dark-blue;
   }
 }
 }

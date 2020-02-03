@@ -3,7 +3,12 @@
     <div v-if="!isDetail" class="TopFilter__filters TopFilter__filters--home">
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Quick search</h2>
-        <input class="TopFilter__input" placeholder="Enter search term" />
+        <input
+          class="TopFilter__input"
+          v-model="searchParam"
+          placeholder="Enter search term"
+          @keyup.enter="search"
+        />
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Elements</h2>
@@ -51,7 +56,11 @@
           </template>
         </multiselect>
       </div>
-      <div class="TopFilter__search-button"></div>
+      <div
+        class="TopFilter__search-button"
+        @click="search"
+      >
+      </div>
     </div>
 
     <!-- detail component -->
@@ -97,7 +106,7 @@
 <script>
 import Multiselect from 'vue-multiselect';
 import '../../assets/fonts/iconfont.scss';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 export default {
   name: 'TopFilter',
   components: { Multiselect },
@@ -112,35 +121,57 @@ export default {
       categories: null,
       elements: null,
       optionsElements: [],
-      optionsCategories: []
+      optionsCategories: [],
+      searchParam: '',
     };
   },
   computed: {
-    ...mapState(['activeTagsCategories', 'activeTagsElements'])
+    ...mapState([
+      'activeTagsCategories',
+      'activeTagsElements',
+      ''
+    ]),
+    ...mapGetters([
+      'searchTerm'
+    ]),
   },
   methods: {
     addElement(value) {
       let tags = [];
       tags.push(value)
       this.$store.commit('addTagElements', tags);
-      this.$store.commit('enableFilter', event);
+      this.$store.commit('enableFilter');
+      this.$store.commit('activateElement');
     },
     addCategory(value) {
       let tags = [];
       tags.push(value)
       this.$store.commit('addTagCategories', tags);
-      this.$store.commit('enableFilter', event);
+      this.$store.commit('enableFilter');
+      this.$store.commit('activateCategory');
     },
      removeElement(event) {
       this.$store.commit('removeTagElementsByName', event);
       this.$store.commit('disableFilter');
+      this.$store.commit('deactivateElement');
     },
     removeCategory(event) {
       this.$store.commit('removeTagCategoriesByName', event);
       this.$store.commit('disableFilter');
+      this.$store.commit('deactivateCategory');
+    },
+    search(value){
+        this.$store.commit('setSearchTerm', this.searchParam);
+        this.$store.commit('enableFilter');
+        if(this.searchParam == ''){
+          this.$store.commit('deactivateSearch');
+        }else{
+          this.$store.commit('activateSearch');
+        }
     }
   },
   mounted() {
+      this.searchParam = this.searchTerm;
        this.$axios.get('/api/tags/elements')
        .then(response => {
         this.optionsElements = response.data.map(tag => {

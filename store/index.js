@@ -17,6 +17,10 @@ export const state = () => ({
   initialLoad: false,
   allCards: {},
   allLoad: false,
+  searchTerm: '',
+  activeElement: false,
+  activeCategory: false,
+  activeSearch:false,
 })
 
 export const getters = {
@@ -32,15 +36,51 @@ export const getters = {
   allCards: state => {
     return state.allCards;
   },
+  searchTerm: state => {
+    return state.searchTerm;
+  },
+  currentBrandSet: state => {
+    return state.currentBrandSet;
+  },
+  activeCategory: state => {
+    return state.activeCategory;
+  },
+  activeElement: state => {
+    return state.activeElement;
+  },
+  activeSearch: state => {
+    return state.activeSearch;
+  },
 }
 export const mutations = {
+  activateElement(state){
+    state.activeElement = true;
+  }, activateCategory(state) {
+    state.activeCategory = true;
+  }, activateSearch(state) {
+    state.activeSearch = true;
+  },
+  deactivateElement(state) {
+    if (state.activeTagsElements.length < 1) {
+      state.activeElement = false;
+    }
+  }, 
+  deactivateCategory(state) {
+    if (state.activeTagsCategories.length < 1) {
+      state.activeCategory = false;
+    }
+  }, 
+  deactivateSearch(state) {
+    state.activeSearch = false;
+  },
+  setSearchTerm(state, term) {
+    state.searchTerm = term;
+  },
   changeValues(state, identity) {
     state.currentBrandSet[identity.name] = identity.value;
-    console.log(state.currentBrandSet);
   },
   removeValue(state, identity) {
     state.currentBrandSet[identity] = null;
-    console.log(state.currentBrandSet);
   },
   addTagElements(state, tag){
     tag.forEach(singleTag => {
@@ -51,7 +91,6 @@ export const mutations = {
   },
   addTagCategories(state, tag) {
     tag.forEach(singleTag => {
-      console.log(state.activeTagsCategories, singleTag)
       if (!state.activeTagsCategories.includes(singleTag)) {
         state.activeTagsCategories.push(singleTag);
       }
@@ -74,7 +113,7 @@ export const mutations = {
     state.anyFilterSelected = true;
   },
   disableFilter(state) {
-    if (state.activeTagsCategories.length < 1 && state.activeTagsElements.length < 1) {
+    if (state.activeTagsCategories.length < 1 && state.activeTagsElements.length < 1 && !state.activeSearch) {
       state.anyFilterSelected = false;
     }
   },
@@ -89,15 +128,17 @@ export const mutations = {
   },
   setAllLoad: (state, bool) => {
     state.allLoad = bool;
-    console.log(state.allLoad)
-  } 
+  } ,
+  addScore: (state, score) => {
+    state.allCards[score.index].score = score.score;
+  }
 }
 
 export const actions = {
   async getInitialCards({commit}) {
     let { data } = await this.$axios.get('/api/animations/initial')
     for(let i = 0; i<data.length; i++){
-      data.valueSet = {
+      data[i].valueSet = {
         rational: data[i].rational,
         innovative: data[i].innovative,
         personal: data[i].personal,
@@ -119,7 +160,7 @@ export const actions = {
   async getAllCards({ commit }) {
     let { data } = await this.$axios.get('/api/animations/all')
     for (let i = 0; i < data.length; i++) {
-      data.valueSet = {
+      data[i].valueSet = {
         rational: data[i].rational,
         innovative: data[i].innovative,
         personal: data[i].personal,
@@ -134,7 +175,6 @@ export const actions = {
         return tag.name;
       });
     }
-
     commit('setAllCards', data);
     commit('setAllLoad', true);
   },
