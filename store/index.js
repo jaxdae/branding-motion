@@ -148,8 +148,8 @@ export const actions = {
         delicate: data[i].delicate,
         simple: data[i].simple,
       } 
-      let test = await this.$axios.get('/api/animationtags/' + data[i].id)
-      data[i].tags = test.data.map(tag => {
+      let tags = await this.$axios.get('/api/animationtags/' + data[i].id)
+      data[i].tags = tags.data.map(tag => {
         return tag.name;
       });
     }

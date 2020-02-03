@@ -95,7 +95,6 @@ export default {
       'activeCategory',
     ]),
       filteredCards() {
-        console.log(this.activeSearch, this.activeElement, this.activeCategory)
       let filtered = {};
       if(this.activeSearch){
         let searchedCards = {};

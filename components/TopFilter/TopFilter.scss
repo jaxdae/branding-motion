@@ -113,4 +113,21 @@ padding-top:10px;
     color: $dark-blue;
   }
 }
+
+&__clear.active{
+  &:hover{
+    cursor: pointer;
+  }
+  &::after{
+    font-family: iconfont;
+    content: "\e902";
+    color: $dark-blue;
+    font-size: 15px;
+    display: inline-block;
+    position: absolute;
+    right:30px;
+    bottom:17px;
+    z-index: 3;
+  }
+}
 }

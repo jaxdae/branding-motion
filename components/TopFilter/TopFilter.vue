@@ -3,6 +3,11 @@
     <div v-if="!isDetail" class="TopFilter__filters TopFilter__filters--home">
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Quick search</h2>
+        <span 
+          class="TopFilter__clear"
+          :class="{active : searchParam}"
+          @click="clearSearch"
+        ></span>
         <input
           class="TopFilter__input"
           v-model="searchParam"
@@ -168,6 +173,10 @@ export default {
         }else{
           this.$store.commit('activateSearch');
         }
+    },
+    clearSearch(){
+      this.searchParam = '';
+      this.search(this.searchParam);
     }
   },
   mounted() {
