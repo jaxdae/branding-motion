@@ -1,13 +1,13 @@
 export const state = () => ({
   currentBrandSet: {
-    rational: null,
-    innovative: null,
-    maskuline: null,
-    personal: null,
-    serious: null,
-    luxurious: null,
-    delicate: null,
-    simple: null,
+    rational: 0,
+    innovative: 0,
+    maskuline: 0,
+    personal: 0,
+    serious: 0,
+    luxurious: 0,
+    delicate: 0,
+    simple: 0,
   },
   savedAnimations: {},
   activeTagsElements: [],
@@ -52,6 +52,8 @@ export const getters = {
     return state.activeSearch;
   },
 }
+import Vue from 'vue';
+
 export const mutations = {
   activateElement(state){
     state.activeElement = true;
@@ -77,10 +79,10 @@ export const mutations = {
     state.searchTerm = term;
   },
   changeValues(state, identity) {
-    state.currentBrandSet[identity.name] = identity.value;
+   state.currentBrandSet[identity.name] = identity.value;
   },
   removeValue(state, identity) {
-    state.currentBrandSet[identity] = null;
+    state.currentBrandSet[identity] = 0;
   },
   addTagElements(state, tag){
     tag.forEach(singleTag => {
@@ -128,9 +130,17 @@ export const mutations = {
   },
   setAllLoad: (state, bool) => {
     state.allLoad = bool;
-  } ,
-  addScore: (state, score) => {
-    state.allCards[score.index].score = score.score;
+  },
+  calculateScore: (state) => {
+    Object.values(state.allCards).forEach((card, i) => {
+      let score = 0;
+      Object.values(card.valueSet).forEach((value, index) => {
+        if (state.currentBrandSet[Object.keys(state.currentBrandSet)[index]]){
+          score += Math.abs(value - state.currentBrandSet[Object.keys(state.currentBrandSet)[index]])
+        }
+      })
+      Vue.set(state.allCards[i], 'score', score);
+    })
   }
 }
 

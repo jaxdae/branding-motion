@@ -82,5 +82,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/views/general.scss';
 @import '../styles/views/home.scss';
 </style>

@@ -104,12 +104,14 @@ export default {
         delete this.checkboxValues[valueset];
         this.$store.commit('removeValue', valueset);
         this.$store.commit('disableFilter');
+        this.$store.commit('calculateScore');
       } else {
         let identity = {};
         identity.name = valueset;
         identity.value = index;
         this.$store.commit('changeValues', identity);
         this.$store.commit('enableFilter');
+        this.$store.commit('calculateScore');
       }
     },
     collapseTraits() {

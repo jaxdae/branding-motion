@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div v-if="initialCards && !anyFilterSelected" class="Feed__cards">
+    <!-- <div v-if="initialCards && !anyFilterSelected" class="Feed__cards">
       <Card
         v-for="card in initialCards"
         v-if="initialLoad"
@@ -37,8 +37,8 @@
         class="Feed__card"
       >
       </Card>
-    </div>
-    <div v-else class="Feed__cards">
+    </div> -->
+    <div class="Feed__cards">
       <Card
         v-for="card in filteredCards"
         v-if="allLoad"
@@ -95,7 +95,6 @@ export default {
       'activeCategory',
     ]),
       filteredCards() {
-      let filtered = {};
       if(this.activeSearch){
         let searchedCards = {};
         this.allCards.forEach((card, index) => {
@@ -114,7 +113,10 @@ export default {
               })
             })
             this.number = Object.values(searchedElementCards).length;
-            return searchedElementCards;
+            let sorted = Object.values(searchedElementCards).sort((a,b) => {
+            return parseFloat(a.score) - parseFloat(b.score);
+          })
+            return sorted;
           }
           else {
             let searchedCategoryCards = {};
@@ -126,7 +128,10 @@ export default {
               })
             })
             this.number = Object.values(searchedCategoryCards).length;
-            return searchedCategoryCards;
+            let sorted = Object.values(searchedCategoryCards).sort((a,b) => {
+            return parseFloat(a.score) - parseFloat(b.score);
+          })
+            return sorted;
           }
         }
         else if(this.activeElement && this.activeCategory){
@@ -147,11 +152,17 @@ export default {
             })
           })
           this.number = Object.values(searchedElementCategoryCards).length;
-          return searchedElementCategoryCards;
+            let sorted = Object.values(searchedElementCategoryCards).sort((a,b) => {
+            return parseFloat(a.score) - parseFloat(b.score);
+          })
+            return sorted;
         }
         else{
           this.number = Object.values(searchedCards).length;
-          return searchedCards;
+          let sorted = Object.values(searchedCards).sort((a,b) => {
+            return parseFloat(a.score) - parseFloat(b.score);
+          })
+          return sorted;
         }
       }
       else {
@@ -165,7 +176,10 @@ export default {
                 }
               })
             })
-            return elementCards;
+            let sorted = Object.values(elementCards).sort((a,b) => {
+              return parseFloat(a.score) - parseFloat(b.score);
+            })
+            return sorted;
           }
           else {
             let categoryCards = {};
@@ -176,7 +190,10 @@ export default {
                 }
               })
             })
-            return categoryCards;
+            let sorted = Object.values(categoryCards).sort((a,b) => {
+              return parseFloat(a.score) - parseFloat(b.score);
+            })
+            return sorted;
           }
         }
         else if(this.activeElement && this.activeCategory){
@@ -196,10 +213,18 @@ export default {
               }
             })
           })
-          return elementCategoryCards;
+          let sorted = Object.values(elementCategoryCards).sort((a,b) => {
+              return parseFloat(a.score) - parseFloat(b.score);
+            })
+          return sorted;
         }
         else{
-          return this.allCards;
+          let localAllCards = {};
+          localAllCards = this.allCards;
+          let sorted = Object.values(localAllCards).sort((a,b) => {
+            return parseFloat(a.score) - parseFloat(b.score);
+          })
+          return sorted;
         }
       }
       
