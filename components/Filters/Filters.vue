@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: 'Filters',
   props: {
@@ -88,14 +89,30 @@ export default {
   },
   data() {
     return {
-      checkboxValues: {},
+      checkboxValues: {
+        rational: 0,
+        innovative: 0,
+        maskuline: 0,
+        personal: 0,
+        serious: 0,
+        luxurious: 0,
+        delicate: 0,
+        simple: 0,
+      },
       isCollapsed: false
     };
   },
   watch: {
     valueset: function(){
+      if(this.collapse){
       this.checkboxValues = this.valueset;
+      }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'currentBrandSet',
+    ]),
   },
   methods: {
     check(valueset, index) { 
@@ -122,7 +139,16 @@ export default {
         this.isCollapsed = true;
         this.$emit('isCollapsed', false);
       }
+    },
+    setInitialBrandset() {
+      Object.values(this.currentBrandSet).forEach((value, index) => {
+        this.checkboxValues[Object.keys(this.currentBrandSet)[index]] = value;
+      })
+      console.log(this.checkboxValues)
     }
+  },
+  mounted(){
+    this.setInitialBrandset();
   }
 };
 </script>
