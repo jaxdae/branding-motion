@@ -144,7 +144,6 @@ export default {
       Object.values(this.currentBrandSet).forEach((value, index) => {
         this.checkboxValues[Object.keys(this.currentBrandSet)[index]] = value;
       })
-      console.log(this.checkboxValues)
     }
   },
   mounted(){

@@ -49,8 +49,8 @@
       </div>
     </div>
     <cross-ref-slider
-      v-if="crossRefs"
-      :cards="crossRefs"
+      v-if="crossrefCards"
+      :cards="crossrefCards"
       :subheadline="'Discover more animations'"
       :headline="'Want to complete your set?'"
     >
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import AddButton from '@/components/AddButton/AddButton.vue';
 import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
 import Button from '@/components/Button/Button.vue';
@@ -95,7 +96,6 @@ export default {
       card: {},
       cards: [],
       tags: [],
-      crossRefs: [],
       valueSet: {},
       filteroptions: {
         slow: {
@@ -159,6 +159,11 @@ export default {
       }
     };
   },
+  computed: {
+     ...mapGetters([
+      'crossrefCards',
+    ]),
+  },
   methods: {
     collapse(isCollapsed) {
       this.isCollapsed = isCollapsed;
@@ -209,19 +214,11 @@ export default {
         };
       })
     },
-    getCrossRefs() {
-      this.$axios.get('/api/crossrefs/' + this.$route.params.detail)
-       .then(response => {
-         this.crossRefs = response.data;
-      }).catch((error) => {
-        console.log(error);
-      })
-    }
   },
   mounted() {
     this.getAnimation();
     this.getTags();
-    this.getCrossRefs();
+    this.$store.dispatch('getCrossrefSets', this.$route.params.detail)
   }
 };
 </script>

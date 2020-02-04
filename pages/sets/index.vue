@@ -24,12 +24,10 @@
         :videos="customVideos"
       ></SetCard>
     </div>
-    <div style="color:white" v-if="loaded">{{sets}}</div>
     <cross-ref-slider
       :subheadline="'See curated sets'"
       :headline="'Feeling uninspired?'"
-      :cards="sets"
-      :tags="tags"
+      :cards="curatedCards"
     >
     </cross-ref-slider>
     <Footer></Footer>
@@ -37,6 +35,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
 import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
 import Button from '@/components/Button/Button.vue';
 import Feed from '@/components/Feed/Feed.vue';
@@ -61,13 +60,18 @@ export default {
       videos: [],
       customVideos: [],
       tags: [],
-      loaded: false,
     };
   },
   computed: {
     number() {
       return this.customSets.length;
-    }
+    },
+    ...mapState([
+      'curatedLoad'
+    ]),
+    ...mapGetters([
+      'curatedCards',
+    ]),
   },
   methods: {
      getCustomSets() {
@@ -90,8 +94,6 @@ export default {
           this.sets = response.data;
           this.sets.forEach((set, index) => {
             this.getVideos(set.id, index, 'videos');
-            //this.loaded = true;
-            //this.getTags(set.id);
           }).then(() => {
             this.loaded = true;
           })
@@ -126,8 +128,8 @@ export default {
     }
   },
   mounted(){
+    this.$store.dispatch('getCuratedSets');
     this.getCustomSets();
-    this.getSets();
   }
 };
 </script>

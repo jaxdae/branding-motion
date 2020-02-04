@@ -16,7 +16,10 @@ export const state = () => ({
   initialCards: {},
   initialLoad: false,
   allCards: {},
+  curatedCards: [],
+  crossrefCards: [],
   allLoad: false,
+  curatedLoad: false,
   searchTerm: '',
   activeElement: false,
   activeCategory: false,
@@ -35,6 +38,12 @@ export const getters = {
   },
   allCards: state => {
     return state.allCards;
+  },
+  curatedCards: state => {
+    return state.curatedCards;
+  },
+  crossrefCards: state => {
+    return state.crossrefCards;
   },
   searchTerm: state => {
     return state.searchTerm;
@@ -128,8 +137,17 @@ export const mutations = {
   setAllCards: (state, cards) => {
     state.allCards = cards;
   },
+  setCuratedCards: (state, cards) => {
+    state.curatedCards = cards;
+  },
+  setCrossrefCards: (state, cards) => {
+    state.crossrefCards = cards;
+  },
   setAllLoad: (state, bool) => {
     state.allLoad = bool;
+  },
+  setCuratedLoad: (state, bool) => {
+    state.curatedLoad = bool;
   },
   calculateScore: (state) => {
     Object.values(state.allCards).forEach((card, i) => {
@@ -158,7 +176,7 @@ export const actions = {
         delicate: data[i].delicate,
         simple: data[i].simple,
       } 
-      let tags = await this.$axios.get('/api/animationtags/' + data[i].id)
+      let tags = await this.$axios.get('/api/animationtags/' + data[i].id);
       data[i].tags = tags.data.map(tag => {
         return tag.name;
       });
@@ -168,7 +186,7 @@ export const actions = {
     commit('setInitialLoad', true);
   },
   async getAllCards({ commit }) {
-    let { data } = await this.$axios.get('/api/animations/all')
+    let { data } = await this.$axios.get('/api/animations/all');
     for (let i = 0; i < data.length; i++) {
       data[i].valueSet = {
         rational: data[i].rational,
@@ -180,12 +198,35 @@ export const actions = {
         delicate: data[i].delicate,
         simple: data[i].simple,
       }
-      let test = await this.$axios.get('/api/animationtags/' + data[i].id)
-      data[i].tags = test.data.map(tag => {
+      let tags = await this.$axios.get('/api/animationtags/' + data[i].id);
+      data[i].tags = tags.data.map(tag => {
         return tag.name;
       });
     }
     commit('setAllCards', data);
     commit('setAllLoad', true);
+  },
+  async getCuratedSets({ commit }) {
+    let { data } = await this.$axios.get('/api/sets/');
+    for (let i = 0; i < data.length; i++) {
+      let video = await this.$axios.get('/api/sets/animations/' + data[i].id);
+      data[i].video = video.data[0].video;
+      let tags = await this.$axios.get('/api/sets/tags/' + data[i].id);
+      data[i].tags = tags.data.map(tag => {
+        return tag.name;
+      });
+    }
+    commit('setCuratedCards', data);
+    commit('setCuratedLoad', true);
+  },
+  async getCrossrefSets({ commit }, id) {
+    let { data } = await this.$axios.get('/api/crossrefs/' + id);
+    for (let i = 0; i < data.length; i++) {
+      let tags = await this.$axios.get('/api/animationtags/' + data[i].id);
+      data[i].tags = tags.data.map(tag => {
+        return tag.name;
+      });
+    }
+    commit('setCrossrefCards', data);
   },
 }

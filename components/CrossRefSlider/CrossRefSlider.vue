@@ -1,8 +1,7 @@
 <template>
-  <div class="CrossRefSlider">
+  <div v-if="cards.length >= 1" class="CrossRefSlider">
     <div class="CrossRefSlider__subheadline">{{subheadline}}</div>
     <div class="CrossRefSlider__headline">{{ headline }}</div>
-    <!-- <div v-if="cards">{{cards}}</div> -->
     <slick ref="slick" :options="slickOptions" v-if="cards.length >= 1">
       <cross-sell-card
         v-for="card in cards"
@@ -41,10 +40,10 @@ export default {
       type: String,
       default: ''
     },
-    // tags: {
-    //   type: Array,
-    //   default: () => []
-    // }
+    tags: {
+      type: Array,
+      default: () => []
+    }
   },
   data() {
     return {
