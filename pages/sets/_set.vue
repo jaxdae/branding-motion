@@ -1,8 +1,10 @@
 <template>
-  <div class="List">
-    <HeroSmall></HeroSmall>
-    <Feed :on-list="true" :elements="elements" :categories="categories" class="Home__left">
-      </Feed>
+  <div class="Set">
+    <HeroSmall
+      :tags="tags"
+      :name="'Animations Name'"
+      :description="'Description Text'">
+    </HeroSmall>
     <Footer></Footer>
   </div>
 </template>
@@ -13,7 +15,7 @@ import Feed from '@/components/Feed/Feed.vue';
 import Footer from '@/components/Footer/Footer.vue';
 
 export default {
-  name: 'List',
+  name: 'Set',
   components: {
     HeroSmall,
     Feed,
@@ -21,7 +23,8 @@ export default {
   },
   data() {
     return {
-      savedAnimations: {}
+      savedAnimations: {},
+      tags: ['Luxurious', 'Feminine']
     };
   },
   methods: {
@@ -29,6 +32,6 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../styles/views/list.scss';
-@import '../styles/views/general.scss';
+@import '../../styles/views/sets.scss';
+@import '../../styles/views/general.scss';
 </style>

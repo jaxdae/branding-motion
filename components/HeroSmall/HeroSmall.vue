@@ -30,11 +30,14 @@
           </div>
         </div>
         <div v-else class="HeroSmall__intro">
+          <div v-if="tag" v-for="tag in tags" :key="tag" class="HeroSmall__tag">
+            {{ tag }}
+          </div>
           <div class="HeroSmall__headline HeroSmall__headline--left">
-            Animation Set
+            {{ name }}
           </div>
           <div class="HeroSmall__description HeroSmall__description--left">
-            Go through all of your saved animations, edit them and export the complete set once your set is completed.
+           {{ description }}
           </div>
         </div>
       </transition>
@@ -56,6 +59,14 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    name: {
+      type: String,
+      default: '',
+    },
+    description: {
+      type: String, 
+      default: ''
     }
   },
   data() {

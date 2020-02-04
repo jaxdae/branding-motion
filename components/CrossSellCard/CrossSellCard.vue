@@ -57,7 +57,11 @@ export default {
       type: Object,
       default: () => {}
       //  required:true
-    }
+    },
+    // tags: {
+    //   type: Array,
+    //   default: () => []
+    // }
   },
   data() {
     return {
@@ -73,20 +77,20 @@ export default {
         this.isSaved = false;
       }
     },
-    getTags() {
-      this.$axios.get('/api/animationtags/' + this.id)
-       .then(response => {
-         this.tags = response.data.map(tag => {
-          return tag.name;
-        })
-      }).catch((error) => {
-        console.log(error);
-      })
-    }
+    // getTags() {
+    //   this.$axios.get('/api/animationtags/' + this.id)
+    //    .then(response => {
+    //      this.tags = response.data.map(tag => {
+    //       return tag.name;
+    //     })
+    //   }).catch((error) => {
+    //     console.log(error);
+    //   })
+    // }
   },
-  mounted(){
-    this.getTags();
-  }
+  // mounted(){
+  //   this.getTags();
+  // }
 };
 </script>
 

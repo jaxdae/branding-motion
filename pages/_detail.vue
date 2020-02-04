@@ -26,7 +26,12 @@
         <AddButton></AddButton>
       </Effect>
       <div class="Detail__left">
-        <Cart class="Detail__cart"></Cart>
+        <Button
+          class="Detail__cart"
+          :label="'View animation set'"
+          :link="'/sets'"
+        >
+        </Button>
         <filters
           v-if="designerView"
           :filteroptions="filteroptions"
@@ -43,7 +48,13 @@
         </Code>
       </div>
     </div>
-    <cross-ref-slider v-if="crossRefs" :cards="crossRefs"></cross-ref-slider>
+    <cross-ref-slider
+      v-if="crossRefs"
+      :cards="crossRefs"
+      :subheadline="'Discover more animations'"
+      :headline="'Want to complete your set?'"
+    >
+    </cross-ref-slider>
     <Footer></Footer>
   </div>
 </template>
@@ -51,7 +62,7 @@
 <script>
 import AddButton from '@/components/AddButton/AddButton.vue';
 import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
-import Cart from '@/components/Cart/Cart.vue';
+import Button from '@/components/Button/Button.vue';
 import Code from '@/components/Code/Code.vue';
 import Footer from '@/components/Footer/Footer.vue';
 import Effect from '@/components/Effect/Effect.vue';
@@ -64,7 +75,7 @@ export default {
   name: 'Detail',
   components: {
     AddButton,
-    Cart,
+    Button,
     Code,
     CrossRefSlider,
     HeroSmall,

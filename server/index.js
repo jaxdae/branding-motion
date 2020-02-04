@@ -84,6 +84,33 @@ async function start() {
       });
   })
 
+  app.get('/api/sets/custom', (req, res) => {
+    models.sequelize.query("SELECT id, name, description FROM sets WHERE custom = 1;", { type: models.Sequelize.QueryTypes.SELECT })
+      .then(data => {
+        res.send(data);
+      });
+  })
+
+  app.get('/api/sets/', (req, res) => {
+    models.sequelize.query("SELECT id, name, description FROM sets WHERE custom = 0;", { type: models.Sequelize.QueryTypes.SELECT })
+      .then(data => {
+        res.send(data);
+      });
+  })
+
+  app.get('/api/sets/animations/:id', (req, res) => {
+    models.sequelize.query("SELECT video FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId LIMIT 2;", { type: models.Sequelize.QueryTypes.SELECT })
+      .then(data => {
+        res.send(data);
+      });
+  })
+  app.get('/api/sets/tags/:id', (req, res) => {
+    models.sequelize.query("SELECT name FROM settags, setssettags WHERE  setssettags.setId=" + req.params.id + " AND setssettags.settagsId = settags.id;", { type: models.Sequelize.QueryTypes.SELECT })
+      .then(data => {
+        res.send(data);
+      });
+  })
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

@@ -4,7 +4,12 @@
     <TopFilter class="Home__topfilter"></TopFilter>
     <div class="Home__wrapper">
       <div class="Home__right">
-        <Cart class="Home__cart"></Cart>
+        <Button
+          class="Home__cart"
+          :label="'View animation set'"
+          :link="'/sets'"
+        >
+        </Button>
         <Filters :filteroptions="filteroptions" class="Home__filters"></Filters>
       </div>
       <Feed class="Home__left">
@@ -15,7 +20,7 @@
 </template>
 
 <script>
-import Cart from '@/components/Cart/Cart.vue';
+import Button from '@/components/Button/Button.vue';
 import Hero from '@/components/Hero/Hero.vue';
 import Feed from '@/components/Feed/Feed.vue';
 import Filters from '@/components/Filters/Filters.vue';
@@ -25,7 +30,7 @@ import TopFilter from '@/components/TopFilter/TopFilter.vue';
 export default {
   name: 'Home',
   components: {
-    Cart,
+    Button,
     Hero,
     Feed,
     Filters,

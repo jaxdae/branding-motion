@@ -1,7 +1,7 @@
 @import '../../styles/fonts.scss';
 @import '../../styles/colors.scss';
 
-.Cart{
+.Button{
   &__button-wrapper{
     width: 23%;
     border-radius: 20px;
@@ -37,7 +37,7 @@
            z-index:-1;
            border: 2px solid $dark-peach;
         }
-        &:hover.Cart__button::after{
+        &:hover.Button__button::after{
             transform: translateX(100%);
             opacity:1;
         }
