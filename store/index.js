@@ -24,6 +24,7 @@ export const state = () => ({
   activeElement: false,
   activeCategory: false,
   activeSearch:false,
+  sets: {},
 })
 
 export const getters = {
@@ -59,6 +60,9 @@ export const getters = {
   },
   activeSearch: state => {
     return state.activeSearch;
+  },
+  sets: state => {
+    return state.sets;
   },
 }
 import Vue from 'vue';
@@ -139,6 +143,9 @@ export const mutations = {
   },
   setCuratedCards: (state, cards) => {
     state.curatedCards = cards;
+  },
+  setSets: (state, sets) => {
+    state.sets = sets;
   },
   setCrossrefCards: (state, cards) => {
     state.crossrefCards = cards;
@@ -228,5 +235,21 @@ export const actions = {
       });
     }
     commit('setCrossrefCards', data);
+  },
+  async getSets({ commit }, id) {
+    let { data } = await this.$axios.get('/api/sets/custom');
+    for (let i = 0; i < data.length; i++) {
+      let tags = await this.$axios.get('/api/sets/tags/' + data[i].id);
+      data[i].tags = tags.data.map(tag => {
+        return tag.name;
+      });
+    }
+    for (let i = 0; i < data.length; i++) {
+      let videos = await this.$axios.get('/api/sets/animations/' + data[i].id);
+      data[i].videos = videos.data.map(video => {
+      return video.video;
+      });
+    }
+    commit('setSets', data);
   },
 }

@@ -5,11 +5,13 @@
       :name="'Animations Name'"
       :description="'Description Text'">
     </HeroSmall>
+    <div v-if="customSets" style="color:white">{{customSets}}</div>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
 import Feed from '@/components/Feed/Feed.vue';
 import Footer from '@/components/Footer/Footer.vue';
@@ -27,7 +29,15 @@ export default {
       tags: ['Luxurious', 'Feminine']
     };
   },
+   computed: {
+    ...mapState([
+      'customSets'
+    ])
+  },
   methods: {
+  },
+  mounted(){
+    console.log(this.$store)
   }
 };
 </script>

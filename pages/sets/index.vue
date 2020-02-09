@@ -16,12 +16,13 @@
           </Button>
         </div>
       <SetCard
-        v-for="card in customSets"
+        v-for="card in sets"
         :key="card.id"
         :id="card.id"
         :name="card.name"
+        :tags="card.tags"
         :description="card.description"
-        :videos="customVideos"
+        :videos="card.videos"
       ></SetCard>
     </div>
     <cross-ref-slider
@@ -55,81 +56,23 @@ export default {
   },
   data() {
     return {
-      sets: [],
-      customSets: {},
-      videos: [],
-      customVideos: [],
-      tags: [],
     };
   },
   computed: {
     number() {
-      return this.customSets.length;
+      return this.sets.length;
     },
     ...mapState([
       'curatedLoad'
     ]),
     ...mapGetters([
       'curatedCards',
+      'sets'
     ]),
-  },
-  methods: {
-     getCustomSets() {
-      this.$axios.get('/api/sets/custom')
-       .then(response => {
-          this.customSets = response.data;
-          this.customSets.forEach(set => {
-            this.getVideos(set.id, 'customVideos');
-            this.getTags(set.id);
-          })
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-     async getSets() {
-       this.sets = await this.$axios.get('/api/sets/');
-       
-      this.$axios.get('/api/sets/')
-       .then(response => {
-          this.sets = response.data;
-          this.sets.forEach((set, index) => {
-            this.getVideos(set.id, index, 'videos');
-          }).then(() => {
-            this.loaded = true;
-          })
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    getVideos(id, index, slot){
-      this.$axios.get('/api/sets/animations/' + id)
-       .then(response => {
-         if(slot == "videos"){
-          this.video = response.data[0].video;
-          this.sets[index].video = this.video
-        }else {
-          this.customVideos = response.data.map(video => {
-            return video.video;
-          })
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    getTags(id){
-      this.$axios.get('/api/sets/tags/' + id)
-       .then(response => {
-        this.tags = response.data.map(tag => {
-          return tag.name;
-        })
-      }).catch((error) => {
-        console.log(error)
-      })
-    }
   },
   mounted(){
     this.$store.dispatch('getCuratedSets');
-    this.getCustomSets();
+    this.$store.dispatch('getSets');
   }
 };
 </script>
