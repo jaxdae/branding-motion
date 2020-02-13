@@ -98,14 +98,27 @@ async function start() {
       });
   })
 
+  app.get('/api/sets/:id', (req, res) => {
+    models.sequelize.query("SELECT id, name, description FROM sets WHERE sets.id =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
+      .then(data => {
+        res.send(data);
+      });
+  })
+
   app.get('/api/sets/animations/:id', (req, res) => {
-    models.sequelize.query("SELECT video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT name, description, video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
+      .then(data => {
+        res.send(data);
+      });
+  })
+  app.get('/api/sets/animation/:id', (req, res) => {
+    models.sequelize.query("SELECT animations.id, animations.name, animations.description, animations.video, componentName, rational, innovative, personal, maskuline, serious, luxurious, delicate, simple, slow, rough, hard, sharp, rectilineal, static FROM animations, sets WHERE sets.id =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });
   })
   app.get('/api/sets/tags/:id', (req, res) => {
-    models.sequelize.query("SELECT name FROM settags, setssettags WHERE  setssettags.setId=" + req.params.id + " AND setssettags.settagsId = settags.id;", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT name FROM settags, setssettags WHERE setssettags.setId=" + req.params.id + " AND setssettags.settagsId = settags.id;", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });

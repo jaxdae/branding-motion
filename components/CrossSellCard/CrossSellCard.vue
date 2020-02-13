@@ -1,7 +1,7 @@
 <template>
   <div class="CrossSellCard">
     <div class="CrossSellCard__wrapper">
-      <nuxt-link :to="id.toString()" class="CrossSellCard__link">
+      <nuxt-link :to="link" class="CrossSellCard__link">
         <video autoplay muted loop class="CrossSellCard__video">
           <source :src="video" type="video/mp4" />
         </video>
@@ -22,7 +22,7 @@
           :class="{ savedbg: isSaved }"
           class="CrossSellCard__heart--full"
         ></div>
-        <nuxt-link :to="id.toString()" class="CrossSellCard__link">
+        <nuxt-link :to="link" class="CrossSellCard__link">
           <div class="CrossSellCard__headline">{{ name }}</div>
           <div class="CrossSellCard__description">{{ description }}</div>
         </nuxt-link>
@@ -60,12 +60,25 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    isSet: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
     return {
       isSaved: false,
     };
+  },
+  computed: {
+      link() {
+        if(this.isSet){
+          return ('/sets/' + this.id.toString());
+        } else {
+          return this.id.toString();
+        }
+      }
   },
   methods: {
     save() {

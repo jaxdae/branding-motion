@@ -15,7 +15,6 @@
       <Feed class="Home__left">
       </Feed>
     </div>
-    <div style="color:white">{{curatedCards}}</div>
     <Footer></Footer>
   </div>
 </template>

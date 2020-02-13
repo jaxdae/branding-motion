@@ -29,6 +29,7 @@
       :subheadline="'See curated sets'"
       :headline="'Feeling uninspired?'"
       :cards="modifiedCards"
+      isSet
     >
     </cross-ref-slider>
     <Footer></Footer>

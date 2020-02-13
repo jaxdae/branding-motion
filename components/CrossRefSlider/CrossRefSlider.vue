@@ -11,6 +11,7 @@
         :description="card.description"
         :tags="card.tags"
         :video="card.video"
+        :isSet="isSet"
       ></cross-sell-card>
     </slick>
   </div>
@@ -43,6 +44,10 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    isSet: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {

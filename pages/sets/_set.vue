@@ -1,10 +1,11 @@
 <template>
   <div class="Set">
-    <HeroSmall
-      :id="currentSet.id"
-      :name="currentSet.name"
-      :description="currentSet.description"
-      :tags="currentSet.tags"
+    <HeroSmall v-if="setDetail[0]"
+      :id="setDetail[0].id"
+      :name="setDetail[0].name"
+      :description="setDetail[0].description"
+      :tags="setDetail[0].tags"
+      
       >
     </HeroSmall>
     <div class="Sets__wrapper">
@@ -16,10 +17,11 @@
         <div class="Sets__feed">
           <div class="Sets__feed--inner">
           <div class="Sets__results">
-          {{ `You have ${number} personal animation sets` }}
+          {{ `You have ${number} animations saved on this list` }}
         </div>
+        <div  v-if="setDetailReady && setDetail[0].animations">
           <Card
-              v-for="card in currentAnimations"
+              v-for="card in setDetail[0].animations"
               :key="card.id"
               :id="card.id"
               :name="card.name"
@@ -31,6 +33,7 @@
               class="Feed__card"
             >
             </Card>
+            </div>
           </div>
         </div>
         </div>
@@ -98,24 +101,19 @@ export default {
     ...mapState([
       'customSets'
     ]),
-    ...mapGetters([
-      'sets',
-      'allCards'
-    ]),
+    ...mapGetters({
+      setDetail: 'setdetail/setDetail',
+      setDetailReady: 'setdetail/setDetailReady'
+    }),
     number(){
-      return this.currentAnimations.length;
-    },
-    currentSet(){
-      return this.sets.filter(set => set.id == parseInt(this.$route.params.set))[0]
-    },
-    currentAnimations(){
-     let filters = this.currentSet.animations;
-     return this.allCards.filter(item => {
-       return filters.indexOf(item.id) !== -1
-     })
+      if(this.setDetailReady){
+      return this.setDetail[0].animations.length;
+      }
     },
     averageIdentity() {
-      let valueSets = this.currentAnimations.map(animation => {
+      if(this.setDetailReady){
+      if(this.setDetail[0].animations.length>0){
+      let valueSets = this.setDetail[0].animations.map(animation => {
         return animation.valueSet;
       });
      let result = valueSets.reduce(
@@ -126,6 +124,11 @@ export default {
     })
       return result
     }
+      }
+     }
+  },
+  mounted() {
+    this.$store.dispatch('setdetail/getSetDetail', this.$route.params.set);
   }
 };
 </script>
