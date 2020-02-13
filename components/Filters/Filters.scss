@@ -10,7 +10,7 @@
 .Filters{
   position: relative;
   background-color: rgba($light-grey, 0.7);
-  padding:30px 45px;
+  padding:30px 45px 45px;
   &__headline{
     @include font-caps($dark-peach);
     display:inline-block;
@@ -81,6 +81,17 @@
     left: 50%;
     }
   }
+  &__locked{
+    &::after{
+    font-family: iconfont;
+    content: "\e90d";
+    font-size: 20px;
+    position: absolute;
+    color: #d9af99;
+    top: 35px;
+    right: 45px;
+    }
+  }
 }
 
 input[type="checkbox"],
@@ -92,6 +103,9 @@ input[type="radio"] {
     width:9px;
     height:9px;
     top:2px;
+    &:disabled:hover{
+      cursor: not-allowed;
+    }
     &:hover{
       cursor: pointer;
     }

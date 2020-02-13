@@ -42,6 +42,24 @@
     width:40%;
     border-radius: 15px 0 0 15px;
   }
+  &__delete{
+    &:hover{
+      cursor: pointer;
+    }
+    &::after{
+    transition: ease-in-out 0.3s;
+    font-family: iconfont;
+    font-size:24px;
+    content: "\e90f";
+    -webkit-text-fill-color: $light-grey;
+    -webkit-text-stroke-width: 1px;
+    color: $taupe;
+    position: absolute;
+    z-index: +1;
+    right:30px;
+    top:30px;
+    }
+  }
   &__heart{
     &:hover{
       cursor: pointer;

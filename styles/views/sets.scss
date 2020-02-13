@@ -3,11 +3,18 @@
 @import '../../styles/colors.scss';
 
 .Sets{
-  &__feed{
+  &__overview-feed{
     @include grid-width();
     padding:0;
     margin-top:60px;
     position: relative;
+  }
+  &__feed{
+     @include grid-width();
+    margin:auto;
+    &--inner{
+      width: grid-span(10);
+    }
   }
   &__results{
     @include font-blocktext($dark-grey);
@@ -19,5 +26,27 @@
   &__button{
     position: absolute;
     right:0;
+  }
+  &__filters{
+      position: absolute;
+    right:0;
+    top:65px;
+    width:23%;
+    border-radius: 15px 0 0 15px;
+  }
+  &__wrapper{
+    position: relative;
+    padding-top:60px;  
+  }
+   &__right{
+    top:140px;
+    position: -webkit-sticky;
+    position: sticky;
+
+  }
+  &__export{
+    position: absolute;
+    right:0;
+    top:0;
   }
 }

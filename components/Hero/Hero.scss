@@ -16,7 +16,7 @@
 }
 
 .Hero{
-  height: 700px;
+  height: 740px;
   background-color: $light-grey;
   border-radius: 15px 15px 0 0;
   display:flex;
@@ -38,7 +38,7 @@
     z-index: +1;
     width:422px;
     overflow: hidden;
-    background-color: $white;
+    background-color: $light-grey;
   }
   &__intro{
     height:80%;
@@ -202,7 +202,7 @@ a:focus {
   justify-content: center;
   position: absolute;
   z-index: 999;
-    right:420px;
+    right:350px !important;
     bottom:7.5%;
 	
 	margin: 0;
@@ -213,7 +213,11 @@ a:focus {
 		li {
 			margin: 0 0.5rem;
 		}
-	
+  
+    li.slick-active button {
+			background-color: $bright-yellow !important;
+    }
+    
 		button {
 			display: block;
 			width: 0.5rem;
@@ -222,13 +226,9 @@ a:focus {
 			
 			border: none;
 			border-radius: 100%;
-			background-color: rgba($light, 0.1);
+			background-color: rgba($white, 0.1) !important;
 			
 			text-indent: -9999px;
-		}
-	
-		li.slick-active button {
-			background-color: $bright-yellow;
 		}
 	
 }

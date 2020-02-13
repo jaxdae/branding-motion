@@ -216,11 +216,18 @@ export const actions = {
   async getCuratedSets({ commit }) {
     let { data } = await this.$axios.get('/api/sets/');
     for (let i = 0; i < data.length; i++) {
-      let video = await this.$axios.get('/api/sets/animations/' + data[i].id);
-      data[i].video = video.data[0].video;
       let tags = await this.$axios.get('/api/sets/tags/' + data[i].id);
       data[i].tags = tags.data.map(tag => {
         return tag.name;
+      });
+    }
+    for (let i = 0; i < data.length; i++) {
+      let videos = await this.$axios.get('/api/sets/animations/' + data[i].id);
+      data[i].videos = videos.data.map(video => {
+        return video.video;
+      });
+      data[i].animations = videos.data.map(animation => {
+        return animation.animationId;
       });
     }
     commit('setCuratedCards', data);
@@ -248,6 +255,9 @@ export const actions = {
       let videos = await this.$axios.get('/api/sets/animations/' + data[i].id);
       data[i].videos = videos.data.map(video => {
       return video.video;
+      });
+      data[i].animations = videos.data.map(animation => {
+        return animation.animationId;
       });
     }
     commit('setSets', data);

@@ -4,6 +4,7 @@
 .Button{
   &__button-wrapper{
     width: 23%;
+    position: relative;
     border-radius: 20px;
    overflow: hidden;
     border: 1px solid $dark-peach;

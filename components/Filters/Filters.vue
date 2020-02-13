@@ -9,6 +9,10 @@
       :class="{ collapsed: isCollapsed }"
       class="Filters__collapse"
     ></div>
+    <div 
+      v-if="isLocked"
+      class="Filters__locked"
+    ></div>
     <div
       v-for="(filter, index) in filteroptions"
       v-if="!isCollapsed || !collapse"
@@ -22,41 +26,46 @@
       <div class="Filters__radiogroup">
         <input
           :name="filter.left"
-          v-model="checkboxValues[index]"
+          v-model="test[index]"
           @click="check(index, 1)"
           value="1"
+          :disabled="isLocked"
           class="Filters__input"
           type="radio"
         />
         <input
           :name="filter.left"
-          v-model="checkboxValues[index]"
+          v-model="test[index]"
           @click="check(index, 2)"
           value="2"
+          :disabled="isLocked"
           class="Filters__input"
           type="radio"
         />
         <input
           :name="filter.left"
-          v-model="checkboxValues[index]"
+          v-model="test[index]"
           @click="check(index, 3)"
           value="3"
+          :disabled="isLocked"
           class="Filters__input"
           type="radio"
         />
         <input
           :name="filter.left"
-          v-model="checkboxValues[index]"
+          v-model="test[index]"
           @click="check(index, 4)"
           value="4"
+          :disabled="isLocked"
           class="Filters__input"
           type="radio"
         />
         <input
           :name="filter.left"
-          v-model="checkboxValues[index]"
+          v-model="test[index]"
           @click="check(index, 5)"
           value="5"
+          :disabled="isLocked"
           class="Filters__input"
           type="radio"
         />
@@ -85,6 +94,10 @@ export default {
     valueset: {
       type: Object,
       default: () => {}
+    },
+    isLocked: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -104,7 +117,7 @@ export default {
   },
   watch: {
     valueset: function(){
-      if(this.collapse){
+      if(this.collapse || this.isLocked){
       this.checkboxValues = this.valueset;
       }
     }
@@ -113,6 +126,16 @@ export default {
     ...mapGetters([
       'currentBrandSet',
     ]),
+    test(){
+      if(this.isLocked){
+      let testi = Object.assign({}, this.checkboxValues);
+      testi = this.valueset;
+  
+      return testi
+    }else{
+      return this.checkboxValues;
+    }
+    }
   },
   methods: {
     check(valueset, index) { 

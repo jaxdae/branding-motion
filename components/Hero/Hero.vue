@@ -39,12 +39,14 @@
       </div>
       <slick
         ref="slick"
+        v-if="sets.length>0"
         :options="slickOptions"
-        @beforeChange="handleBeforeChange"
+        @beforeChange="change"
         class="Hero__middle"
       >
+      <div v-for="set in sets" :key="set.id">
         <div
-          v-for="video in sets.set.videos"
+          v-for="video in set.videos.slice(0, 3)"
           :key="video.id"
           class="Hero__video"
         >
@@ -52,13 +54,14 @@
             <source :src="video" type="video/mp4" />
           </video>
         </div>
+        </div>
       </slick>
       <div class="Hero__right">
         <transition-group name="bounce" mode="out-in">
           <div
-            v-for="set in sets"
+            v-for="(set, index) in sets"
             :key="set.id"
-            v-if="currentSlide == set.id"
+            v-if="currentSlide == index"
             class="Hero__info"
           >
             <div class="Hero__tag-wrapper">
@@ -72,10 +75,10 @@
             </div>
             <div class="Hero__content Hero__content--right">
               <div class="Hero__subheadline Hero__subheadline--right">
-                {{ set.subheadline }}
+                Pre-picked animation sets
               </div>
               <div class="Hero__headline Hero__headline--right">
-                {{ set.headline }}
+                {{ set.name }}
               </div>
               <div class="Hero__description Hero__description--right">
                 {{ set.description }}
@@ -97,13 +100,18 @@ export default {
   components: {
     Slick
   },
+  props: {
+    sets: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
       slickOptions: {
         dots: true,
         vertical: true,
         slidesToShow: 3,
-        slidesToScroll: 3,
         verticalSwiping: true,
         speed: 800,
         prevArrow: false
@@ -132,44 +140,17 @@ export default {
       },
       firstString: true,
       currentSlide: 0,
-      sets: {
-        set: {
-          id: 0,
-          tags: ['Feminine', 'Luxurious'],
-          subheadline: 'pre-picked animation sets',
-          headline: 'Sparkling joy',
-          description:
-            'A lightweight, feminine feel with a touch of luxury. This animation set includes: Button, Link, Slider, Add to wishlist, Add to cart, Page transition, …',
-          videos: {
-            video1: '/animation.mp4',
-            video2: '/animation.mp4',
-            video3: '/animation.mp4',
-            video4: '/animation.mp4',
-            video5: '/animation.mp4',
-            video6: '/animation.mp4'
-          }
-        },
-        set1: {
-          id: 1,
-          tags: ['Robust', 'Simple'],
-          subheadline: 'pre-picked animation sets',
-          headline: 'Pure simplicity',
-          description:
-            'A lightweight, feminine feel with a touch of luxury. This animation set includes: Button, Link, Slider, Add to wishlist, Add to cart, Page transition, …',
-          videos: {
-            video1: '/animation.mp4',
-            video2: '/animation.mp4',
-            video3: '/animation.mp4'
-          }
-        }
-      }
     };
   },
   methods: {
-    handleBeforeChange(event, slick, currentSlide, nextSlide) {
-      this.currentSlide = slick.currentSlide / 3;
+    change(event, slick, currentSlide) {
+      if(this.currentSlide < this.sets.length - 1){
+      this.currentSlide = slick.currentSlide + 1;
+      }else{
+        this.currentSlide = 0;
+      }
     }
-  }
+  },
 };
 </script>
 

@@ -99,7 +99,7 @@ async function start() {
   })
 
   app.get('/api/sets/animations/:id', (req, res) => {
-    models.sequelize.query("SELECT video FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId LIMIT 2;", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });

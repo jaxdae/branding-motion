@@ -12,6 +12,10 @@
             {{ tag }}
           </div>
         </div>
+        <div 
+          v-if="!inSet"
+          class="AnimationCard__save"
+        >
         <div
           @click="save"
           :class="{ saved: isSaved }"
@@ -22,6 +26,10 @@
           :class="{ savedbg: isSaved }"
           class="AnimationCard__heart--full"
         ></div>
+        </div>
+        <div 
+        @click="remove" v-else class="AnimationCard__delete">
+        </div>
         <nuxt-link :to="id.toString()" class="AnimationCard__link">
           <div class="AnimationCard__headline">{{ name }}</div>
           <div class="AnimationCard__description">{{ description }}</div>
@@ -60,6 +68,10 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    inSet: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -74,6 +86,9 @@ export default {
       } else {
         this.isSaved = false;
       }
+    },
+    remove() {
+      console.log('remove');
     }
   }
 };

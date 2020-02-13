@@ -12,7 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     serious: DataTypes.INTEGER,
     luxurious: DataTypes.INTEGER,
     delicate: DataTypes.INTEGER,
-    simple: DataTypes.INTEGER
+    simple: DataTypes.INTEGER,
+    default: DataTypes.INTEGER,
+    slow: DataTypes.INTEGER,
+    rough: DataTypes.INTEGER,
+    hard: DataTypes.INTEGER,
+    sharp: DataTypes.INTEGER,
+    rectilineal: DataTypes.INTEGER,
+    static: DataTypes.INTEGER,
   }, {});
   // animations.associate = function(models) {
   // };
