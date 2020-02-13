@@ -19,7 +19,7 @@
     <div class="HeroSmall__main">
       <transition name="fade-in-up">
         <div v-if="animation" class="HeroSmall__intro">
-          <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
+          <div v-for="tag in animation.tags" :key="tag" class="HeroSmall__tag">
             {{ tag }}
           </div>
           <div class="HeroSmall__headline HeroSmall__headline--left">
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div v-else class="HeroSmall__intro">
-          <div v-if="tag" v-for="tag in tags" :key="tag" class="HeroSmall__tag">
+          <div v-if="tag" v-for="tag in animation.tags" :key="tag" class="HeroSmall__tag">
             {{ tag }}
           </div>
           <div class="HeroSmall__headline HeroSmall__headline--left">
@@ -55,10 +55,6 @@ export default {
     animation: {
       type: Object,
       default: () => {}
-    },
-    tags: {
-      type: Array,
-      default: () => []
     },
     name: {
       type: String,

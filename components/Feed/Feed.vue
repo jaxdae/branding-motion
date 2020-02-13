@@ -70,6 +70,14 @@ export default {
     onList: {
       type: Boolean,
       default: false
+    },
+    allCards: {
+      type: Array,
+      default: () => []
+    },
+    allLoad: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -81,13 +89,9 @@ export default {
     ...mapState([
       'activeTagsCategories',
       'activeTagsElements',
-      'initialLoad',
-      'allLoad',
       'anyFilterSelected'
     ]),
     ...mapGetters([
-      'initialCards',
-      'allCards',
       'searchTerm',
       'currentBrandSet',
       'activeSearch',
@@ -241,10 +245,6 @@ export default {
       this.$store.commit('disableFilter');
       this.$store.commit('deactivateCategory');
     }
-  },
-  mounted() {
-    this.$store.dispatch('getInitialCards');
-    this.$store.dispatch('getAllCards');
   }
 };
 </script>

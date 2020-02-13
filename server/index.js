@@ -28,15 +28,12 @@ async function start() {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended : false }))
 
-  app.get('/api/animations/initial', (req, res) => {
-    models.animations.findAll({
-      limit: 12
-    }).then(animations => {
-      res.send(animations);
-    });
-  })
   app.get('/api/animations/all', (req, res) => {
-    models.animations.findAll()
+    models.animations.findAll({
+      where: {
+        default: 1
+      }
+    })
     .then(animations => {
       res.send(animations);
     });

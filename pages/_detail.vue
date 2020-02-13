@@ -1,11 +1,13 @@
 <template>
   <div class="Detail">
-    <HeroSmall :animation="card" :tags="tags"></HeroSmall>
+    <HeroSmall :animation="card"></HeroSmall>
+   
     <top-filter isDetail></top-filter>
-    <div class="Detail__wrapper">
+   
+    <div class="Detail__wrapper" v-if="cardLoad">
       <filters
         :filteroptions="brandtraits"
-        :valueset="valueSet"
+        :valueset="card.valueSet"
         :key=1
         @isCollapsed="collapse"
         collapse
@@ -13,13 +15,12 @@
       >
       </filters>
       <Effect
-        :type="effect.type"
+        :type="card.effect.type"
         :class="{ wider: !isCollapsed }"
         class="Detail__animation"
       >
-        <!-- eslint-disable-next-line vue/require-component-is -->
         <component
-          :is="effect.name"
+          :is="card.effect.name"
           class="Detail__component"
         />
         <div @click="switchView" class="Detail__switcher"></div>
@@ -42,8 +43,8 @@
         <Code
           v-else
           class="Detail__code"
-          :html="effect.html"
-          :css="effect.css"
+          :html="card.effect.html"
+          :css="card.effect.css"
         >
         </Code>
       </div>
@@ -60,7 +61,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
+import { components, effects } from '@/assets/effects.js';
 import AddButton from '@/components/AddButton/AddButton.vue';
 import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
 import Button from '@/components/Button/Button.vue';
@@ -70,7 +72,6 @@ import Effect from '@/components/Effect/Effect.vue';
 import CrossRefSlider from '@/components/CrossRefSlider/CrossRefSlider.vue';
 import TopFilter from '@/components/TopFilter/TopFilter.vue';
 import Filters from '@/components/Filters/Filters.vue';
-import { components, effects } from '@/assets/effects.js';
 
 export default {
   name: 'Detail',
@@ -91,12 +92,6 @@ export default {
       name: '',
       isCollapsed: true,
       designerView: true,
-      effect: {},
-      effects,
-      card: {},
-      cards: [],
-      tags: [],
-      valueSet: {},
       filteroptions: {
         slow: {
           left: 'slow',
@@ -160,9 +155,11 @@ export default {
     };
   },
   computed: {
-     ...mapGetters([
-      'crossrefCards',
-    ]),
+    ...mapGetters({
+      crossrefCards: 'animationdetail/crossrefCards',
+      card: 'animationdetail/card',
+      cardLoad: 'animationdetail/cardLoad'
+    }),
   },
   methods: {
     collapse(isCollapsed) {
@@ -175,50 +172,10 @@ export default {
         this.designerView = true;
       }
     },
-    getValueSet() {
-      this.valueSet = {
-        rational: this.card.rational,
-        innovative: this.card.innovative,
-        personal: this.card.personal,
-        maskuline: this.card.maskuline,
-        serious: this.card.serious,
-        luxurious: this.card.luxurious,
-        delicate: this.card.delicate,
-        simple: this.card.simple,
-      }
     },
-    getAnimation() {
-      this.$axios.get('/api/animations/' + this.$route.params.detail)
-       .then(response => {
-          this.card = response.data;
-          this.getCode();
-          this.getValueSet();
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    getTags() {
-      this.$axios.get('/api/animationtags/' + this.$route.params.detail)
-       .then(response => {
-         this.tags = response.data.map(tag => {
-          return tag.name;
-        })
-      }).catch((error) => {
-        console.log(error);
-      })
-    },
-    getCode() {
-      Object.values(effects).forEach(effect => {
-        if(effect.name == this.card.componentName){
-          this.effect = effect;
-        };
-      })
-    },
-  },
   mounted() {
-    this.getAnimation();
-    this.getTags();
-    this.$store.dispatch('getCrossrefSets', this.$route.params.detail)
+    this.$store.dispatch('animationdetail/getAnimation', this.$route.params.detail)
+    this.$store.dispatch('animationdetail/getCrossrefSets', this.$route.params.detail)
   }
 };
 </script>

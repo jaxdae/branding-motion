@@ -63,13 +63,13 @@ export default {
     number() {
       return this.sets.length;
     },
-    ...mapState([
-      'curatedLoad'
-    ]),
-    ...mapGetters([
-      'curatedCards',
-      'sets'
-    ]),
+    ...mapState({
+      curatedLoad: 'setoverview/curatedLoad',
+    }),
+    ...mapGetters({
+      sets: 'setoverview/sets',
+      curatedCards: 'setoverview/curatedCards',
+    }),
     modifiedCards() {
       this.curatedCards.forEach(card => {
         card.video = card.videos[0]
@@ -78,8 +78,8 @@ export default {
     }
   },
   mounted(){
-    this.$store.dispatch('getCuratedSets');
-    this.$store.dispatch('getSets');
+    this.$store.dispatch('setoverview/getCuratedSets');
+    this.$store.dispatch('setoverview/getSets');
   }
 };
 </script>
