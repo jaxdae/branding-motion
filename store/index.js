@@ -13,7 +13,7 @@ export const state = () => ({
   activeTagsElements: [],
   activeTagsCategories: [],
   anyFilterSelected: false,
-  allCards: {},
+  allCards: [],
   allLoad: false,
   searchTerm: '',
   activeElement: false,

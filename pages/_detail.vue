@@ -1,9 +1,7 @@
 <template>
   <div class="Detail">
-    <HeroSmall :animation="card"></HeroSmall>
-   
+    <HeroSmall :animation="card" :tags="card.tags"></HeroSmall>
     <top-filter isDetail></top-filter>
-   
     <div class="Detail__wrapper" v-if="cardLoad">
       <filters
         :filteroptions="brandtraits"
