@@ -72,7 +72,7 @@ export default {
     inSet: {
       type: Boolean,
       default: false
-    }
+    },
   },
   data() {
     return {
@@ -83,6 +83,7 @@ export default {
     save() {
       if (!this.isSaved) {
         this.isSaved = true;
+        this.$store.dispatch('saveToSet', this.id);
       } else {
         this.isSaved = false;
       }

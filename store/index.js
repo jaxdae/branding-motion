@@ -136,6 +136,12 @@ export const mutations = {
 }
 
 export const actions = {
+  async saveToSet({ commit }, id){
+    let { data } = await this.$axios.post('/api/sets/animation/', {
+      animationId: id,
+      setId: 1
+    })
+  },
   async getAllCards({ commit }) {
     let { data } = await this.$axios.get('/api/animations/all');
     for (let i = 0; i < data.length; i++) {

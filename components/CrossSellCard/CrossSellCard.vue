@@ -61,6 +61,10 @@ export default {
       type: Array,
       default: () => []
     },
+     settagsId: {
+      type: Array,
+      default: () => []
+    },
     isSet: {
       type: Boolean,
       default: false,
@@ -84,6 +88,16 @@ export default {
     save() {
       if (!this.isSaved) {
         this.isSaved = true;
+        if(this.isSet){
+          let req = {
+            id: this.id, 
+            name: this.name,
+            desc: this.description,
+            tagIds: this.settagsId};
+          this.$store.dispatch('setoverview/saveAsSet', req);
+        }else{
+          this.$store.dispatch('animationdetail/saveToSet');
+        }
       } else {
         this.isSaved = false;
       }

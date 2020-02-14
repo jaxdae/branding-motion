@@ -10,6 +10,7 @@
         :name="card.name"
         :description="card.description"
         :tags="card.tags"
+        :settagsId="card.tagIds"
         :video="card.video"
         :isSet="isSet"
       ></cross-sell-card>

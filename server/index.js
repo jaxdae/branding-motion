@@ -103,21 +103,89 @@ async function start() {
   })
 
   app.get('/api/sets/animations/:id', (req, res) => {
-    models.sequelize.query("SELECT name, description, video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT name, description, animations.video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });
   })
   app.get('/api/sets/animation/:id', (req, res) => {
-    models.sequelize.query("SELECT animations.id, animations.name, animations.description, animations.video, componentName, rational, innovative, personal, maskuline, serious, luxurious, delicate, simple, slow, rough, hard, sharp, rectilineal, static FROM animations, sets WHERE sets.id =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT animations.id, animations.name, animations.description, animations.video, componentName, rational, innovative, personal, maskuline, serious, luxurious, delicate, simple, slow, rough, hard, sharp, rectilineal, static FROM animations, animationsets WHERE animationsets.setId =" + req.params.id + " AND animations.id = animationsets.animationId" , { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });
   })
   app.get('/api/sets/tags/:id', (req, res) => {
-    models.sequelize.query("SELECT name FROM settags, setssettags WHERE setssettags.setId=" + req.params.id + " AND setssettags.settagsId = settags.id;", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT name, settagsId FROM settags, setssettags WHERE setssettags.setId=" + req.params.id + " AND setssettags.settagsId = settags.id;", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
+      });
+  })
+
+  app.post('/api/sets/animation/', (req,res) => {
+    models.animationsets.create({
+      animationId: req.body.animationId,
+      setId: req.body.setId
+    })
+      .then(animation => {
+        res.send(animation);
+      });
+
+  })
+
+  app.post('/api/sets/add/', (req, res) => {
+    models.sets.create({
+      name: req.body.name,
+      description: req.body.description,
+      custom: req.body.custom
+    })
+      .then(set => {
+        res.send(set);
+      });
+  })
+
+  app.post('/api/setssettags/add/', (req, res) => {
+    models.setssettag.create({
+      setId: req.body.setId,
+      settagsId: req.body.settagsId
+    })
+      .then(settag => {
+        res.send(settag);
+      });
+  })
+
+  app.post('/api/animationsets/add/', (req, res) => {
+    models.animationsets.create({
+      animationId: req.body.animationId,
+      setId: req.body.setId
+    })
+      .then(animation => {
+        res.send(animation);
+      });
+  })
+  app.post('/api/animations/add/', (req, res) => {
+    models.animations.create({
+      name: req.body.name,
+      description: req.body.description,
+      video: req.body.video,
+      componentName: req.body.componentName,
+      rational: req.body.rational,
+      innovative: req.body.innovative,
+      personal: req.body.personal,
+      maskuline: req.body.maskuline,
+      serious: req.body.serious,
+      luxurious: req.body.luxurious,
+      delicate: req.body.delicate,
+      simple: req.body.simple,
+      default: 1,
+      slow: req.body.slow,
+      rough: req.body.rough,
+      hard: req.body.hard,
+      sharp: req.body.sharp,
+      rectilineal: req.body.rectilineal,
+      static: req.body.static,
+    })
+      .then(animation => {
+        res.send(animation);
       });
   })
 

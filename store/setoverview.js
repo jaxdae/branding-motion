@@ -27,6 +27,50 @@ export const mutations = {
 }
 
 export const actions = {
+  async saveAsSet({ commit }, req) {
+    let sets = await this.$axios.post('/api/sets/add/', {
+      name: req.name,
+      description: req.desc,
+      custom: 1
+    })
+
+    let animations = await this.$axios.get('/api/sets/animation/' + req.id);
+
+    animations.data.forEach( async animation => {
+      let customanimations = await this.$axios.post('/api/animations/add/', {
+        name: animation.name,
+        description: animation.description,
+        video: animation.video,
+        componentName: animation.componentName,
+        rational: animation.rational,
+        innovative: animation.innovative,
+        personal: animation.personal,
+        maskuline: animation.maskuline,
+        serious: animation.serious,
+        luxurious: animation.luxurious,
+        delicate: animation.delicate,
+        simple: animation.simple,
+        default: 1,
+        slow: animation.slow,
+        rough: animation.rough,
+        hard: animation.hard,
+        sharp: animation.sharp,
+        rectilineal: animation.rectilineal,
+        static: animation.static,
+        })
+
+        let animationsets = this.$axios.post('/api/animationsets/add/', {
+          animationId: customanimations.data.id,
+          setId: sets.data.id,
+        })
+    })
+    req.tagIds.forEach(tag => {
+      let setssettags = this.$axios.post('/api/setssettags/add/', {
+        setId: sets.data.id,
+        settagsId: tag,
+      })
+    })
+  },
   async getSets({ commit }, id) {
     let { data } = await this.$axios.get('/api/sets/custom');
     for (let i = 0; i < data.length; i++) {
@@ -36,7 +80,8 @@ export const actions = {
       });
     }
     for (let i = 0; i < data.length; i++) {
-      let videos = await this.$axios.get('/api/sets/animations/' + data[i].id);
+      let videos = await this.$axios.get('/api/sets/animation/' + data[i].id);
+      console.log(videos.data, data[i].id)
       data[i].videos = videos.data.map(video => {
         return video.video;
       });
@@ -44,6 +89,7 @@ export const actions = {
         return animation.animationId;
       });
     }
+    
     commit('setSets', data);
   },
   async getCuratedSets({ commit }) {
@@ -52,6 +98,9 @@ export const actions = {
       let tags = await this.$axios.get('/api/sets/tags/' + data[i].id);
       data[i].tags = tags.data.map(tag => {
         return tag.name;
+      });
+      data[i].tagIds = tags.data.map(tag => {
+        return tag.settagsId;
       });
     }
     for (let i = 0; i < data.length; i++) {

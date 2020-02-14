@@ -26,6 +26,7 @@
               :id="card.id"
               :name="card.name"
               :tags="card.tags"
+              :settagsId="card.tagIds"
               :description="card.description"
               :video="card.video"
               :valueset="card.valueSet"
