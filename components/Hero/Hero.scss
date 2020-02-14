@@ -128,8 +128,8 @@ text-align: center;
 
    @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
-        animation: wave randomNum(3, 9) * 1s randomDirection(randomNum(0,1)) linear infinite;
-        opacity: randomNum(2, 4) * 0.1;
+        animation: wave randomNum(3, 9) * 2s randomDirection(randomNum(0,1)) linear infinite;
+        opacity: randomNum(2, 4) * 0.05;
     }
   }
   
