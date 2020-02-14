@@ -107,7 +107,7 @@ padding-top:10px;
   height: 50px;
   padding:0 0 0 20px;
   position: absolute;
-  bottom:0;
+  bottom:-1px;
   @include font-blocktext($dark-blue);
   &::placeholder{
     color: $dark-blue;

@@ -460,7 +460,7 @@ fieldset[disabled] .multiselect {
 
 .multiselect{
     position: absolute;
-    bottom:0;
+    bottom:-1px;
     padding-top:8px;
 &__tags{
     border: 0.5px solid $dark-blue;
