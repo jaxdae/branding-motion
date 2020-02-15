@@ -53,6 +53,14 @@ export const actions = {
         luxurious: data.luxurious,
         delicate: data.delicate,
         simple: data.simple,
+      };
+      data.variables = {
+        slow: data.slow,
+        rough: data.rough,
+        hard: data.hard,
+        sharp: data.sharp,
+        rectilineal: data.rectilineal,
+        static: data.static
       }
     commit('setAnimation', data);
     commit('getCode');

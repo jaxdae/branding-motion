@@ -9,6 +9,9 @@
         :key=1
         @isCollapsed="collapse"
         collapse
+        isValueSet
+        isLocked
+        noLockIcon
         class="Detail__background"
       >
       </filters>
@@ -36,6 +39,8 @@
           :filteroptions="filteroptions"
           :name="'Adjustments'"
           class="Detail__adjustments"
+          isVariables
+          :variables="card.variables"
         >
         </filters>
         <Code
@@ -99,7 +104,7 @@ export default {
           left: 'rough',
           right: 'smooth'
         },
-        rational: {
+        hard: {
           left: 'hard edge',
           right: 'soft edge'
         },

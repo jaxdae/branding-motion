@@ -30,7 +30,7 @@
   &__filters{
       position: absolute;
     right:0;
-    top:65px;
+    top:60px;
     width:23%;
     border-radius: 15px 0 0 15px;
   }
@@ -39,7 +39,7 @@
     padding-top:60px;  
   }
    &__right{
-    top:140px;
+    top:30px;
     position: -webkit-sticky;
     position: sticky;
 
@@ -48,5 +48,10 @@
     position: absolute;
     right:0;
     top:0;
+  }
+  &__remove{
+    position: absolute;
+    right:0;
+    top:730px;
   }
 }

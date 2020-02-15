@@ -10,7 +10,7 @@
       class="Filters__collapse"
     ></div>
     <div 
-      v-if="isLocked"
+      v-if="isLocked && !noLockIcon"
       class="Filters__locked"
     ></div>
     <div
@@ -26,7 +26,7 @@
       <div class="Filters__radiogroup">
         <input
           :name="filter.left"
-          v-model="test[index]"
+          :checked="test[index] === 1"
           @click="check(index, 1)"
           value="1"
           :disabled="isLocked"
@@ -35,7 +35,7 @@
         />
         <input
           :name="filter.left"
-          v-model="test[index]"
+           :checked="test[index] === 2"
           @click="check(index, 2)"
           value="2"
           :disabled="isLocked"
@@ -44,7 +44,7 @@
         />
         <input
           :name="filter.left"
-          v-model="test[index]"
+         :checked="test[index] === 3"
           @click="check(index, 3)"
           value="3"
           :disabled="isLocked"
@@ -53,7 +53,7 @@
         />
         <input
           :name="filter.left"
-          v-model="test[index]"
+          :checked="test[index] === 4"
           @click="check(index, 4)"
           value="4"
           :disabled="isLocked"
@@ -62,7 +62,7 @@
         />
         <input
           :name="filter.left"
-          v-model="test[index]"
+          :checked="test[index] === 5"
           @click="check(index, 5)"
           value="5"
           :disabled="isLocked"
@@ -95,7 +95,23 @@ export default {
       type: Object,
       default: () => {}
     },
+    variables: {
+      type: Object,
+      default: () => {}
+    },
+    isValueSet: {
+      type: Boolean,
+      default: false
+    },
+    isVariables: {
+      type: Boolean,
+      default: false
+    },
     isLocked: {
+      type: Boolean,
+      default: false,
+    },
+    noLockIcon: {
       type: Boolean,
       default: false,
     }
@@ -112,33 +128,26 @@ export default {
         delicate: 0,
         simple: 0,
       },
-      isCollapsed: false
+      isCollapsed: false,
+      isSet: false,
     };
   },
-  watch: {
-    valueset: function(){
-      if(this.collapse || this.isLocked){
-      this.checkboxValues = this.valueset;
-      }
-    }
-  },
+ 
   computed: {
-    ...mapGetters([
-      'currentBrandSet',
-    ]),
     test(){
-      if(this.isLocked){
-      let testi = Object.assign({}, this.checkboxValues);
-      testi = this.valueset;
-  
-      return testi
-    }else{
+      if(this.valueset && this.isValueSet){
+        this.checkboxValues = this.valueset
+      }
+      if(this.variables && this.isVariables){
+        this.checkboxValues = this.variables
+      }
       return this.checkboxValues;
     }
-    }
+    
   },
   methods: {
     check(valueset, index) { 
+      if(!this.isVariables && !this.isValueSet){
       if (parseInt(this.checkboxValues[valueset]) === index) {
         this.checkboxValues[valueset] = null;
         delete this.checkboxValues[valueset];
@@ -153,6 +162,7 @@ export default {
         this.$store.commit('enableFilter');
         this.$store.commit('calculateScore');
       }
+      }
     },
     collapseTraits() {
       if (this.isCollapsed) {
@@ -163,15 +173,7 @@ export default {
         this.$emit('isCollapsed', false);
       }
     },
-    setInitialBrandset() {
-      Object.values(this.currentBrandSet).forEach((value, index) => {
-        this.checkboxValues[Object.keys(this.currentBrandSet)[index]] = value;
-      })
-    }
   },
-  mounted(){
-    this.setInitialBrandset();
-  }
 };
 </script>
 

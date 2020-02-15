@@ -58,4 +58,22 @@ export const actions = {
     commit('setDetailReady', true);
     commit('setDetail', data);
   },
+  async removeSet({ commit }, id) {
+
+    let sets  = await this.$axios.delete('/api/sets/remove/' + id);
+
+    let animations = await this.$axios.get('/api/sets/animations/' + id);
+
+    animations.data.forEach(async animation => {
+      
+     console.log(animation.id)
+      let animationtags = await this.$axios.delete('/api/animations/tags/remove/' + animation.id)
+      
+      let customanimations = await this.$axios.delete('/api/animations/remove/' + animation.id);
+
+      let animationsets = await this.$axios.delete('/api/animationsets/remove/' + id);
+    })
+    
+    let setssettags = this.$axios.delete('/api/setssettags/remove/' + id);
+  }
 }

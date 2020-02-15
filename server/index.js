@@ -68,7 +68,7 @@ async function start() {
   })
 
   app.get('/api/animationtags/:id', (req, res) => {
-    models.sequelize.query("SELECT tags.name FROM tags, animationtags WHERE tags.id = animationtags.tagId AND animationtags.animationId =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT tags.id, tags.name FROM tags, animationtags WHERE tags.id = animationtags.tagId AND animationtags.animationId =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
     .then(data => {
     res.send(data);
   });
@@ -103,7 +103,7 @@ async function start() {
   })
 
   app.get('/api/sets/animations/:id', (req, res) => {
-    models.sequelize.query("SELECT name, description, animations.video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT animations.id, name, description, animations.video, animationId FROM animations, animationsets WHERE setId =" + req.params.id + " AND animations.id = animationId;", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });
@@ -153,6 +153,16 @@ async function start() {
       });
   })
 
+  app.post('/api/animations/tags/add/', (req, res) => {
+    models.animationtags.create({
+      animationId: req.body.animationId,
+      tagId: req.body.tagId
+    })
+      .then(tag => {
+        res.send(tag);
+      });
+  })
+
   app.post('/api/animationsets/add/', (req, res) => {
     models.animationsets.create({
       animationId: req.body.animationId,
@@ -189,6 +199,60 @@ async function start() {
       });
   })
 
+  app.delete('/api/animations/tags/remove/:id', (req, res) => {
+    models.animationtags.destroy({
+      where: {
+        animationId: req.params.id
+      }
+    })
+      .then(response => {
+        res.send('successfully deleted');
+      });
+  })
+
+  app.delete('/api/sets/remove/:id', (req, res) => {
+    models.sets.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(response => {
+        res.send('successfully deleted');
+      });
+  })
+
+  app.delete('/api/animations/remove/:id', (req, res) => {
+    models.animations.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(response => {
+        res.send('successfully deleted');
+      });
+  })
+
+  app.delete('/api/animationsets/remove/:id', (req, res) => {
+    models.animationsets.destroy({
+      where: {
+        setId: req.params.id
+      }
+    })
+      .then(response => {
+        res.send('successfully deleted');
+      });
+  })
+
+  app.delete('/api/setssettags/remove/:id', (req, res) => {
+    models.setssettag.destroy({
+      where: {
+        setId: req.params.id
+      }
+    })
+      .then(response => {
+        res.send('successfully deleted');
+      });
+  })
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

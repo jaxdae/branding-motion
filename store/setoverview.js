@@ -35,8 +35,8 @@ export const actions = {
     })
 
     let animations = await this.$axios.get('/api/sets/animation/' + req.id);
-
-    animations.data.forEach( async animation => {
+      animations.data.forEach( async (animation, index) => {
+      
       let customanimations = await this.$axios.post('/api/animations/add/', {
         name: animation.name,
         description: animation.description,
@@ -57,6 +57,17 @@ export const actions = {
         sharp: animation.sharp,
         rectilineal: animation.rectilineal,
         static: animation.static,
+        })
+
+        let tags = await this.$axios.get('/api/animationtags/' + animation.id);
+        animations.data[index].tags = tags.data.map(tag => {
+          return tag.id;
+        });
+        animation.tags.forEach(async tag => {
+          let animationtags = await this.$axios.post('/api/animations/tags/add/', {
+            animationId: customanimations.data.id,
+            tagId: tag
+          })
         })
 
         let animationsets = this.$axios.post('/api/animationsets/add/', {
@@ -81,7 +92,6 @@ export const actions = {
     }
     for (let i = 0; i < data.length; i++) {
       let videos = await this.$axios.get('/api/sets/animation/' + data[i].id);
-      console.log(videos.data, data[i].id)
       data[i].videos = videos.data.map(video => {
         return video.video;
       });
