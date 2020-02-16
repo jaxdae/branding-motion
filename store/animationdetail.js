@@ -4,6 +4,14 @@ export const state = () => ({
   crossrefCards: [],
   card: {},
   cardload: false,
+  currentVariables: {
+    slow: 0,
+    rough: 0,
+    hard: 0,
+    sharp: 0,
+    rectilineal: 0,
+    static: 0
+  },
 })
 
 export const getters = {
@@ -15,6 +23,9 @@ export const getters = {
   },
   cardLoad: state => {
     return state.cardload;
+  },
+  currentVariables: state => {
+    return state.currentVariables;
   }
 }
 
@@ -35,6 +46,9 @@ export const mutations = {
       };
     })
   },
+  setCurrentVariables(state, identity){
+    state.currentVariables[identity.name] = identity.value;
+  }
 }
 
 export const actions = {
@@ -76,4 +90,14 @@ export const actions = {
     }
     commit('setCrossrefCards', data);
   },
+  async updateAnimation({ commit }, req) {
+    let updatedAnimation = await this.$axios.put('/api/animations/update/' + req.id, {
+      slow: req.slow,
+      rough: req.rough,
+      hard: req.hard,
+      sharp: req.sharp,
+      rectilineal: req.rectilineal,
+      static: req.static
+    });
+  }
 }

@@ -186,7 +186,7 @@ async function start() {
       luxurious: req.body.luxurious,
       delicate: req.body.delicate,
       simple: req.body.simple,
-      default: 1,
+      default: 0,
       slow: req.body.slow,
       rough: req.body.rough,
       hard: req.body.hard,
@@ -253,6 +253,23 @@ async function start() {
         res.send('successfully deleted');
       });
   })
+
+  app.put('/api/animations/update/:id', (req, res) => {
+    models.animations.update({
+      default: 0,
+      slow: req.body.slow,
+      rough: req.body.rough,
+      hard: req.body.hard,
+      sharp: req.body.sharp,
+      rectilineal: req.body.rectilineal,
+      static: req.body.static,
+    },{
+      where: {
+        id: req.params.id
+      },
+    })
+  })
+  
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

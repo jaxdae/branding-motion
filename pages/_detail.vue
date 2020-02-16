@@ -25,7 +25,7 @@
           class="Detail__component"
         />
         <div @click="switchView" class="Detail__switcher"></div>
-        <AddButton></AddButton>
+        <AddButton :card="card"></AddButton>
       </Effect>
       <div class="Detail__left">
         <Button

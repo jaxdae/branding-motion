@@ -75,7 +75,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
   name: 'Filters',
   props: {
@@ -140,6 +139,12 @@ export default {
       }
       if(this.variables && this.isVariables){
         this.checkboxValues = this.variables
+        Object.entries(this.checkboxValues).forEach(value => {
+          let identity = {};
+          identity.name = value[0];
+          identity.value = value[1];
+          this.$store.commit('animationdetail/setCurrentVariables', identity);
+        })
       }
       return this.checkboxValues;
     }
@@ -162,6 +167,11 @@ export default {
         this.$store.commit('enableFilter');
         this.$store.commit('calculateScore');
       }
+      }else{
+        let identity = {};
+        identity.name = valueset;
+        identity.value = index;
+        this.$store.commit('animationdetail/setCurrentVariables', identity);
       }
     },
     collapseTraits() {
