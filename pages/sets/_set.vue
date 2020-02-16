@@ -5,14 +5,13 @@
       :name="setDetail[0].name"
       :description="setDetail[0].description"
       :tags="setDetail[0].tags"
-      
       >
     </HeroSmall>
     <div class="Sets__wrapper">
       <div class="Sets__right">
           <Button label="Export this set" class="Sets__export"></Button>
           <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" class="Sets__filters"></Filters>
-          <Button label="Remove whole set" class="Sets__remove" :link="'/sets/'+$route.params.set" @click.native="removeSet"></Button>
+          <Button label="Remove whole set" class="Sets__remove" :link="'/sets/'" @click.native="removeSet"></Button>
         </div>
       <div class="Sets__left">
         <div class="Sets__feed">
@@ -96,7 +95,8 @@ export default {
           left: 'simple',
           right: 'complex'
         }
-      }
+      },
+      id: null,
     };
   },
    computed: {
@@ -131,11 +131,12 @@ export default {
   },
   methods: {
     removeSet() {
-      this.$store.dispatch('setdetail/removeSet', this.$route.params.set);
+      this.$store.dispatch('setdetail/removeSet', this.id);
     }
   },
   mounted() {
-    this.$store.dispatch('setdetail/getSetDetail', this.$route.params.set);
+    this.id = this.$route.params.set;
+    this.$store.dispatch('setdetail/getSetDetail', this.id);
   }
 };
 </script>

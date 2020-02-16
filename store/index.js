@@ -162,5 +162,13 @@ export const actions = {
     }
     commit('setAllCards', data);
     commit('setAllLoad', true);
+  },
+  async removeFromSet({ commit }, id) {
+    let animation = await this.$axios.delete('/api/animations/remove/' + id);
+    let animationtags = await this.$axios.delete('/api/animations/tags/remove/' + id);
+    let animationsets = await this.$axios.delete('/api/animationsets/remove/' + id);
   }
 }
+
+
+  

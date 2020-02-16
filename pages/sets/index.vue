@@ -16,6 +16,7 @@
           </Button>
         </div>
       <SetCard
+        v-if="setRemoved"
         v-for="card in sets"
         :key="card.id"
         :id="card.id"
@@ -69,6 +70,7 @@ export default {
     ...mapGetters({
       sets: 'setoverview/sets',
       curatedCards: 'setoverview/curatedCards',
+      setRemoved: 'setdetail/setRemoved'
     }),
     modifiedCards() {
       this.curatedCards.forEach(card => {

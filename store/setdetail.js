@@ -1,6 +1,7 @@
 export const state = () => ({
   setDetail: {},
   setDetailReady: false,
+  setRemoved: true,
  
 })
 
@@ -10,6 +11,9 @@ export const getters = {
   },
   setDetailReady: state => {
     return state.setDetailReady;
+  },
+  setRemoved: state => {
+    return state.setRemoved;
   }
   
 }
@@ -20,6 +24,9 @@ export const mutations = {
   },
   setDetailReady: (state, bool) => {
     state.setDetailReady = bool;
+  },
+  setRemoved: (state, bool) => {
+    state.setRemoved = bool;
   }
   
 }
@@ -59,14 +66,12 @@ export const actions = {
     commit('setDetail', data);
   },
   async removeSet({ commit }, id) {
-
+    commit('setRemoved', false);
     let sets  = await this.$axios.delete('/api/sets/remove/' + id);
 
     let animations = await this.$axios.get('/api/sets/animations/' + id);
 
     animations.data.forEach(async animation => {
-      
-     console.log(animation.id)
       let animationtags = await this.$axios.delete('/api/animations/tags/remove/' + animation.id)
       
       let customanimations = await this.$axios.delete('/api/animations/remove/' + animation.id);
@@ -75,5 +80,7 @@ export const actions = {
     })
     
     let setssettags = this.$axios.delete('/api/setssettags/remove/' + id);
+
+    commit('setRemoved', true);
   }
 }

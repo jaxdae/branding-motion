@@ -1,7 +1,7 @@
 <template>
   <div class="AnimationCard">
     <div class="AnimationCard__wrapper">
-      <nuxt-link :to="id.toString()" class="AnimationCard__link">
+      <nuxt-link :to="link" class="AnimationCard__link">
         <video autoplay muted loop class="AnimationCard__video">
           <source :src="video" type="video/mp4" />
         </video>
@@ -30,7 +30,7 @@
         <div 
         @click="remove" v-else class="AnimationCard__delete">
         </div>
-        <nuxt-link :to="id.toString()" class="AnimationCard__link">
+        <nuxt-link :to="link" class="AnimationCard__link">
           <div class="AnimationCard__headline">{{ name }}</div>
           <div class="AnimationCard__description">{{ description }}</div>
         </nuxt-link>
@@ -79,6 +79,15 @@ export default {
       isSaved: false
     };
   },
+  computed: {
+    link() {
+      if(this.inSet){
+        return '/' + this.id.toString();
+      }else{
+        return this.id.toString();
+      }
+    }
+  },
   methods: {
     save() {
       if (!this.isSaved) {
@@ -86,10 +95,11 @@ export default {
         this.$store.dispatch('saveToSet', this.id);
       } else {
         this.isSaved = false;
+        this.$store.dispatch('removeFromSet', this.id);
       }
     },
     remove() {
-      console.log('remove');
+      this.$store.dispatch('removeFromSet', this.id);
     }
   }
 };
