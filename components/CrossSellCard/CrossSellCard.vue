@@ -93,7 +93,9 @@ export default {
             id: this.id, 
             name: this.name,
             desc: this.description,
-            tagIds: this.settagsId};
+            tagIds: this.settagsId,
+            tags: this.tags
+            };
           this.$store.dispatch('setoverview/saveAsSet', req);
         }else{
           this.$store.dispatch('animationdetail/saveToSet');

@@ -145,6 +145,8 @@ export default {
           identity.value = value[1];
           this.$store.commit('animationdetail/setCurrentVariables', identity);
         })
+      }else{
+        this.checkboxValues = this.valueset;
       }
       return this.checkboxValues;
     }
@@ -183,7 +185,7 @@ export default {
         this.isCollapsed = true;
         this.$emit('isCollapsed', false);
       }
-    },
+    }
   },
 };
 </script>
