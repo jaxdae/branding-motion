@@ -9,7 +9,7 @@
     </HeroSmall>
     <div class="Sets__wrapper">
       <div class="Sets__right">
-          <Button label="Export this set" class="Sets__export"></Button>
+          <Button label="Export this set" :link="'/sets/'+$route.params.set" class="Sets__export" @click.native="exportSet"></Button>
           <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" class="Sets__filters"></Filters>
           <Button label="Remove whole set" class="Sets__remove" :link="'/sets/'" @click.native="removeSet"></Button>
         </div>
@@ -132,7 +132,19 @@ export default {
   methods: {
     removeSet() {
       this.$store.dispatch('setdetail/removeSet', this.id);
-    }
+    },
+    exportSet(e){
+      this.downloadObjectAsJson(this.setDetail, ' ');
+    },
+    downloadObjectAsJson(exportObj, exportName){
+      let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+      let downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href",     dataStr);
+      downloadAnchorNode.setAttribute("download", exportName + ".json");
+      document.body.appendChild(downloadAnchorNode); // required for firefox
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+  }
   },
   mounted() {
     this.id = this.$route.params.set;

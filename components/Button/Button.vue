@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="link" class="Button__button-wrapper">
+  <nuxt-link v-if="link" :to="link" class="Button__button-wrapper">
     <button class="Button__button">{{label}}</button>
   </nuxt-link>
 </template>

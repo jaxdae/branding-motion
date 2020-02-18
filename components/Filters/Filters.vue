@@ -134,8 +134,8 @@ export default {
  
   computed: {
     test(){
-      if(this.valueset && this.isValueSet){
-        this.checkboxValues = this.valueset
+      if(this.valueset){
+        this.checkboxValues = this.valueset;
       }
       if(this.variables && this.isVariables){
         this.checkboxValues = this.variables
@@ -145,8 +145,6 @@ export default {
           identity.value = value[1];
           this.$store.commit('animationdetail/setCurrentVariables', identity);
         })
-      }else{
-        this.checkboxValues = this.valueset;
       }
       return this.checkboxValues;
     }
@@ -154,7 +152,6 @@ export default {
   },
   methods: {
     check(valueset, index) { 
-      console.log(valueset, index)
       if(!this.isVariables && !this.isValueSet){
       if (parseInt(this.checkboxValues[valueset]) === index) {
         this.checkboxValues[valueset] = 0;
