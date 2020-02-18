@@ -167,6 +167,7 @@ export const actions = {
     let animation = await this.$axios.delete('/api/animations/remove/' + id);
     let animationtags = await this.$axios.delete('/api/animations/tags/remove/' + id);
     let animationsets = await this.$axios.delete('/api/animationsets/remove/' + id);
+    commit('setdetail/removeFromSet', id);
   }
 }
 

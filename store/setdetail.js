@@ -27,6 +27,14 @@ export const mutations = {
   },
   setRemoved: (state, bool) => {
     state.setRemoved = bool;
+  },
+  removeFromSet: (state, id) => {
+    state.setDetailReady = false;
+    var filtered = state.setDetail[0].animations.filter((element) => {
+       return element.id != id; 
+      });
+    state.setDetail[0].animations = filtered;
+    state.setDetailReady = true;
   }
   
 }

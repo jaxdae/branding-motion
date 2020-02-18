@@ -168,7 +168,7 @@ async function start() {
       animationId: req.body.animationId,
       setId: req.body.setId
     })
-      .then(animation => {
+      .then(animation => { 
         res.send(animation);
       });
   })

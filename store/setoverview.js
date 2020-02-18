@@ -23,7 +23,10 @@ export const mutations = {
   setSets: (state, sets) => {
     state.sets = sets;
   },
-
+  addToSets: (state, sets) => {
+    state.sets.push(sets)
+    console.log(sets, state.sets)
+  }
 }
 
 export const actions = {
@@ -33,6 +36,8 @@ export const actions = {
       description: req.desc,
       custom: 1
     })
+
+    
 
     let animations = await this.$axios.get('/api/sets/animation/' + req.id);
       animations.data.forEach( async (animation, index) => {
@@ -75,12 +80,22 @@ export const actions = {
           setId: sets.data.id,
         })
     })
-    req.tagIds.forEach(tag => {
-      let setssettags = this.$axios.post('/api/setssettags/add/', {
+    
+
+    req.tagIds.forEach(async tag => {
+      let setssettags = await this.$axios.post('/api/setssettags/add/', {
         setId: sets.data.id,
         settagsId: tag,
-      })
+      }) 
     })
+   
+    sets.data.videos = animations.data.map(video => {
+      return video.video
+    })
+    //sets.data.tags = setssettags.data;
+    sets.data.animations = animations.data;
+
+    commit('addToSets', sets.data);
   },
   async getSets({ commit }, id) {
     let { data } = await this.$axios.get('/api/sets/custom');

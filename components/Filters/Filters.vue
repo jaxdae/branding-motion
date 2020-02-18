@@ -152,10 +152,10 @@ export default {
   },
   methods: {
     check(valueset, index) { 
+      console.log(valueset, index)
       if(!this.isVariables && !this.isValueSet){
       if (parseInt(this.checkboxValues[valueset]) === index) {
-        this.checkboxValues[valueset] = null;
-        delete this.checkboxValues[valueset];
+        this.checkboxValues[valueset] = 0;
         this.$store.commit('removeValue', valueset);
         this.$store.commit('disableFilter');
         this.$store.commit('calculateScore');
@@ -166,6 +166,7 @@ export default {
         this.$store.commit('changeValues', identity);
         this.$store.commit('enableFilter');
         this.$store.commit('calculateScore');
+        this.checkboxValues[valueset] = index;
       }
       }else{
         let identity = {};

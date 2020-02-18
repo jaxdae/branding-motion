@@ -12,17 +12,8 @@
             {{ tag }}
           </div>
         </div>
-        <div
-          @click="save"
-          :class="{ saved: isSaved }"
-          class="SetCard__heart"
-        ></div>
-        <div
-          @click="save"
-          :class="{ savedbg: isSaved }"
-          class="SetCard__heart--full"
-        ></div>
         <nuxt-link :to="'/sets/' + id.toString()" class="SetCard__link">
+          <div class="SetCard__heart"></div>
           <div class="SetCard__headline">{{ name }}</div>
           <div class="SetCard__description">{{ description }}</div>
         </nuxt-link>
@@ -66,15 +57,6 @@ export default {
     return {
       isSaved: false
     };
-  },
-  methods: {
-    save() {
-      if (!this.isSaved) {
-        this.isSaved = true;
-      } else {
-        this.isSaved = false;
-      }
-    }
   }
 };
 </script>
