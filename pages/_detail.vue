@@ -25,7 +25,12 @@
           class="Detail__component"
         />
         <div @click="switchView" class="Detail__switcher"></div>
-        <AddButton :card="card"></AddButton>
+        <Button
+          class="Detail__add"
+          :link="$route.params.detail"
+          :label="buttonText"
+          @click.native="addOrSave"
+        ></Button>
       </Effect>
       <div class="Detail__left">
         <Button
@@ -66,7 +71,6 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import { components, effects } from '@/assets/effects.js';
-import AddButton from '@/components/AddButton/AddButton.vue';
 import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
 import Button from '@/components/Button/Button.vue';
 import Code from '@/components/Code/Code.vue';
@@ -79,7 +83,6 @@ import Filters from '@/components/Filters/Filters.vue';
 export default {
   name: 'Detail',
   components: {
-    AddButton,
     Button,
     Code,
     CrossRefSlider,
@@ -163,6 +166,13 @@ export default {
       card: 'animationdetail/card',
       cardLoad: 'animationdetail/cardLoad'
     }),
+    buttonText() {
+      if(this.card.default == 0){
+        return 'Save animation'
+      }else {
+        return 'Add animation'
+      }
+    }
   },
   methods: {
     collapse(isCollapsed) {
@@ -175,6 +185,13 @@ export default {
         this.designerView = true;
       }
     },
+    addOrSave() {
+      if(this.card.default == 0){
+        this.$store.dispatch('animationdetail/saveSet', this.card);
+      }else{
+        this.$store.dispatch('saveToSet', this.card.id);
+      }
+    }
     },
   mounted() {
     this.$store.dispatch('animationdetail/getAnimation', this.$route.params.detail)

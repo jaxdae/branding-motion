@@ -125,11 +125,13 @@ export const actions = {
         return tag.settagsId;
       });
     }
+
     for (let i = 0; i < data.length; i++) {
       let videos = await this.$axios.get('/api/sets/animations/' + data[i].id);
       data[i].videos = videos.data.map(video => {
         return video.video;
       });
+     
       data[i].animations = videos.data.map(animation => {
         return animation.animationId;
       });

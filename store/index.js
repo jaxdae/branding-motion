@@ -137,9 +137,45 @@ export const mutations = {
 
 export const actions = {
   async saveToSet({ commit }, id){
+    let animationToClone = await this.$axios.get('/api/animations/' + id);
+
+    let customanimation = await this.$axios.post('/api/animations/add/', {
+      name: animationToClone.data.name,
+      description: animationToClone.data.description,
+      video: animationToClone.data.video,
+      componentName: animationToClone.data.componentName,
+      rational: animationToClone.data.rational,
+      innovative: animationToClone.data.innovative,
+      personal: animationToClone.data.personal,
+      maskuline: animationToClone.data.maskuline,
+      serious: animationToClone.data.serious,
+      luxurious: animationToClone.data.luxurious,
+      delicate: animationToClone.data.delicate,
+      simple: animationToClone.data.simple,
+      default: 0,
+      slow: animationToClone.data.slow,
+      rough: animationToClone.data.rough,
+      hard: animationToClone.data.hard,
+      sharp: animationToClone.data.sharp,
+      rectilineal: animationToClone.data.rectilineal,
+      static: animationToClone.data.static,
+    })
+
+    let tags = await this.$axios.get('/api/animationtags/' + id);
+    animationToClone.data.tags = tags.data.map(tag => {
+      return tag.id;
+    });
+
+    animationToClone.data.tags.forEach(async tag => {
+      let animationtags = await this.$axios.post('/api/animations/tags/add/', {
+        animationId: customanimation.data.id,
+        tagId: tag
+      })
+    })
+
     let { data } = await this.$axios.post('/api/sets/animation/', {
-      animationId: id,
-      setId: 1
+      animationId: customanimation.data.id,
+      setId: 95
     })
   },
   async getAllCards({ commit }) {
