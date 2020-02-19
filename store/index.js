@@ -137,8 +137,9 @@ export const mutations = {
 
 export const actions = {
   async saveToSet({ commit }, id){
-    let animationToClone = await this.$axios.get('/api/animations/' + id);
+    commit('setdetail/setDetailReady', false);
 
+    let animationToClone = await this.$axios.get('/api/animations/' + id);
     let customanimation = await this.$axios.post('/api/animations/add/', {
       name: animationToClone.data.name,
       description: animationToClone.data.description,
@@ -160,23 +161,35 @@ export const actions = {
       rectilineal: animationToClone.data.rectilineal,
       static: animationToClone.data.static,
     })
-
     let tags = await this.$axios.get('/api/animationtags/' + id);
     animationToClone.data.tags = tags.data.map(tag => {
       return tag.id;
     });
-
     animationToClone.data.tags.forEach(async tag => {
       let animationtags = await this.$axios.post('/api/animations/tags/add/', {
         animationId: customanimation.data.id,
         tagId: tag
       })
     })
-
     let { data } = await this.$axios.post('/api/sets/animation/', {
       animationId: customanimation.data.id,
       setId: 95
     })
+    customanimation.data.tags = tags.data.map(tag => {
+      return tag.name;
+    });
+    customanimation.data.valueSet = {
+      rational: customanimation.data.rational,
+      innovative: customanimation.data.innovative,
+      personal: customanimation.data.personal,
+      maskuline: customanimation.data.maskuline,
+      serious: customanimation.data.serious,
+      luxurious: customanimation.data.luxurious,
+      delicate: customanimation.data.delicate,
+      simple: customanimation.data.simple,
+    }
+    commit('setdetail/addToSet', customanimation.data)
+    commit('setdetail/setDetailReady', true);
   },
   async getAllCards({ commit }) {
     let { data } = await this.$axios.get('/api/animations/all');

@@ -99,7 +99,6 @@ export default {
       }
     },
     remove() {
-      console.log(this.id);
       this.$store.dispatch('removeFromSet', this.id);
     }
   }

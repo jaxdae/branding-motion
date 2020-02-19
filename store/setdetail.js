@@ -35,6 +35,9 @@ export const mutations = {
       });
     state.setDetail[0].animations = filtered;
     state.setDetailReady = true;
+  },
+  addToSet: (state, data) => {
+    state.setDetail[0].animations.push(data);
   }
   
 }

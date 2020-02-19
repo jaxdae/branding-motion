@@ -27,7 +27,7 @@
         <div @click="switchView" class="Detail__switcher"></div>
         <Button
           class="Detail__add"
-          :link="$route.params.detail"
+          :link="'/sets/95'"
           :label="buttonText"
           @click.native="addOrSave"
         ></Button>
