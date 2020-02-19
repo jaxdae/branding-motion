@@ -138,5 +138,22 @@ export const actions = {
     }
     commit('setCuratedCards', data);
     commit('setCuratedLoad', true);
-  }
+  },
+  async createNewSet({ commit }, req) {
+    let sets = await this.$axios.post('/api/sets/add/', {
+      name: req.name,
+      description: req.desc,
+      custom: 1
+    })
+
+    req.tagIds.forEach(async tag => {
+      let setssettags = await this.$axios.post('/api/setssettags/add/', {
+        setId: sets.data.id,
+        settagsId: tag,
+      })
+    })
+
+    sets.data.tags = req.tags;
+    commit('addToSets', sets.data);
+  },
 }

@@ -2,7 +2,7 @@
   <div class="SetCard">
     <div class="SetCard__wrapper">
       <nuxt-link :to="'/sets/' + id.toString()" class="SetCard__link">
-        <video v-for="video in videos.slice(0, 2)" :key="video.id" autoplay muted loop class="SetCard__video">
+        <video v-if="videos" v-for="video in videos.slice(0, 2)" :key="video.id" autoplay muted loop class="SetCard__video">
           <source :src="video" type=" video/mp4" />
         </video>
       </nuxt-link>
@@ -41,7 +41,7 @@ export default {
     },
     videos: {
       type: Array,
-      required: true
+      default: () => [],
     },
     valueSet: {
       type: Object,

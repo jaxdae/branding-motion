@@ -27,7 +27,7 @@ async function start() {
 
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended : false }))
-
+  
   app.get('/api/animations/all', (req, res) => {
     models.animations.findAll({
       where: {
@@ -54,6 +54,12 @@ async function start() {
         isCategory: 0
       }
     }).then(tags => {
+      res.send(tags);
+    });
+  })
+  app.get('/api/settags/', (req, res) => {
+    models.settags.findAll()
+    .then(tags => {
       res.send(tags);
     });
   })
