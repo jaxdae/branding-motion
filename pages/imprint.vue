@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import Hero from '@/components/Hero/Hero.vue';
-import Footer from '@/components/Footer/Footer.vue';
 
 export default {
   name: 'Imprint',

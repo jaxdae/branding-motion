@@ -26,7 +26,6 @@
 import '../../assets/fonts/iconfont.scss';
 export default {
   name: 'SetCard',
-  components: {},
   props: {
     id:{
       type: Number,

@@ -26,6 +26,10 @@
   &__button{
     position: absolute;
     right:0;
+    &--import{
+      position: absolute;
+      right: 300px;
+    }
   }
   &__filters{
       position: absolute;

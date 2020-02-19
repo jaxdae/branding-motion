@@ -58,14 +58,10 @@
 
 <script>
 import '../../assets/fonts/iconfont.scss';
-import Card from '../AnimationCard/AnimationCard';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'Feed',
-  components: {
-    Card
-  },
   props: {
     onList: {
       type: Boolean,

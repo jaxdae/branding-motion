@@ -1,6 +1,6 @@
 <template>
   <div class="Detail">
-    <HeroSmall :animation="card" :tags="card.tags"></HeroSmall>
+    <hero-small :animation="card" :tags="card.tags"></hero-small>
     <top-filter isDetail></top-filter>
     <div class="Detail__wrapper" v-if="cardLoad">
       <filters
@@ -27,7 +27,7 @@
         <div @click="switchView" class="Detail__switcher"></div>
         <Button
           class="Detail__add"
-          :link="'/sets/95'"
+          :link="buttonLink"
           :label="buttonText"
           @click.native="addOrSave"
         ></Button>
@@ -71,26 +71,10 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import { components, effects } from '@/assets/effects.js';
-import HeroSmall from '@/components/HeroSmall/HeroSmall.vue';
-import Button from '@/components/Button/Button.vue';
-import Code from '@/components/Code/Code.vue';
-import Footer from '@/components/Footer/Footer.vue';
-import Effect from '@/components/Effect/Effect.vue';
-import CrossRefSlider from '@/components/CrossRefSlider/CrossRefSlider.vue';
-import TopFilter from '@/components/TopFilter/TopFilter.vue';
-import Filters from '@/components/Filters/Filters.vue';
 
 export default {
   name: 'Detail',
   components: {
-    Button,
-    Code,
-    CrossRefSlider,
-    HeroSmall,
-    TopFilter,
-    Effect,
-    Filters,
-    Footer,
     ...components
   },
   data() {
@@ -164,13 +148,21 @@ export default {
     ...mapGetters({
       crossrefCards: 'animationdetail/crossrefCards',
       card: 'animationdetail/card',
-      cardLoad: 'animationdetail/cardLoad'
+      cardLoad: 'animationdetail/cardLoad',
+      currentVariables: 'animationdetail/currentVariables'
     }),
     buttonText() {
       if(this.card.default == 0){
         return 'Save animation'
       }else {
         return 'Add animation'
+      }
+    },
+    buttonLink() {
+      if(this.card.default == 0){
+        return this.$route.params.detail;
+      }else {
+        return '/sets/95';
       }
     }
   },
@@ -187,7 +179,7 @@ export default {
     },
     addOrSave() {
       if(this.card.default == 0){
-        this.$store.dispatch('animationdetail/saveSet', this.card);
+        this.$store.dispatch('animationdetail/updateAnimation', this.card.id);
       }else{
         this.$store.dispatch('saveToSet', this.card.id);
       }

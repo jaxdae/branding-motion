@@ -136,7 +136,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async saveToSet({ commit }, id){
+  async saveToSet({ commit, state }, id){
     commit('setdetail/setDetailReady', false);
 
     let animationToClone = await this.$axios.get('/api/animations/' + id);
@@ -154,12 +154,12 @@ export const actions = {
       delicate: animationToClone.data.delicate,
       simple: animationToClone.data.simple,
       default: 0,
-      slow: animationToClone.data.slow,
-      rough: animationToClone.data.rough,
-      hard: animationToClone.data.hard,
-      sharp: animationToClone.data.sharp,
-      rectilineal: animationToClone.data.rectilineal,
-      static: animationToClone.data.static,
+      slow: state.animationdetail.currentVariables.slow,
+      rough: state.animationdetail.currentVariables.rough,
+      hard: state.animationdetail.currentVariables.hard,
+      sharp: state.animationdetail.currentVariables.sharp,
+      rectilineal: state.animationdetail.currentVariables.rectilineal,
+      static: state.animationdetail.currentVariables.static,
     })
     let tags = await this.$axios.get('/api/animationtags/' + id);
     animationToClone.data.tags = tags.data.map(tag => {

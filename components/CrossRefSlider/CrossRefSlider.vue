@@ -21,12 +21,10 @@
 <script>
 import '../../assets/fonts/iconfont.scss';
 import Slick from 'vue-slick';
-import CrossSellCard from '../CrossSellCard/CrossSellCard';
 
 export default {
   name: 'TopFilter',
   components: {
-    CrossSellCard,
     Slick
   },
   props: {

@@ -1,7 +1,7 @@
 <template>
   <div class="Home">
     <Hero :sets="curatedCards"></Hero>
-    <TopFilter class="Home__topfilter"></TopFilter>
+    <top-filter class="Home__topfilter"></top-filter>
     <div class="Home__wrapper">
       <div class="Home__right">
         <Button
@@ -21,23 +21,9 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import Button from '@/components/Button/Button.vue';
-import Hero from '@/components/Hero/Hero.vue';
-import Feed from '@/components/Feed/Feed.vue';
-import Filters from '@/components/Filters/Filters.vue';
-import Footer from '@/components/Footer/Footer.vue';
-import TopFilter from '@/components/TopFilter/TopFilter.vue';
 
 export default {
   name: 'Home',
-  components: {
-    Button,
-    Hero,
-    Feed,
-    Filters,
-    Footer,
-    TopFilter
-  },
   data() {
     return {
       elements: [],

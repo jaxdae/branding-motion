@@ -90,14 +90,14 @@ export const actions = {
     }
     commit('setCrossrefCards', data);
   },
-  async updateAnimation({ commit }, req) {
-    let updatedAnimation = await this.$axios.put('/api/animations/update/' + req.id, {
-      slow: req.slow,
-      rough: req.rough,
-      hard: req.hard,
-      sharp: req.sharp,
-      rectilineal: req.rectilineal,
-      static: req.static
+  async updateAnimation({ commit, state }, id) {
+    let updatedAnimation = await this.$axios.put('/api/animations/update/' + id, {
+      slow: state.currentVariables.slow,
+      rough: state.currentVariables.rough,
+      hard: state.currentVariables.hard,
+      sharp: state.currentVariables.sharp,
+      rectilineal: state.currentVariables.rectilineal,
+      static: state.currentVariables.static
     });
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="Set">
-    <HeroSmall v-if="setDetail[0]"
+    <hero-small v-if="setDetail[0]"
       :id="setDetail[0].id"
       :name="setDetail[0].name"
       :description="setDetail[0].description"
       :tags="setDetail[0].tags"
       >
-    </HeroSmall>
+    </hero-small>
     <div class="Sets__wrapper">
       <div class="Sets__right">
           <Button label="Export this set" :link="'/sets/'+$route.params.set" class="Sets__export" @click.native="exportSet"></Button>
@@ -45,21 +45,9 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import Button from '../../components/Button/Button'
-import Card from '../../components/AnimationCard/AnimationCard';
-import HeroSmall from '@/components/HeroSmall/HeroSmall';
-import Filters from '../../components/Filters/Filters'
-import Footer from '@/components/Footer/Footer';
 
 export default {
   name: 'Set',
-  components: {
-    Button,
-    Card,
-    HeroSmall,
-    Filters,
-    Footer
-  },
   data() {
     return {
       filteroptions: {
