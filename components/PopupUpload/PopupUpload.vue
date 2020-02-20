@@ -1,12 +1,16 @@
 <template>
-  <div class="Popup">
-    <div class="Popup__window">
+  <div class="PopupUpload">
+    <div class="PopupUpload__window">
       <div v-if="importerReady" style="color:white">{{json}}</div>
-      <div class="Popup__close" @click="close"></div>
-      <h1 class="Popup__title">Upload a set from a file</h1>
-      <input class="Popup__upload" type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+      <div class="PopupUpload__close" @click="close"></div>
+      <h1 class="PopupUpload__title">Upload a set from a file</h1>
+      <label class="PopupUpload__upload">
+        <input class="PopupUpload__upload-input" type="file" accept=".json" id="file" ref="file" @change="handleFileUpload"/>
+        <h2 class="PopupUpload__filename">{{filename}}</h2>
+        <p v-if="showFilesize" class="PopupUpload__filesize">{{computedSize}}</p>
+      </label>
       <Button
-        class="Popup__button"
+        class="PopupUpload__button"
         :link="'/sets'"
         :label="'Upload set'"
         @click.native="addSet"
@@ -27,15 +31,31 @@ export default {
       file: '',
       json: null,
       importerReady: false,
+      filename: 'Select a JSON-formatted Set',
+      filesize: 0,
+      filetype: '',
+      showFilesize: false,
     };
+  },
+  computed: {
+    computedSize() {
+      if(this.filesize < 1000){
+      return this.filesize + ' KB'
+      }else {
+        return this.filesize/1000 + ' MB'
+      }
+    }
   },
   methods: {
     close() {
       this.$emit('popupOpen', false);
     },
-    handleFileUpload(){
+    handleFileUpload(e){
       this.file = this.$refs.file.files[0];
-      
+      this.filename = e.srcElement.files[0].name;
+      this.filesize = e.srcElement.files[0].size;
+      this.filetype = e.srcElement.files[0].type;
+      this.showFilesize = true;
     },
     async addSet(){
       let formData = new FormData();

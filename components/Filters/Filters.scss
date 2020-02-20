@@ -92,6 +92,99 @@
     right: 45px;
     }
   }
+  &__tooltip{
+    display: inline;
+     &:hover{
+      cursor: help;
+    }
+    &:hover .tooltip01{
+      visibility: visible;
+    }
+     &::after{
+    font-family: iconfont;
+    content: "\e911";
+    font-size: 25px;
+    position: absolute;
+    color: #d9af99;
+    top: 30px;
+    right: 45px;
+    }
+  }
+  &__tooltip .tooltip {
+  visibility: hidden;
+  background-color: $dark-blue;
+  border-radius: 15px;
+  padding: 15px 30px;
+  position: absolute;
+  z-index: 2;
+  right:90px;
+  width:100%;
+  top:0;
+  @include font-blocktext($white);
+  }
+  &__tooltip-headline{
+    @include font-caps($dark-peach);
+    width:100%;
+    display:block;
+    margin-bottom:5px;
+  }
+  &__label{
+    &--left, &--right{
+    position: relative;
+    &:hover{
+      cursor: help;
+    }
+    }
+  }
+  &__label--left .tooltip,
+  &__label--right .tooltip{
+  visibility: hidden;
+  white-space: nowrap;
+  background-color: $dark-blue;
+  border-radius: 15px;
+  padding: 15px 30px;
+  position: absolute;
+  z-index: 3;
+  top: -15px;
+  right: calc(105% + 15px);
+  @include font-blocktext($white);
+  }
+  &__label--rough:hover .tooltip-rough{
+      visibility: visible;
+    }
+    &__label--slow:hover .tooltip-slow{
+      visibility: visible;
+    }
+    &__label--hard:hover .tooltip-hard{
+      visibility: visible;
+    }
+    &__label--sharp:hover .tooltip-sharp{
+      visibility: visible;
+    }
+    &__label--rectilineal:hover .tooltip-rectilineal{
+      visibility: visible;
+    }
+    &__label--static:hover .tooltip-static{
+      visibility: visible;
+    }
+    &__label--fast:hover .tooltip-fast{
+      visibility: visible;
+    }
+    &__label--smooth:hover .tooltip-smooth{
+      visibility: visible;
+    }
+    &__label--soft:hover .tooltip-soft{
+      visibility: visible;
+    }
+    &__label--blurry:hover .tooltip-blurry{
+      visibility: visible;
+    }
+    &__label--arched:hover .tooltip-arched{
+      visibility: visible;
+    }
+    &__label--flexible:hover .tooltip-flexible{
+      visibility: visible;
+    }
 }
 
 input[type="checkbox"],

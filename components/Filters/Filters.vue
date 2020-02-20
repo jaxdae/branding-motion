@@ -9,6 +9,15 @@
       :class="{ collapsed: isCollapsed }"
       class="Filters__collapse"
     ></div>
+    <div
+      v-if="isVariables"
+      class="Filters__tooltip"
+    >
+      <span class="tooltip tooltip01">
+        <span class="Filters__tooltip-headline">Quick tip</span>
+        Hover over the labels to see their impact on the brand identity
+        </span>
+    </div>
     <div 
       v-if="isLocked && !noLockIcon"
       class="Filters__locked"
@@ -20,8 +29,14 @@
       class="Filters__filtergroup"
     >
       <div class="Filters__labels">
-        <div class="Filters__label--left">{{ filter.left }}</div>
-        <div class="Filters__label--right">{{ filter.right }}</div>
+        <div class="Filters__label--left" :class="'Filters__label--' + index">
+          <span class="tooltip" :class="'tooltip-'+index">{{filter.tooltipleft}}</span>
+          {{ filter.left }}
+          </div>
+        <div class="Filters__label--right" :class="'Filters__label--' + index">
+          <span class="tooltip" :class="'tooltip-'+index">{{filter.tooltipright}}</span>
+          {{ filter.right }}
+          </div>
       </div>
       <div class="Filters__radiogroup">
         <input

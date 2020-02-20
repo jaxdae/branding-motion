@@ -85,27 +85,39 @@ export default {
       filteroptions: {
         slow: {
           left: 'slow',
-          right: 'fast'
+          right: 'fast',
+          tooltipleft: 'inexpensive, traditional',
+          tooltipright: 'innovative, luxurious'
         },
         rough: {
           left: 'rough',
-          right: 'smooth'
+          right: 'smooth',
+          tooltipleft: 'rational, serious, maskuline',
+          tooltipright: 'emotional, straightforward, feminine'
         },
         hard: {
           left: 'hard edge',
-          right: 'soft edge'
+          right: 'soft edge',
+          tooltipleft: 'rational, maskuline, simple',
+          tooltipright: 'emotional, feminine, complex'
         },
         sharp: {
           left: 'sharp',
-          right: 'blurry'
+          right: 'blurry',
+          tooltipleft: 'sturdy, simple, feminine',
+          tooltipright: 'complex, delicate, maskuline'
         },
         rectilineal: {
           left: 'rectilineal',
-          right: 'arched'
+          right: 'arched',
+          tooltipleft: 'rational, serious, institutional',
+          tooltipright: 'emotional, straightforward, personal'
         },
         static: {
           left: 'static',
-          right: 'flexible'
+          right: 'flexible',
+          tooltipleft: 'luxurious, traditional, personal',
+          tooltipright: 'inexpensive, innovative, institutional'
         }
       },
       brandtraits: {
