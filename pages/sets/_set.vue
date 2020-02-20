@@ -122,7 +122,7 @@ export default {
       this.$store.dispatch('setdetail/removeSet', this.id);
     },
     exportSet(e){
-      this.downloadObjectAsJson(this.setDetail, ' ');
+      this.downloadObjectAsJson(this.setDetail, 'SetExport');
     },
     downloadObjectAsJson(exportObj, exportName){
       let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));

@@ -14,6 +14,7 @@ import Footer from '../components/Footer/Footer.vue'
 import Hero from '../components/Hero/Hero.vue'
 import HeroSmall from '../components/HeroSmall/HeroSmall.vue'
 import Popup from '../components/Popup/Popup.vue'
+import PopupUpload from '../components/PopupUpload/PopupUpload.vue'
 import SetCard from '../components/SetCard/SetCard.vue'
 import TopFilter from '../components/TopFilter/TopFilter.vue'
 
@@ -31,5 +32,6 @@ Vue.component('Footer', Footer);
 Vue.component('Hero', Hero);
 Vue.component('hero-small', HeroSmall);
 Vue.component('Popup', Popup);
+Vue.component('popup-upload', PopupUpload);
 Vue.component('set-card', SetCard);
 Vue.component('top-filter', TopFilter);

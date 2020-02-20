@@ -1,6 +1,7 @@
 <template>
   <div class="Sets">
     <Popup v-if="popupOpen" @popupOpen="setPopupState"></Popup>
+    <popup-upload v-if="popupUploadOpen" @popupOpen="setPopupState"></popup-upload>
     <hero-small
       :name="'Animation Sets'"
       :description="'Go through all of your saved sets and animations, edit them and export the complete set once your set is completed.'">
@@ -55,6 +56,7 @@ export default {
   data() {
     return {
       popupOpen: false,
+      popupUploadOpen: false,
     };
   },
   computed: {
@@ -78,13 +80,14 @@ export default {
   },
   methods: {
     importSet() {
-      console.log('importSet')
+      this.popupUploadOpen = true;
     },
     addSet() {
       this.popupOpen = true;
     },
     setPopupState(popupOpen) {
       this.popupOpen = popupOpen;
+      this.popupUploadOpen = popupOpen;
     }
   },
   mounted(){

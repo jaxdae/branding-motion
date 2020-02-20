@@ -6,6 +6,23 @@ const app = express()
 
 const models = require('./models/index.js')
 const sequelize = require('sequelize')
+const multer = require('multer')
+const fs = require('fs')
+const { promisify } = require('util')
+const unlinkAsync = promisify(fs.unlink)
+
+let upload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, callback) => {
+      let type = req.params.type;
+      let path = './static/uploads';
+      callback(null, path);
+    },
+    filename: (req, file, callback) => {
+      callback(null, Date.now() + '.json');
+    }
+  })
+});
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -28,6 +45,20 @@ async function start() {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended : false }))
   
+  app.post('/upload', upload.single('file'), (req,res) => {
+    res.json({file: req.file})
+  })
+  app.delete('/test/:id', (req, res) => {
+    fs.unlinkSync('./static/uploads/' + req.params.id, function (err) {
+      if (err) {
+        return console.log("Delete error: " + err);
+      }
+      else {
+        console.log("file deleted successfully");
+      }
+    })
+    res.send(req.params.id)
+  })
   app.get('/api/animations/all', (req, res) => {
     models.animations.findAll({
       where: {

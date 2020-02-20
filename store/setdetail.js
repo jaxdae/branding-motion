@@ -51,6 +51,9 @@ export const actions = {
     data[0].tags = tags.data.map(tag => {
       return tag.name;
     });
+    data[0].tagIds = tags.data.map(tag => {
+      return tag.settagsId;
+    });
     
     let animations = await this.$axios.get('/api/sets/animation/' + id);
 
@@ -69,6 +72,9 @@ export const actions = {
       let anitags = await this.$axios.get('/api/animationtags/' + animations.data[i].id);
       animations.data[i].tags = anitags.data.map(tag => {
         return tag.name;
+      });
+      animations.data[i].tagIds = anitags.data.map(tag => {
+        return tag.id;
       });
     }
 

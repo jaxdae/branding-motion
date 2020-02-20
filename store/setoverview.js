@@ -94,6 +94,64 @@ export const actions = {
 
     commit('addToSets', sets.data);
   },
+  async saveFromJSON({ commit }, req) {
+
+    let sets = await this.$axios.post('/api/sets/add/', {
+      name: req.name,
+      description: req.description,
+      custom: 1
+    })
+
+    req.animations.forEach(async (animation, index) => {
+      let customanimation = await this.$axios.post('/api/animations/add/', {
+        name: animation.name,
+        description: animation.description,
+        video: animation.video,
+        componentName: animation.componentName,
+        rational: animation.rational,
+        innovative: animation.innovative,
+        personal: animation.personal,
+        maskuline: animation.maskuline,
+        serious: animation.serious,
+        luxurious: animation.luxurious,
+        delicate: animation.delicate,
+        simple: animation.simple,
+        default: 1,
+        slow: animation.slow,
+        rough: animation.rough,
+        hard: animation.hard,
+        sharp: animation.sharp,
+        rectilineal: animation.rectilineal,
+        static: animation.static,
+      })
+      animation.tagIds.forEach(async tag => {
+        let animationtags = await this.$axios.post('/api/animations/tags/add/', {
+          animationId: customanimation.data.id,
+          tagId: tag
+        })
+      })
+      let animationsets = this.$axios.post('/api/animationsets/add/', {
+        animationId: customanimation.data.id,
+        setId: sets.data.id,
+      })
+    })
+
+    req.tagIds.forEach(async tag => {
+      let setssettags = await this.$axios.post('/api/setssettags/add/', {
+        setId: sets.data.id,
+        settagsId: tag,
+      })
+    })
+    
+    sets.data.videos = req.animations.map(video => {
+      return video.video
+    })
+
+    sets.data.tags = req.tags;
+    sets.data.animations = req.animations;
+
+    commit('addToSets', sets.data);
+  },
   async getSets({ commit }, id) {
     let { data } = await this.$axios.get('/api/sets/custom');
     for (let i = 0; i < data.length; i++) {
