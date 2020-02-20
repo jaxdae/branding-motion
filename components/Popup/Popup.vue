@@ -78,6 +78,7 @@ export default {
       }
     },
     close() {
+      document.getElementsByTagName('body')[0].classList.remove('hidden');
       this.$emit('popupOpen', false);
     }
   },

@@ -81,9 +81,11 @@ export default {
   methods: {
     importSet() {
       this.popupUploadOpen = true;
+      document.getElementsByTagName('body')[0].classList.add('hidden');
     },
     addSet() {
       this.popupOpen = true;
+      document.getElementsByTagName('body')[0].classList.add('hidden');
     },
     setPopupState(popupOpen) {
       this.popupOpen = popupOpen;
