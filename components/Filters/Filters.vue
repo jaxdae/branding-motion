@@ -183,11 +183,31 @@ export default {
         this.checkboxValues[valueset] = index;
       }
       }else{
+        console.log(valueset, index)
         let identity = {};
         identity.name = valueset;
         identity.value = index;
+        let convertedValues = this.ValuesToCss(identity);
         this.$store.commit('animationdetail/setCurrentVariables', identity);
       }
+    },
+    ValuesToCss(identity) {
+      let converted = {
+        slow: identity.slow * 0.2
+      }
+      switch (identity.static){
+        case 1: converted.static = 'static' 
+        break;
+        case 2:  converted.static = 'static'
+        break;
+        case 3:  converted.static = 'ease all'
+        break;
+        case 4:  converted.static = 'ease-in-out'
+        break;
+        case 5:  converted.static = 'ease-in-out'
+        break;
+      }
+      return converted;
     },
     collapseTraits() {
       if (this.isCollapsed) {

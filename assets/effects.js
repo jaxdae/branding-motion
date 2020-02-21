@@ -17,11 +17,7 @@ for (const filename of effectList) {
     .replace(/\\n/g, '\n') // replace escape characters
     .replace(/\\"/g, '"');
 
-  const css = /<style scoped>(.*?)<\/style>/g // find css between style tags
-    .exec(JSON.stringify(raw))[0]
-    .replace(/<\/?style(?: scoped)?>/g, '') // remove style tags
-    .replace(/^\\n/, '') // remove leading linebreak
-    .replace(/\\n/g, '\n'); // replace \n with newlines
+  const css = 'hi'
 
   effects[name] = { name, type, html, css };
   components[name] = component;

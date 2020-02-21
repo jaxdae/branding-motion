@@ -11,7 +11,7 @@ export const state = () => ({
     sharp: 0,
     rectilineal: 0,
     static: 0
-  },
+  }
 })
 
 export const getters = {
@@ -48,6 +48,9 @@ export const mutations = {
   },
   setCurrentVariables(state, identity){
     state.currentVariables[identity.name] = identity.value;
+  },
+  setConvertedVariables(state, identity) {
+    state.convertedVariables[identity.name] = identity.value;
   }
 }
 

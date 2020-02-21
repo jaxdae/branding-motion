@@ -23,6 +23,7 @@
         <component
           :is="card.effect.name"
           class="Detail__component"
+          :vars="currentVariables"
         />
         <div @click="switchView" class="Detail__switcher"></div>
         <Button
@@ -161,7 +162,8 @@ export default {
       crossrefCards: 'animationdetail/crossrefCards',
       card: 'animationdetail/card',
       cardLoad: 'animationdetail/cardLoad',
-      currentVariables: 'animationdetail/currentVariables'
+      currentVariables: 'animationdetail/currentVariables',
+      convertedVariables: 'animationdetail/convertedVariables'
     }),
     buttonText() {
       if(this.card.default == 0){

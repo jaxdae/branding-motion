@@ -1,8 +1,9 @@
 <template>
-  <button>Bubble</button>
+  <button :style="cssProps">{{vars}}</button>
+
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 button {
   z-index: 1;
   position: relative;
@@ -14,7 +15,7 @@ button {
   border: none;
   background-color: hsl(236, 32%, 26%);
   overflow: hidden;
-  transition: color 0.4s ease-in-out;
+  transition: color var(--slow) ease-in-out;
 }
 
 button::before {
@@ -29,7 +30,7 @@ button::before {
   background-color: #3cefff;
   transform-origin: center;
   transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
-  transition: transform 0.45s ease-in-out;
+  transition: transform var(--slow) ease-in-out;
 }
 
 button:hover {
@@ -41,3 +42,26 @@ button:hover::before {
   transform: translate3d(50%, -50%, 0) scale3d(15, 15, 15);
 }
 </style>
+
+<script>
+export default {
+  props: {
+    vars: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  computed: {
+     cssProps() { 
+       return {
+        '--slow': (this.vars.slow) + "s",
+        '--rough': (this.vars.rough),
+        '--hard': (this.vars.hard),
+        '--sharp': (this.vars.sharp),
+        '--rectilineal': (this.vars.rectilineal),
+        '--static': (this.vars.static),
+      }
+     }
+  }
+}
+</script>
