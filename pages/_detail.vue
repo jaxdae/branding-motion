@@ -1,5 +1,11 @@
 <template>
   <div class="Detail">
+    <popup-code
+      v-if="popupCodeOpen"
+      @popupOpen="switchView"
+      :html="card.effect.html"
+      :css="card.effect.css">
+    </popup-code>
     <hero-small :animation="card" :tags="card.tags"></hero-small>
     <top-filter isDetail></top-filter>
     <div class="Detail__wrapper" v-if="cardLoad">
@@ -41,7 +47,6 @@
         >
         </Button>
         <filters
-          v-if="designerView"
           :filteroptions="filteroptions"
           :name="'Adjustments'"
           class="Detail__adjustments"
@@ -49,13 +54,6 @@
           :variables="card.variables"
         >
         </filters>
-        <Code
-          v-else
-          class="Detail__code"
-          :html="card.effect.html"
-          :css="card.effect.css"
-        >
-        </Code>
       </div>
     </div>
     <cross-ref-slider
@@ -82,7 +80,7 @@ export default {
     return {
       name: '',
       isCollapsed: true,
-      designerView: true,
+      popupCodeOpen: false,
       filteroptions: {
         slow: {
           left: 'slow',
@@ -185,10 +183,10 @@ export default {
       this.isCollapsed = isCollapsed;
     },
     switchView() {
-      if (this.designerView) {
-        this.designerView = false;
+      if (this.popupCodeOpen) {
+        this.popupCodeOpen = false;
       } else {
-        this.designerView = true;
+        this.popupCodeOpen = true;
       }
     },
     addOrSave() {

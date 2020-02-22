@@ -41,7 +41,7 @@
       <div class="Filters__radiogroup">
         <input
           :name="filter.left"
-          :checked="test[index] === 1"
+          :checked="input[index] === 1"
           @click="check(index, 1)"
           value="1"
           :disabled="isLocked"
@@ -50,7 +50,7 @@
         />
         <input
           :name="filter.left"
-           :checked="test[index] === 2"
+           :checked="input[index] === 2"
           @click="check(index, 2)"
           value="2"
           :disabled="isLocked"
@@ -59,7 +59,7 @@
         />
         <input
           :name="filter.left"
-         :checked="test[index] === 3"
+         :checked="input[index] === 3"
           @click="check(index, 3)"
           value="3"
           :disabled="isLocked"
@@ -68,7 +68,7 @@
         />
         <input
           :name="filter.left"
-          :checked="test[index] === 4"
+          :checked="input[index] === 4"
           @click="check(index, 4)"
           value="4"
           :disabled="isLocked"
@@ -77,7 +77,7 @@
         />
         <input
           :name="filter.left"
-          :checked="test[index] === 5"
+          :checked="input[index] === 5"
           @click="check(index, 5)"
           value="5"
           :disabled="isLocked"
@@ -86,10 +86,19 @@
         />
       </div>
     </div>
+    <Button
+      class="Filters__reset"
+      v-if="isVariables"
+      :link="'/'+this.$route.params.detail"
+      :label="'Reset values to default'"
+      @click.native="reset"
+    >
+    </Button>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
 export default {
   name: 'Filters',
   props: {
@@ -144,26 +153,30 @@ export default {
       },
       isCollapsed: false,
       isSet: false,
+      resettedSet: {},
+      dataFromProps: true,
     };
   },
  
   computed: {
-    test(){
-      if(this.valueset){
-        this.checkboxValues = this.valueset;
-      }
-      if(this.variables && this.isVariables){
-        this.checkboxValues = this.variables
-        Object.entries(this.checkboxValues).forEach(value => {
+     ...mapGetters({
+      currentVariables: 'animationdetail/currentVariables'
+    }),
+    input(){
+      if(this.isVariables){
+        Object.entries(this.variables).forEach(value => {
           let identity = {};
           identity.name = value[0];
           identity.value = value[1];
           this.$store.commit('animationdetail/setCurrentVariables', identity);
         })
-      }
-      return this.checkboxValues;
-    }
-    
+        return this.currentVariables
+      }else if(this.isValueSet){
+        return this.valueset
+      }else {
+        return this.checkboxValues;
+      }    
+    }    
   },
   methods: {
     check(valueset, index) { 
@@ -183,31 +196,11 @@ export default {
         this.checkboxValues[valueset] = index;
       }
       }else{
-        console.log(valueset, index)
         let identity = {};
         identity.name = valueset;
         identity.value = index;
-        let convertedValues = this.ValuesToCss(identity);
         this.$store.commit('animationdetail/setCurrentVariables', identity);
       }
-    },
-    ValuesToCss(identity) {
-      let converted = {
-        slow: identity.slow * 0.2
-      }
-      switch (identity.static){
-        case 1: converted.static = 'static' 
-        break;
-        case 2:  converted.static = 'static'
-        break;
-        case 3:  converted.static = 'ease all'
-        break;
-        case 4:  converted.static = 'ease-in-out'
-        break;
-        case 5:  converted.static = 'ease-in-out'
-        break;
-      }
-      return converted;
     },
     collapseTraits() {
       if (this.isCollapsed) {
@@ -217,8 +210,22 @@ export default {
         this.isCollapsed = true;
         this.$emit('isCollapsed', false);
       }
+    },
+    reset() {
+      Object.entries(this.resettedSet).forEach(value => {
+        let identity = {
+          name: value[0],
+          value: value[1]
+        }
+        this.$store.commit('animationdetail/setCurrentVariables', identity);
+      })
     }
   },
+  mounted() {
+    if(this.variables){
+      this.resettedSet = this.variables;
+    }
+  }
 };
 </script>
 

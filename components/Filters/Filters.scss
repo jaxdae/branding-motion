@@ -81,6 +81,12 @@
     left: 50%;
     }
   }
+  &__reset{
+    position: absolute;
+    width: calc(100% - 90px);
+    bottom: 30px;
+    z-index: 2;
+  }
   &__locked{
     &::after{
     font-family: iconfont;
