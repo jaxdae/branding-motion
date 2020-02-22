@@ -71,7 +71,7 @@ export default {
     }),
     ...mapGetters({
       curatedCards: 'setoverview/curatedCards',
-      allCards: 'allCards'
+      allCards: 'allCards',
     }),
   },
   methods: {

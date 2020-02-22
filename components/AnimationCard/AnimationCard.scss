@@ -2,6 +2,38 @@
 @import "../../styles/fonts.scss";
 
 .AnimationCard{
+   &__wishlist-overlay{
+     position: absolute;
+     top:0;
+     right:0;
+      width:100%;
+      height:275px;
+      background-color: rgba($light-grey, 0.95);
+    }
+    &__wishlist-wrapper{
+      @include font-blocktext($white);
+      position: absolute;
+      right:30px;
+      top:75px;
+      text-align: right;
+    }
+    &__save-option{
+      &:hover{
+        cursor: pointer;
+      }
+      &:hover.AnimationCard__save-option::before{
+        opacity: 1;
+      }
+      &::before{
+        transition: ease all 0.3s;
+        font-family: iconfont;
+    font-size:12px;
+    font-weight: bold;
+    content: "\e912";
+    opacity: 0;
+    color: $dark-peach;
+      }
+    }
   &__wrapper{
     transition: ease-in-out 0.2s;
     height: 275px;

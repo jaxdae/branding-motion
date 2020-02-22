@@ -171,7 +171,6 @@ export default {
         })
         return this.currentVariables
       }else if(this.isValueSet){
-        console.log(this.valueset)
         this.checkboxValues = this.valueset
         return this.checkboxValues;
       }else {

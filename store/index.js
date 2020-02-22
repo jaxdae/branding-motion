@@ -19,6 +19,7 @@ export const state = () => ({
   activeElement: false,
   activeCategory: false,
   activeSearch:false,
+  availableSets: []
 })
 
 export const getters = {
@@ -46,6 +47,9 @@ export const getters = {
   activeSearch: state => {
     return state.activeSearch;
   },
+  availableSets: state => {
+    return state.availableSets;
+  }
   
 }
 import Vue from 'vue';
@@ -121,7 +125,9 @@ export const mutations = {
   setAllLoad: (state, bool) => {
     state.allLoad = bool;
   },
- 
+ availableSets: (state, data) => {
+  state.availableSets = data;
+ },
   calculateScore: (state) => {
     Object.values(state.allCards).forEach((card, i) => {
       let score = 0;
@@ -136,10 +142,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async saveToSet({ commit, state }, id){
+  async saveToSet({ commit, state }, req){
     commit('setdetail/setDetailReady', false);
 
-    let animationToClone = await this.$axios.get('/api/animations/' + id);
+    let animationToClone = await this.$axios.get('/api/animations/' + req.animationId);
     let customanimation = await this.$axios.post('/api/animations/add/', {
       name: animationToClone.data.name,
       description: animationToClone.data.description,
@@ -161,7 +167,7 @@ export const actions = {
       rectilineal: state.animationdetail.currentVariables.rectilineal,
       static: state.animationdetail.currentVariables.static,
     })
-    let tags = await this.$axios.get('/api/animationtags/' + id);
+    let tags = await this.$axios.get('/api/animationtags/' + req.animationId);
     animationToClone.data.tags = tags.data.map(tag => {
       return tag.id;
     });
@@ -173,7 +179,7 @@ export const actions = {
     })
     let { data } = await this.$axios.post('/api/sets/animation/', {
       animationId: customanimation.data.id,
-      setId: 95
+      setId: req.setId
     })
     customanimation.data.tags = tags.data.map(tag => {
       return tag.name;
@@ -217,6 +223,10 @@ export const actions = {
     let animationtags = await this.$axios.delete('/api/animations/tags/remove/' + id);
     let animationsets = await this.$axios.delete('/api/animationsets/remove/' + id);
     commit('setdetail/removeFromSet', id);
+  },
+  async getAllSets({ commit }) {
+    let { data } = await this.$axios.get('/api/sets/custom');
+    commit('availableSets', data);
   }
 }
 

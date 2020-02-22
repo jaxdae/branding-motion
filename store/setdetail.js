@@ -37,7 +37,9 @@ export const mutations = {
     state.setDetailReady = true;
   },
   addToSet: (state, data) => {
+    if(state.setDetail[0]){
     state.setDetail[0].animations.push(data);
+    }
   }
   
 }
