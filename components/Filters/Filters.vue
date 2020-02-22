@@ -154,7 +154,6 @@ export default {
       isCollapsed: false,
       isSet: false,
       resettedSet: {},
-      dataFromProps: true,
     };
   },
  
@@ -172,7 +171,9 @@ export default {
         })
         return this.currentVariables
       }else if(this.isValueSet){
-        return this.valueset
+        console.log(this.valueset)
+        this.checkboxValues = this.valueset
+        return this.checkboxValues;
       }else {
         return this.checkboxValues;
       }    

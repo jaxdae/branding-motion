@@ -10,7 +10,7 @@
     <div class="Sets__wrapper">
       <div class="Sets__right">
           <Button label="Export this set" :link="'/sets/'+$route.params.set" class="Sets__export" @click.native="exportSet"></Button>
-          <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" class="Sets__filters"></Filters>
+          <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Sets__filters"></Filters>
           <Button label="Remove whole set" class="Sets__remove" :link="'/sets/'" @click.native="removeSet"></Button>
         </div>
       <div class="Sets__left">
