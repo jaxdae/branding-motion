@@ -146,7 +146,7 @@ async function start() {
       });
   })
   app.get('/api/sets/animation/:id', (req, res) => {
-    models.sequelize.query("SELECT animations.id, animations.name, animations.description, animations.video, componentName, rational, innovative, personal, maskuline, serious, luxurious, delicate, simple, slow, rough, hard, sharp, rectilineal, static FROM animations, animationsets WHERE animationsets.setId =" + req.params.id + " AND animations.id = animationsets.animationId" , { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT animations.id, animations.name, animations.description, animations.video, componentName, rational, innovative, personal, maskuline, serious, luxurious, delicate, simple, slow, rough, hard, rectilineal, static FROM animations, animationsets WHERE animationsets.setId =" + req.params.id + " AND animations.id = animationsets.animationId" , { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });
@@ -227,7 +227,6 @@ async function start() {
       slow: req.body.slow,
       rough: req.body.rough,
       hard: req.body.hard,
-      sharp: req.body.sharp,
       rectilineal: req.body.rectilineal,
       static: req.body.static,
     })
@@ -297,7 +296,6 @@ async function start() {
       slow: req.body.slow,
       rough: req.body.rough,
       hard: req.body.hard,
-      sharp: req.body.sharp,
       rectilineal: req.body.rectilineal,
       static: req.body.static,
     },{

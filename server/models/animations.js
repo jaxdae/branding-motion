@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     slow: DataTypes.INTEGER,
     rough: DataTypes.INTEGER,
     hard: DataTypes.INTEGER,
-    sharp: DataTypes.INTEGER,
     rectilineal: DataTypes.INTEGER,
     static: DataTypes.INTEGER,
   }, {});

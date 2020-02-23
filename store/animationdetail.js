@@ -8,7 +8,6 @@ export const state = () => ({
     slow: 0,
     rough: 0,
     hard: 0,
-    sharp: 0,
     rectilineal: 0,
     static: 0
   }
@@ -75,7 +74,6 @@ export const actions = {
         slow: data.slow,
         rough: data.rough,
         hard: data.hard,
-        sharp: data.sharp,
         rectilineal: data.rectilineal,
         static: data.static
       }
@@ -98,7 +96,6 @@ export const actions = {
       slow: state.currentVariables.slow,
       rough: state.currentVariables.rough,
       hard: state.currentVariables.hard,
-      sharp: state.currentVariables.sharp,
       rectilineal: state.currentVariables.rectilineal,
       static: state.currentVariables.static
     });

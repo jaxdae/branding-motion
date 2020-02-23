@@ -57,7 +57,6 @@ export default {
         '--slow': (this.vars.slow) + "s",
         '--rough': (this.vars.rough),
         '--hard': (this.vars.hard),
-        '--sharp': (this.vars.sharp),
         '--rectilineal': (this.vars.rectilineal),
         '--static': (this.vars.static),
       }

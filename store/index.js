@@ -163,7 +163,6 @@ export const actions = {
       slow: state.animationdetail.currentVariables.slow,
       rough: state.animationdetail.currentVariables.rough,
       hard: state.animationdetail.currentVariables.hard,
-      sharp: state.animationdetail.currentVariables.sharp,
       rectilineal: state.animationdetail.currentVariables.rectilineal,
       static: state.animationdetail.currentVariables.static,
     })

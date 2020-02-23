@@ -56,7 +56,6 @@ export const actions = {
         slow: animation.slow,
         rough: animation.rough,
         hard: animation.hard,
-        sharp: animation.sharp,
         rectilineal: animation.rectilineal,
         static: animation.static,
         })
@@ -120,7 +119,6 @@ export const actions = {
         slow: animation.slow,
         rough: animation.rough,
         hard: animation.hard,
-        sharp: animation.sharp,
         rectilineal: animation.rectilineal,
         static: animation.static,
       })

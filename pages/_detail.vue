@@ -100,12 +100,6 @@ export default {
           tooltipleft: 'rational, maskuline, simple',
           tooltipright: 'emotional, feminine, complex'
         },
-        sharp: {
-          left: 'sharp',
-          right: 'blurry',
-          tooltipleft: 'sturdy, simple, feminine',
-          tooltipright: 'complex, delicate, maskuline'
-        },
         rectilineal: {
           left: 'rectilineal',
           right: 'arched',
