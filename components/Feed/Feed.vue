@@ -79,7 +79,7 @@ export default {
   data() {
     return {
       number: null,
-      postsToShow: 2,
+      postsToShow: 10,
     }
   },
   computed: {
@@ -248,7 +248,7 @@ export default {
   let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
   if (bottomOfWindow) {
-    this.postsToShow = this.postsToShow + 2;
+    this.postsToShow += 10;
   }
 };
   }

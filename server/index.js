@@ -74,7 +74,7 @@ async function start() {
       where: {
         default: 1
       },
-      limit: 12
+      limit: 10
     })
       .then(animations => {
         res.send(animations);
