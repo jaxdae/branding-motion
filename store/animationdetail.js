@@ -57,8 +57,27 @@ export const mutations = {
   },
   setCurrentVariables(state, identity){
     state.currentVariables[identity.name] = identity.value;
-    if(identity.name == 'slow'){
-      state.convertedVariables[identity.name] = Math.round(identity.value * 0.2 * 10) /10;
+    switch (identity.name){
+      case 'slow':
+        state.convertedVariables[identity.name] = Math.round((1 - (identity.value - 1) * 0.2) * 10) / 10;
+      break;
+      case 'static': {
+        if(identity.value == 1){
+          state.convertedVariables[identity.name] = 'linear'
+        }
+        if (identity.value == 2) {
+          state.convertedVariables[identity.name] = 'ease-in'
+        }
+        if (identity.value == 3) {
+          state.convertedVariables[identity.name] = 'ease-in-out'
+        }
+        if (identity.value == 4) {
+          state.convertedVariables[identity.name] = 'cubic-bezier(0.77, 0, 0.175, 1)'
+        }
+        if (identity.value == 5) {
+          state.convertedVariables[identity.name] = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+        }
+      }
     }
   }
 }

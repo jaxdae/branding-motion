@@ -30,7 +30,7 @@ button::before {
   background-color: #3cefff;
   transform-origin: center;
   transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
-  transition: transform var(--slow) ease-in-out;
+  transition: transform var(--slow) var(--static);
 }
 
 button:hover {
