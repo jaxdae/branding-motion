@@ -25,6 +25,7 @@
   &__tag{
     border-radius: 15px;
     margin-right: 15px;
+    margin-bottom: 15px;
     background-color: $bright-yellow;
     @include font-caps($white);
     display:inline-block;

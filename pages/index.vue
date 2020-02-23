@@ -12,7 +12,7 @@
         </Button>
         <Filters :filteroptions="filteroptions" class="Home__filters"></Filters>
       </div>
-      <Feed :allCards="allCards" :allLoad="allLoad" class="Home__left">
+      <Feed :allCards="displayCards" :allLoad="displayLoad" class="Home__left">
       </Feed>
     </div>
     <Footer></Footer>
@@ -67,12 +67,28 @@ export default {
    computed: {
     ...mapState({
       curatedLoad: 'setoverview/curatedLoad',
-      allLoad: 'allLoad'
+      allLoad: 'allLoad',
+      initialLoad: 'initialLoad'
     }),
     ...mapGetters({
       curatedCards: 'setoverview/curatedCards',
       allCards: 'allCards',
+      initialCards: 'initialCards'
     }),
+    displayCards() {
+      if(!this.allLoad){
+        return this.initialCards;
+      }else {
+        return this.allCards;
+      }
+    },
+    displayLoad() {
+      if(!this.allLoad){
+        return this.initialLoad;
+      }else {
+        return this.allLoad;
+      }
+    }
   },
   methods: {
     tags(categories, elements) {
@@ -81,6 +97,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('getInitialCards');
     this.$store.dispatch('getAllCards');
     this.$store.dispatch('setoverview/getCuratedSets');
   }

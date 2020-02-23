@@ -1,5 +1,5 @@
 <template>
-  <button :style="cssProps">{{vars}}</button>
+  <button :style="cssProps">Hover</button>
 
 </template>
 
@@ -13,9 +13,10 @@ button {
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color: hsl(236, 32%, 26%);
+  background-color:red;
   overflow: hidden;
   transition: color var(--slow) ease-in-out;
+  box-shadow: var(--hard01) rgba(red, 0.5);
 }
 
 button::before {
@@ -53,11 +54,13 @@ export default {
   },
   computed: {
      cssProps() {
+       console.log(this.vars)
        return {
         '--slow': (this.vars.slow) + "s",
-        '--rough': (this.vars.rough),
-        '--hard': (this.vars.hard),
-        '--rectilineal': (this.vars.rectilineal),
+        //'--rough': (this.vars.rough),
+        '--hard01': (this.vars.hard01),
+        '--hard02': ('0 0 10px 10px'),
+        //'--rectilineal': (this.vars.rectilineal),
         '--static': (this.vars.static),
       }
      }

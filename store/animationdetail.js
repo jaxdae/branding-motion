@@ -14,7 +14,8 @@ export const state = () => ({
   convertedVariables: {
     slow: 0,
     rough: 0,
-    hard: 0,
+    hard01: 0,
+    hard02: 0,
     rectilineal: 0,
     static: 0
   }
@@ -57,11 +58,12 @@ export const mutations = {
   },
   setCurrentVariables(state, identity){
     state.currentVariables[identity.name] = identity.value;
+    console.log(identity.name)
     switch (identity.name){
       case 'slow':
         state.convertedVariables[identity.name] = Math.round((1 - (identity.value - 1) * 0.2) * 10) / 10;
       break;
-      case 'static': {
+    case 'static': {
         if(identity.value == 1){
           state.convertedVariables[identity.name] = 'linear'
         }
@@ -78,6 +80,25 @@ export const mutations = {
           state.convertedVariables[identity.name] = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
         }
       }
+    break;
+      case 'hard': {
+        if (identity.value == 1) {
+          state.convertedVariables.hard01 = '0 0 0 0';
+        }
+        if (identity.value == 2) {
+          state.convertedVariables.hard01 = '0 0 5px 0';
+        }
+        if (identity.value == 3) {
+          state.convertedVariables.hard01 = '0 0 10px 5px';
+        }
+        if (identity.value == 4) {
+          state.convertedVariables.hard01 = '0 0 10px 10px';
+        }
+        if (identity.value == 5) {
+          state.convertedVariables.hard01 = '0 0 20px 15px';
+        }
+      }
+    break;
     }
   }
 }

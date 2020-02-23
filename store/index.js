@@ -15,6 +15,8 @@ export const state = () => ({
   anyFilterSelected: false,
   allCards: [],
   allLoad: false,
+  initialCards: [],
+  initialLoad: false,
   searchTerm: '',
   activeElement: false,
   activeCategory: false,
@@ -31,6 +33,9 @@ export const getters = {
   },
   allCards: state => {
     return state.allCards;
+  },
+  initialCards: state => {
+    return state.initialCards;
   },
   searchTerm: state => {
     return state.searchTerm;
@@ -125,6 +130,12 @@ export const mutations = {
   setAllLoad: (state, bool) => {
     state.allLoad = bool;
   },
+  setInitialCards: (state, cards) => {
+    state.initialCards = cards;
+  },
+  setInitialLoad: (state, bool) => {
+    state.initialLoad = bool;
+  },
  availableSets: (state, data) => {
   state.availableSets = data;
  },
@@ -216,6 +227,27 @@ export const actions = {
     }
     commit('setAllCards', data);
     commit('setAllLoad', true);
+  }, 
+  async getInitialCards({ commit }) {
+    let { data } = await this.$axios.get('/api/animations/all/limit');
+    for (let i = 0; i < data.length; i++) {
+      data[i].valueSet = {
+        rational: data[i].rational,
+        innovative: data[i].innovative,
+        personal: data[i].personal,
+        maskuline: data[i].maskuline,
+        serious: data[i].serious,
+        luxurious: data[i].luxurious,
+        delicate: data[i].delicate,
+        simple: data[i].simple,
+      }
+      let tags = await this.$axios.get('/api/animationtags/' + data[i].id);
+      data[i].tags = tags.data.map(tag => {
+        return tag.name;
+      });
+    }
+    commit('setInitialCards', data);
+    commit('setInitialLoad', true);
   },
   async removeFromSet({ commit }, id) {
     let animation = await this.$axios.delete('/api/animations/remove/' + id);

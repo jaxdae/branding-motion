@@ -98,11 +98,11 @@
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Primary color</h2>
-        <input class="TopFilter__input" placeholder="Enter search term" />
+        <input class="TopFilter__input" placeholder="Enter hex code" />
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Secondary color</h2>
-        <input class="TopFilter__input" placeholder="Enter search term" />
+        <input class="TopFilter__input" placeholder="Enter hex code" />
       </div>
     </div>
   </div>

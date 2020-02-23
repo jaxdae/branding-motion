@@ -69,6 +69,17 @@ async function start() {
       res.send(animations);
     });
   })
+  app.get('/api/animations/all/limit', (req, res) => {
+    models.animations.findAll({
+      where: {
+        default: 1
+      },
+      limit: 12
+    })
+      .then(animations => {
+        res.send(animations);
+      });
+  })
   app.get('/api/animations/:id', (req, res) => {
     models.animations.findOne({
       where: {

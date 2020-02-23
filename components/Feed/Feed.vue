@@ -79,6 +79,7 @@ export default {
   data() {
     return {
       number: null,
+      postsToShow: 2,
     }
   },
   computed: {
@@ -224,7 +225,7 @@ export default {
           let sorted = Object.values(localAllCards).sort((a,b) => {
             return parseFloat(a.score) - parseFloat(b.score);
           })
-          return sorted;
+          return sorted.splice(0,this.postsToShow);
         }
       }
       
@@ -241,6 +242,15 @@ export default {
       this.$store.commit('disableFilter');
       this.$store.commit('deactivateCategory');
     }
+  },
+  mounted() {
+    window.onscroll = () => {
+  let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+  if (bottomOfWindow) {
+    this.postsToShow = this.postsToShow + 2;
+  }
+};
   }
 };
 </script>
