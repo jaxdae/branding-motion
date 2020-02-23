@@ -108,12 +108,10 @@ export default {
   },
   methods: {
     save() {
-      console.log(this.availableSets.length)
       if(!this.isSaved){
         if(this.availableSets.length > 1){
           this.showListChooser = true;
         }else{
-          console.log(this.availableSets)
         this.saveToSet(0);
         }
       }

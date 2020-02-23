@@ -29,7 +29,7 @@
         <component
           :is="card.effect.name"
           class="Detail__component"
-          :vars="currentVariables"
+          :vars="convertedVariables"
         />
         <div @click="switchView" class="Detail__switcher"></div>
         <Button

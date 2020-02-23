@@ -10,6 +10,13 @@ export const state = () => ({
     hard: 0,
     rectilineal: 0,
     static: 0
+  },
+  convertedVariables: {
+    slow: 0,
+    rough: 0,
+    hard: 0,
+    rectilineal: 0,
+    static: 0
   }
 })
 
@@ -25,6 +32,9 @@ export const getters = {
   },
   currentVariables: state => {
     return state.currentVariables;
+  },
+  convertedVariables: state => {
+    return state.convertedVariables;
   }
 }
 
@@ -47,9 +57,9 @@ export const mutations = {
   },
   setCurrentVariables(state, identity){
     state.currentVariables[identity.name] = identity.value;
-  },
-  setConvertedVariables(state, identity) {
-    state.convertedVariables[identity.name] = identity.value;
+    if(identity.name == 'slow'){
+      state.convertedVariables[identity.name] = Math.round(identity.value * 0.2 * 10) /10;
+    }
   }
 }
 

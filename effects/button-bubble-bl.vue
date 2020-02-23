@@ -52,7 +52,7 @@ export default {
     }
   },
   computed: {
-     cssProps() { 
+     cssProps() {
        return {
         '--slow': (this.vars.slow) + "s",
         '--rough': (this.vars.rough),
