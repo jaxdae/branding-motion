@@ -98,11 +98,11 @@
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Primary color</h2>
-        <input class="TopFilter__input" placeholder="Enter hex code" />
+        <input class="TopFilter__input" v-model="primaryColor" @keyup.enter="setPrimaryColor" placeholder="Enter hex code" />
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Secondary color</h2>
-        <input class="TopFilter__input" placeholder="Enter hex code" />
+        <input class="TopFilter__input" v-model="secondaryColor" @keyup.enter="setSecondaryColor" placeholder="Enter hex code" />
       </div>
     </div>
   </div>
@@ -128,6 +128,8 @@ export default {
       optionsElements: [],
       optionsCategories: [],
       searchParam: '',
+      primaryColor: '',
+      secondaryColor: ''
     };
   },
   computed: {
@@ -177,6 +179,14 @@ export default {
     clearSearch(){
       this.searchParam = '';
       this.search(this.searchParam);
+    },
+    setPrimaryColor(){
+      console.log("set primary", this.primaryColor);
+      this.$store.commit('setPrimaryColor', this.primaryColor);
+    },
+    setSecondaryColor() {
+      console.log("set secondary", this.secondaryColor)
+      this.$store.commit('setSecondaryColor', this.secondaryColor);
     }
   },
   mounted() {

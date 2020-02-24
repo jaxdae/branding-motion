@@ -21,7 +21,9 @@ export const state = () => ({
   activeElement: false,
   activeCategory: false,
   activeSearch:false,
-  availableSets: []
+  availableSets: [],
+  primaryColor: '#FF0000',
+  secondaryColor: ''
 })
 
 export const getters = {
@@ -54,6 +56,12 @@ export const getters = {
   },
   availableSets: state => {
     return state.availableSets;
+  },
+  primaryColor: state => {
+    return state.primaryColor;
+  },
+  secondaryColor: state => {
+    return state.secondaryColor;
   }
   
 }
@@ -149,7 +157,14 @@ export const mutations = {
       })
       Vue.set(state.allCards[i], 'score', score);
     })
-  }
+  },
+  setPrimaryColor: (state, color) => {
+    state.primaryColor = color
+  },
+  setSecondaryColor: (state, color) => {
+    state.secondaryColor = color
+  },
+
 }
 
 export const actions = {

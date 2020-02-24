@@ -13,7 +13,7 @@ button {
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color:red;
+  background-color: var(--primaryColor);
   overflow: hidden;
   transition: color var(--slow) ease-in-out;
   box-shadow: var(--hard01) rgba(red, 0.5);
@@ -28,7 +28,7 @@ button::before {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: #3cefff;
+  background-color:var(--secondaryColor);
   transform-origin: center;
   transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
   transition: transform var(--slow) var(--static);
@@ -45,6 +45,7 @@ button:hover::before {
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   props: {
     vars: {
@@ -53,8 +54,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'primaryColor',
+      'secondaryColor',
+    ]),
      cssProps() {
-       console.log(this.vars)
        return {
         '--slow': (this.vars.slow) + "s",
         //'--rough': (this.vars.rough),
@@ -62,6 +66,8 @@ export default {
         '--hard02': ('0 0 10px 10px'),
         //'--rectilineal': (this.vars.rectilineal),
         '--static': (this.vars.static),
+        '--primaryColor': (this.primaryColor),
+        '--secondaryColor': (this.secondaryColor),
       }
      }
   }
