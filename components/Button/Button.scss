@@ -13,13 +13,13 @@
         width:100%;
         overflow: hidden;
          border:none;
-         z-index: 7;
+         z-index: +1;
          background: transparent;
          transition: ease-out 0.2s;
          cursor: pointer;
         &:hover{
           color: $dark-blue;
-          z-index: 7;
+          z-index: +1;
           background:transparent;
         }
         @include font-caps($dark-peach);

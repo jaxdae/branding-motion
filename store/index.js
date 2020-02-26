@@ -23,7 +23,7 @@ export const state = () => ({
   activeSearch:false,
   availableSets: [],
   primaryColor: '#FF0000',
-  secondaryColor: ''
+  secondaryColor: '#FFFF00'
 })
 
 export const getters = {

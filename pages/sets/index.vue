@@ -1,6 +1,8 @@
 <template>
   <div class="Sets">
+        <transition name="bounce">
     <Popup v-if="popupOpen" @popupOpen="setPopupState"></Popup>
+        </transition>
     <popup-upload v-if="popupUploadOpen" @popupOpen="setPopupState"></popup-upload>
     <hero-small
       :name="'Animation Sets'"

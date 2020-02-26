@@ -4,7 +4,8 @@
       v-if="popupCodeOpen"
       @popupOpen="switchView"
       :html="card.effect.html"
-      :css="card.effect.css">
+      :css="card.effect.css"
+      :js="card.effect.js">
     </popup-code>
     <hero-small :animation="card" :tags="card.tags"></hero-small>
     <top-filter isDetail></top-filter>
@@ -180,6 +181,7 @@ export default {
       if (this.popupCodeOpen) {
         this.popupCodeOpen = false;
       } else {
+        document.getElementsByTagName('body')[0].classList.add('hidden');
         this.popupCodeOpen = true;
       }
     },
@@ -199,5 +201,6 @@ export default {
 </script>
 <style lang="scss">
 @import '../styles/views/general.scss';
+@import '../styles/animations.scss';
 @import '../styles/views/detail.scss';
 </style>

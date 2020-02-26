@@ -15,12 +15,27 @@ for (const filename of effectList) {
     .replace(/<\/?template>/g, '') // remove template tags
     .replace(/^\\n/, '') // remove leading linebreak
     .replace(/\\n/g, '\n') // replace escape characters
-    .replace(/\\"/g, '"');
-
-  const css = 'hi'
-
-  effects[name] = { name, type, html, css };
+    .replace(/\\"/g, '"')
+    .replace(/ :style="cssProps"/, '')
+  
+  const css = /<style(.*?)scoped>(.*?)<\/style>/g // find css between style tags
+    .exec(JSON.stringify(raw))[0]
+    .replace(/<\/?style((.*?)scoped)?>/g, '') // remove style tags
+    .replace(/^\\n/, '') // remove leading linebreak
+    .replace(/\\n/g, '\n'); // replace \n with newlines
+  effects[name] = { name, type, html, css, js };
   components[name] = component;
 }
+
+const js = /<script>(.*?)<\/script>/g
+  .exec(JSON.stringify(raw))[0]
+  .replace(/<\/?script>/g, '')
+  .replace(/import { mapGetters } from 'vuex';/g, '')
+  .replace(/(?:\\n\ \ \ \ \.\.\.mapGetters\(\[)(.*?)(?:\]\)\,)/, '')
+  .replace(/(?:\\n\ \ \ \ \ cssProps\(\))(.*?)(?:\ \}\\n\ \ \ \ \ \}\\n\ \ )/, '')
+  .replace(/(?:\\n\ \ props\:)(.*?)(?:\}\\n\ \ \}\,)/, '')
+  .replace(/^\\n/, '')
+  .replace(/\\n/g, '\n') // replace escape characters
+  .replace(/\\"/g, '"')
 
 export { effects, components };

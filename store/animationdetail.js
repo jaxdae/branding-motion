@@ -58,7 +58,6 @@ export const mutations = {
   },
   setCurrentVariables(state, identity){
     state.currentVariables[identity.name] = identity.value;
-    console.log(identity.name)
     switch (identity.name){
       case 'slow':
         state.convertedVariables[identity.name] = Math.round((1 - (identity.value - 1) * 0.2) * 10) / 10;

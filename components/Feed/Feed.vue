@@ -23,22 +23,8 @@
         </div>
       </div>
     </div>
-    <!-- <div v-if="initialCards && !anyFilterSelected" class="Feed__cards">
-      <Card
-        v-for="card in initialCards"
-        v-if="initialLoad"
-        :key="card.id"
-        :id="card.id"
-        :name="card.name"
-        :tags="card.tags"
-        :description="card.description"
-        :video="card.video"
-        :valueset="card.valueSet"
-        class="Feed__card"
-      >
-      </Card>
-    </div> -->
     <div class="Feed__cards">
+       <transition-group name="flip-list" tag="div">
       <Card
         v-for="card in filteredCards"
         v-if="allLoad"
@@ -52,6 +38,7 @@
         class="Feed__card"
       >
       </Card>
+       </transition-group>
     </div>
   </div>
 </template>

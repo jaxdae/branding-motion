@@ -61,10 +61,10 @@ export default {
      cssProps() {
        return {
         '--slow': (this.vars.slow) + "s",
-        //'--rough': (this.vars.rough),
+        '--rough': (this.vars.rough),
         '--hard01': (this.vars.hard01),
         '--hard02': ('0 0 10px 10px'),
-        //'--rectilineal': (this.vars.rectilineal),
+        '--rectilineal': (this.vars.rectilineal),
         '--static': (this.vars.static),
         '--primaryColor': (this.primaryColor),
         '--secondaryColor': (this.secondaryColor),

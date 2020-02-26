@@ -29,3 +29,33 @@ span:hover::before {
   transform: scaleX(1) translateY(-50%);
 }
 </style>
+
+<script>
+import { mapGetters } from 'vuex';
+export default {
+  props: {
+    vars: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'primaryColor',
+      'secondaryColor',
+    ]),
+     cssProps() {
+       return {
+        '--slow': (this.vars.slow) + "s",
+        //'--rough': (this.vars.rough),
+        '--hard01': (this.vars.hard01),
+        '--hard02': ('0 0 10px 10px'),
+        //'--rectilineal': (this.vars.rectilineal),
+        '--static': (this.vars.static),
+        '--primaryColor': (this.primaryColor),
+        '--secondaryColor': (this.secondaryColor),
+      }
+     }
+  }
+}
+</script>
