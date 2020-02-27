@@ -9,9 +9,22 @@
     </hero-small>
     <div class="Sets__wrapper">
       <div class="Sets__right">
-          <Button label="Export this set" :link="'/sets/'+$route.params.set" class="Sets__export" @click.native="exportSet"></Button>
+          <Button
+            v-if="setDetailReady && setDetail[0].animations.length >= 1"
+            label="Export this set"
+            :link="'/sets/'+$route.params.set"
+            class="Sets__export"
+            @click.native="exportSet">
+          </Button>
           <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Sets__filters"></Filters>
-          <Button label="Remove whole set" class="Sets__remove" :link="'/sets/'" @click.native="removeSet"></Button>
+          <Button
+            v-if="setDetailReady && setDetail[0].animations"
+            label="Remove whole set"
+            class="Sets__remove"
+            :link="'/sets/'"
+            :class="{noset : setDetail[0].animations.length <= 1}"
+            @click.native="removeSet">
+          </Button>
         </div>
       <div class="Sets__left">
         <div class="Sets__feed">
@@ -19,7 +32,7 @@
           <div class="Sets__results">
           {{ `You have ${number} animations saved on this list` }}
         </div>
-        <div  v-if="setDetailReady && setDetail[0].animations">
+        <div  v-if="setDetailReady && setDetail[0].animations.length >= 1">
           <Card
               v-for="card in setDetail[0].animations"
               :key="card.id"
@@ -35,6 +48,7 @@
             >
             </Card>
             </div>
+            <empty-placeholder v-else type="animation"></empty-placeholder>
           </div>
         </div>
         </div>

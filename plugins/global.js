@@ -8,6 +8,7 @@ import Button from '../components/Button/Button.vue'
 import CrossRefSlider from '../components/CrossRefSlider/CrossRefSlider.vue'
 import CrossSellCard from '../components/CrossSellCard/CrossSellCard.vue'
 import Effect from '../components/Effect/Effect.vue'
+import EmptyPlaceholder from '../components/EmptyPlaceholder/EmptyPlaceholder.vue'
 import Feed from '../components/Feed/Feed.vue'
 import Filters from '../components/Filters/Filters.vue'
 import Footer from '../components/Footer/Footer.vue'
@@ -27,6 +28,7 @@ Vue.component('Button', Button);
 Vue.component('cross-ref-slider', CrossRefSlider);
 Vue.component('cross-sell-card', CrossSellCard);
 Vue.component('Effect', Effect);
+Vue.component('empty-placeholder', EmptyPlaceholder);
 Vue.component('Feed', Feed);
 Vue.component('Filters', Filters);
 Vue.component('Footer', Footer);
