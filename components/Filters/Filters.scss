@@ -137,9 +137,6 @@
   &__label{
     &--left, &--right{
     position: relative;
-    &:hover{
-      cursor: help;
-    }
     }
   }
   &__label--left .tooltip,

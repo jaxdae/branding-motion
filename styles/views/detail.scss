@@ -15,6 +15,10 @@
      position: relative;
      //overflow: hidden;
    }
+   &__adjustments .Filters__filtergroup .Filters__labels .Filters__label--left:hover,
+   &__adjustments .Filters__filtergroup .Filters__labels .Filters__label--right:hover{
+      cursor: help;
+   }
    &__adjustments, &__code{
       border-radius: 15px 0 0 15px;	
       height:calc(100% - 60px);
