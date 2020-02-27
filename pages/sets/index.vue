@@ -94,6 +94,13 @@ export default {
       this.popupUploadOpen = popupOpen;
     }
   },
+  watch: {
+    setRemoved (newVal, oldVal) {
+      if(newVal == true){
+        this.$store.dispatch('setoverview/getSets');
+      }
+    }
+  },
   mounted(){
     this.$store.dispatch('setoverview/getCuratedSets');
     this.$store.dispatch('setoverview/getSets');
