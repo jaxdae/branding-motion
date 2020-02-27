@@ -98,11 +98,25 @@
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Primary color</h2>
-        <input class="TopFilter__input" v-model="primaryColor" @keyup.enter="setPrimaryColor" placeholder="Enter hex code" />
+        <input
+          class="TopFilter__input"
+          v-model="primaryColor"
+          @keyup.enter="setPrimaryColor"
+          @keydown="keepHashPrimary"
+          maxlength="7"
+          placeholder="Enter hex code"
+        />
       </div>
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Secondary color</h2>
-        <input class="TopFilter__input" v-model="secondaryColor" @keyup.enter="setSecondaryColor" placeholder="Enter hex code" />
+        <input
+          class="TopFilter__input"
+          v-model="secondaryColor"
+          @keyup.enter="setSecondaryColor"
+          @keydown="keepHashSecondary"
+          maxlength="7"
+          placeholder="Enter hex code"
+        />
       </div>
     </div>
   </div>
@@ -128,8 +142,8 @@ export default {
       optionsElements: [],
       optionsCategories: [],
       searchParam: '',
-      primaryColor: '',
-      secondaryColor: ''
+      primaryColor: '#',
+      secondaryColor: '#'
     };
   },
   computed: {
@@ -181,12 +195,23 @@ export default {
       this.search(this.searchParam);
     },
     setPrimaryColor(){
-      console.log("set primary", this.primaryColor);
-      this.$store.commit('setPrimaryColor', this.primaryColor);
+      if(/^#[0-9A-F]{6}$/i.test(this.primaryColor)){
+        this.$store.commit('setPrimaryColor', this.primaryColor);
+      }
     },
     setSecondaryColor() {
       console.log("set secondary", this.secondaryColor)
       this.$store.commit('setSecondaryColor', this.secondaryColor);
+    },
+    keepHashPrimary(e){
+      if(e.key == 'Backspace' && this.primaryColor.length == 1 || e.key == 'Delete' && this.primaryColor.length == 1){
+          e.preventDefault();
+      }
+    },
+    keepHashSecondary(e){
+      if(e.key == 'Backspace' && this.secondaryColor.length == 1 || e.key == 'Delete' && this.secondaryColor.length == 1){
+          e.preventDefault();
+      }
     }
   },
   mounted() {

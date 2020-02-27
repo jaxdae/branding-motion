@@ -343,11 +343,6 @@ fieldset[disabled] .multiselect {
 	color: $white;
 }
 
-.multiselect__option--selected.multiselect__option--highlight {
-	
-	
-}
-
 .multiselect__option--selected.multiselect__option--highlight:after {
 	font-family: iconfont;
     content: "\e902";
@@ -461,7 +456,15 @@ fieldset[disabled] .multiselect {
 .multiselect{
     position: absolute;
     bottom:-1px;
-    padding-top:8px;
+		padding-top:8px;
+
+&--disabled{
+background: none;
+.multiselect__select{
+	background: none;
+}
+}
+
 &__tags{
     border: 0.5px solid $dark-blue;
     border-radius: 15px 15px 0 0;
