@@ -164,7 +164,13 @@ export const mutations = {
   setSecondaryColor: (state, color) => {
     state.secondaryColor = color
   },
-
+  resetAllTags: (state) => {
+    state.activeTagsCategories = [];
+    state.activeTagsElements = [];
+    state.activeElement = false;
+    state.activateCategory = false;
+    state.searchTerm = '';
+  }
 }
 
 export const actions = {

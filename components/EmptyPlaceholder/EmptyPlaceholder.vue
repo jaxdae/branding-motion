@@ -8,6 +8,20 @@
       <Button class="EmptyPlaceholder__button EmptyPlaceholder__button--back" link="/sets" label="Back to set overview"></Button>
     </div>
   </div>
+  <div v-else-if="type == 'Search'" class="EmptyPlaceholder">
+    <div class="EmptyPlaceholder__caps">No animations found</div>
+    <div class="EmptyPlaceholder__headline">Oops! Looks like your search didn't score any results!</div>
+    <div class="EmptyPlaceholder__description">Try typing in a different search term, delete some tags or reset the whole filter</div>
+    <div class="EmptyPlaceholder__button-wrapper">
+      <Button
+        class="EmptyPlaceholder__button EmptyPlaceholder__button--explore"
+        link="/"
+        label="Reset all filters"
+        @click.native="resetAllFilters"
+      >
+      </Button>
+    </div>
+  </div>
   <div v-else class="EmptyPlaceholder">
     <div class="EmptyPlaceholder__flex">
       <div class="EmptyPlaceholder__wrapper">
@@ -29,11 +43,10 @@ export default {
       default: 'Set'
     }
   },
-  data() {
-    return {
-    };
-  },
   methods: {
+    resetAllFilters(){
+      this.$store.commit('resetAllTags');
+    }
   },
 };
 </script>

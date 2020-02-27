@@ -124,7 +124,6 @@
 
 <script>
 import Multiselect from 'vue-multiselect';
-import '../../assets/fonts/iconfont.scss';
 import { mapState, mapGetters } from 'vuex';
 export default {
   name: 'TopFilter',
@@ -150,11 +149,15 @@ export default {
     ...mapState([
       'activeTagsCategories',
       'activeTagsElements',
-      ''
     ]),
     ...mapGetters([
       'searchTerm'
     ]),
+  },
+  watch: {
+    searchTerm(newval, oldval) {
+      this.searchParam = this.searchTerm;
+    }
   },
   methods: {
     addElement(value) {

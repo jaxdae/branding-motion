@@ -39,6 +39,7 @@
       >
       </Card>
        </transition-group>
+       <empty-placeholder type="Search" v-if="filteredCards.length < 1"></empty-placeholder>
     </div>
   </div>
 </template>
