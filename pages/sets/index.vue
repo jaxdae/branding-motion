@@ -29,7 +29,7 @@
           </Button>
         </div>
       <set-card
-        v-if="setRemoved"
+        v-if="setRemoved && sets.length >= 1"
         v-for="card in sets"
         :key="card.id"
         :id="card.id"
@@ -38,6 +38,7 @@
         :description="card.description"
         :videos="card.videos"
       ></set-card>
+      <empty-placeholder v-if="sets.length < 1"></empty-placeholder>
     </div>
     <cross-ref-slider
       :subheadline="'See curated sets'"

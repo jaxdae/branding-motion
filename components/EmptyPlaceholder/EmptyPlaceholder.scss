@@ -2,24 +2,23 @@
 @import "../../styles/fonts.scss";
 
 .EmptyPlaceholder{
-
   transition: ease-in-out 0.2s;
-  height: 275px;
-  background-color: $light-grey;
-  box-shadow: 0 0 15px 2px rgba($light-grey, 0.6);
   border-radius: 15px;
   position: relative;
-  padding: 20px 30px;
+  margin-top:30px;
 
   &__caps{
+    width:100%;
     @include font-caps($dark-peach);
   }
 
   &__headline{
+     width:100%;
     @include card-headline($dark-grey);
   }
 
    &__description{
+    width:100%;
     margin-top:15px;
     @include font-blocktext($dark-grey);
   }
@@ -28,10 +27,17 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin-top:80px;
+    margin-top:30px;
   }
   &__button{
     width:calc(50% - 15px);
     z-index: +1;
+  }
+  &__flex{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
   }
 }

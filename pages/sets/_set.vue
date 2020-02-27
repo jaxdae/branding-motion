@@ -48,7 +48,7 @@
             >
             </Card>
             </div>
-            <empty-placeholder v-else type="animation"></empty-placeholder>
+            <empty-placeholder v-else type="Animation"></empty-placeholder>
           </div>
         </div>
         </div>
