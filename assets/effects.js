@@ -23,19 +23,20 @@ for (const filename of effectList) {
     .replace(/<\/?style((.*?)scoped)?>/g, '') // remove style tags
     .replace(/^\\n/, '') // remove leading linebreak
     .replace(/\\n/g, '\n'); // replace \n with newlines
+
+  const js = /<script>(.*?)<\/script>/g
+    .exec(JSON.stringify(raw))[0]
+    .replace(/<\/?script>/g, '')
+    .replace(/import { mapGetters } from 'vuex';/g, '')
+    .replace(/(?:\\n\ \ \ \ \.\.\.mapGetters\(\[)(.*?)(?:\]\)\,)/, '')
+    .replace(/(?:\\n\ \ \ \ \ cssProps\(\))(.*?)(?:\ \}\\n\ \ \ \ \ \}\\n\ \ )/, '')
+    .replace(/(?:\\n\ \ props\:)(.*?)(?:\}\\n\ \ \}\,)/, '')
+    .replace(/^\\n/, '')
+    .replace(/\\n/g, '\n') // replace escape characters
+    .replace(/\\"/g, '"')
+    
   effects[name] = { name, type, html, css, js };
   components[name] = component;
 }
-
-const js = /<script>(.*?)<\/script>/g
-  .exec(JSON.stringify(raw))[0]
-  .replace(/<\/?script>/g, '')
-  .replace(/import { mapGetters } from 'vuex';/g, '')
-  .replace(/(?:\\n\ \ \ \ \.\.\.mapGetters\(\[)(.*?)(?:\]\)\,)/, '')
-  .replace(/(?:\\n\ \ \ \ \ cssProps\(\))(.*?)(?:\ \}\\n\ \ \ \ \ \}\\n\ \ )/, '')
-  .replace(/(?:\\n\ \ props\:)(.*?)(?:\}\\n\ \ \}\,)/, '')
-  .replace(/^\\n/, '')
-  .replace(/\\n/g, '\n') // replace escape characters
-  .replace(/\\"/g, '"')
 
 export { effects, components };

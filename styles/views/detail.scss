@@ -27,6 +27,7 @@
   }
      &__add{
     position: absolute;
+    z-index: +2;
     right:30px;
     bottom:30px;
     width:30%;
@@ -62,6 +63,7 @@
       border-radius: 50%;
       box-shadow: 0 0 20px 0 $dark-peach;
       background-color: $dark-peach;
+      z-index: +2;
       &:hover{
         cursor: pointer;
       }
@@ -81,6 +83,40 @@
      height: 100%;
      width:23%;
    }
+   &__select-overlay{
+     border-radius: 15px;
+     @include font-blocktext($white);
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     background-color: rgba($light-grey, 0.95);
+     z-index: +2;
+     text-align: right;
+   }
+    &__save-option{
+      width:100%;
+      &:hover{
+        cursor: pointer;
+      }
+      &:hover.Detail__save-option::before{
+        opacity: 1;
+      }
+      &::before{
+        transition: ease all 0.3s;
+        font-family: iconfont;
+    font-size:12px;
+    font-weight: bold;
+    content: "\e912";
+    opacity: 0;
+    color: $dark-peach;
+      }
+    }
+    &__available-sets{
+      position: absolute;
+      width:100%;
+      bottom: 90px;
+      right: 45px; 
+    }
 }
 
    .fade-in-enter-active .fade.in-leave.active{

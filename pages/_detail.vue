@@ -27,6 +27,18 @@
         :class="{ wider: !isCollapsed }"
         class="Detail__animation"
       >
+      <div v-if="showListChooser" class="Detail__select-overlay">
+        <div class="Detail__available-sets">
+          <div
+            v-for="(sets, index) in availableSets"
+            :key="sets.id"
+            class="Detail__save-option"
+            @click="saveToSet(index)"
+          >
+          {{sets.name}}
+          </div>
+        </div>
+      </div>
         <component
           :is="card.effect.name"
           class="Detail__component"
@@ -35,7 +47,7 @@
         <div @click="switchView" class="Detail__switcher"></div>
         <Button
           class="Detail__add"
-          :link="buttonLink"
+          :link="$route.params.detail"
           :label="buttonText"
           @click.native="addOrSave"
         ></Button>
@@ -82,6 +94,7 @@ export default {
       name: '',
       isCollapsed: true,
       popupCodeOpen: false,
+      showListChooser: false,
       filteroptions: {
         slow: {
           left: 'slow',
@@ -156,20 +169,14 @@ export default {
       card: 'animationdetail/card',
       cardLoad: 'animationdetail/cardLoad',
       currentVariables: 'animationdetail/currentVariables',
-      convertedVariables: 'animationdetail/convertedVariables'
+      convertedVariables: 'animationdetail/convertedVariables',
+      availableSets: 'availableSets'
     }),
     buttonText() {
       if(this.card.default == 0){
         return 'Save animation'
       }else {
         return 'Add animation'
-      }
-    },
-    buttonLink() {
-      if(this.card.default == 0){
-        return this.$route.params.detail;
-      }else {
-        return '/sets/95';
       }
     }
   },
@@ -189,13 +196,26 @@ export default {
       if(this.card.default == 0){
         this.$store.dispatch('animationdetail/updateAnimation', this.card.id);
       }else{
-        this.$store.dispatch('saveToSet', this.card.id);
+        console.log('hier')
+        this.showListChooser = true;
       }
-    }
+    },
+    saveToSet(index) {
+      let req = {
+        animationId: this.card.id,
+        setId: this.availableSets[index].id
+      }
+      this.$store.dispatch('saveToSet', req);
+      this.showListChooser = false;
+      this.$router.push({
+        path: '/sets/' + req.setId
+      })
+    },
     },
   mounted() {
     this.$store.dispatch('animationdetail/getAnimation', this.$route.params.detail)
     this.$store.dispatch('animationdetail/getCrossrefSets', this.$route.params.detail)
+    this.$store.dispatch('getAllSets');
   }
 };
 </script>
