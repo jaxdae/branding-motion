@@ -2,7 +2,11 @@
   <div class="Home">
     <Hero :sets="curatedCards"></Hero>
     <top-filter class="Home__topfilter"></top-filter>
-    <div class="Home__wrapper">
+    <div class="Home__content">
+      <div class="Home__left">
+        <Feed :allCards="displayCards" :allLoad="displayLoad">
+          </Feed>
+      </div>
       <div class="Home__right">
         <Button
           class="Home__cart"
@@ -12,10 +16,8 @@
         </Button>
         <Filters :filteroptions="filteroptions" class="Home__filters"></Filters>
       </div>
-      <Feed :allCards="displayCards" :allLoad="displayLoad" class="Home__left">
-      </Feed>
     </div>
-    <Footer></Footer>
+ <Footer></Footer>
   </div>
 </template>
 

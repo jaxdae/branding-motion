@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="Feed__cards">
-       <transition-group name="flip-list" tag="div">
+       <transition-group name="flip-list" tag="div" class="Feed__transition-group">
       <Card
         v-for="card in filteredCards"
         v-if="allLoad"

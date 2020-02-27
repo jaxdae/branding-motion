@@ -1,31 +1,42 @@
+@import '../../styles/grid.scss';
 .Home{
-  padding:60px 60px 0 60px;
-  &__right{
-    top:140px;
-    position: -webkit-sticky;
-    position: sticky;
 
+  padding:60px 60px 0 60px;
+
+  &__content{
+	  display:flex;
   }
+
+  &__left{
+    width:75%;
+    margin-left: calc((100% - 1200px) / 2);
+  }
+
+  &__right{
+    position:sticky;
+    top:120px;
+    width:25%;
+    height: 732px;
+  }
+
   &__filters{
-    position: absolute;
-    right:0;
-    top:75px;
-    width:23%;
+    position: relative;
+    top: 95px;
     border-radius: 15px 0 0 15px;
   }
+
   &__cart{
     position: absolute;
     right:0;
-    top:20px;
+    top:30px;
+    width: 100%;
   }
-  &__wrapper{
-    position: relative;
-  }
+
   &__topfilter{
     padding-bottom:30px;
-     top:0;
+    top:0;
     position: -webkit-sticky;
     position: sticky;
-    z-index: 99999;
+    z-index: +2;
   }
 }

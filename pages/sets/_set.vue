@@ -7,26 +7,8 @@
       :tags="setDetail[0].tags"
       >
     </hero-small>
-    <div class="Sets__wrapper">
-      <div class="Sets__right">
-          <Button
-            v-if="setDetailReady && setDetail[0].animations.length >= 1"
-            label="Export this set"
-            :link="'/sets/'+$route.params.set"
-            class="Sets__export"
-            @click.native="exportSet">
-          </Button>
-          <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Sets__filters"></Filters>
-          <Button
-            v-if="setDetailReady && setDetail[0].animations"
-            label="Remove whole set"
-            class="Sets__remove"
-            :link="'/sets/'"
-            :class="{noset : setDetail[0].animations.length <= 1}"
-            @click.native="removeSet">
-          </Button>
-        </div>
-      <div class="Sets__left">
+    <div class="Sets__content">
+      <div class="Home__left">
         <div class="Sets__feed">
           <div class="Sets__feed--inner">
           <div class="Sets__results">
@@ -51,8 +33,27 @@
             <empty-placeholder v-else type="Animation"></empty-placeholder>
           </div>
         </div>
-        </div>
       </div>
+      <div class="Sets__right">
+        <Button
+          v-if="setDetailReady && setDetail[0].animations.length >= 1"
+            label="Export this set"
+            :link="'/sets/'+$route.params.set"
+            class="Home__cart"
+            @click.native="exportSet"
+        >
+        </Button>
+        <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Home__filters"></Filters>
+        <Button
+            v-if="setDetailReady && setDetail[0].animations"
+            label="Remove whole set"
+            class="Sets__remove"
+            :link="'/sets/'"
+            :class="{noset : setDetail[0].animations.length <= 1}"
+            @click.native="removeSet">
+          </Button>
+      </div>
+    </div>
     <Footer></Footer>
   </div>
 </template>
