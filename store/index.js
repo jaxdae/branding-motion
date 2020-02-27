@@ -169,8 +169,6 @@ export const mutations = {
 
 export const actions = {
   async saveToSet({ commit, state }, req){
-    commit('setdetail/setDetailReady', false);
-
     let animationToClone = await this.$axios.get('/api/animations/' + req.animationId);
     let customanimation = await this.$axios.post('/api/animations/add/', {
       name: animationToClone.data.name,
@@ -220,7 +218,6 @@ export const actions = {
       simple: customanimation.data.simple,
     }
     commit('setdetail/addToSet', customanimation.data)
-    commit('setdetail/setDetailReady', true);
   },
   async getAllCards({ commit }) {
     let { data } = await this.$axios.get('/api/animations/all');
