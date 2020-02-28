@@ -1,5 +1,6 @@
 <template>
   <div class="PopupCode">
+    <div class="PopupCode__scroll">
     <div class="PopupCode__window">
       <div class="PopupCode__close" @click="close"></div>
       <h1 class="PopupCode__title">Get the code</h1>
@@ -25,6 +26,7 @@
         <pre v-highlightjs><code>{{ js }}</code></pre>
         </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -73,7 +75,6 @@ export default {
   },
   methods: {
     close() {
-      document.getElementsByTagName('body')[0].classList.remove('hidden');
       this.$emit('popupOpen', false);
     },
      onHtmlCopy() {

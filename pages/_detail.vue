@@ -9,7 +9,9 @@
       @popupOpen="switchView"
       :html="card.effect.html"
       :css="card.effect.css"
-      :js="card.effect.js">
+      :js="card.effect.js"
+      :class="{overflow: showOverflow}"
+      >
     </popup-code>
     </transition>
     <hero-small :animation="card" :tags="card.tags"></hero-small>
@@ -100,6 +102,8 @@ export default {
       isCollapsed: true,
       popupCodeOpen: false,
       showListChooser: false,
+      showOverflow: false,
+      hideOverflow: false,
       filteroptions: {
         slow: {
           left: 'slow',
@@ -191,6 +195,7 @@ export default {
     },
     switchView() {
       if (this.popupCodeOpen) {
+        document.getElementsByTagName('body')[0].classList.remove('hidden');
         this.popupCodeOpen = false;
       } else {
         document.getElementsByTagName('body')[0].classList.add('hidden');
@@ -201,7 +206,6 @@ export default {
       if(this.card.default == 0){
         this.$store.dispatch('animationdetail/updateAnimation', this.card.id);
       }else{
-        console.log('hier')
         this.showListChooser = true;
       }
     },

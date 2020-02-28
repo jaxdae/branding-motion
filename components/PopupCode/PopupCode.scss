@@ -2,14 +2,22 @@
 @import "../../styles/fonts.scss";
 
 .PopupCode{
-  overflow-y: scroll ;
   position: fixed;
   top:0;
   left:0;
   width:100vw;
   height: 100vh;
   z-index: +5;
+  overflow: hidden;
 
+  &__scroll{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-right:17px;
+    box-sizing: content-box;
+  }
+  
   &__window{
     padding:45px 60px;
     width:50%;

@@ -133,6 +133,13 @@
     }
 }
 
+.overflow{
+overflow-y:scroll;
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+
    .fade-in-enter-active .fade.in-leave.active{
   transition: opacity 0.5s;
 }
