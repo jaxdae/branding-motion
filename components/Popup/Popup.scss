@@ -8,8 +8,7 @@
   width:100vw;
   height: 100vh;
   z-index: 5;
-  //background-color: rgba($dark-blue, 0.8);
-
+  overflow: hidden;
   &__window{
     display: flex;
     flex-flow: row wrap;

@@ -39,6 +39,7 @@
     width:422px;
     overflow: hidden;
     background-color: $light-grey;
+    box-shadow: -10px 0 20px 10px rgba($dark-blue,0.15);
   }
   &__intro{
     height:80%;
@@ -77,12 +78,13 @@
   padding: 45px;
   margin-bottom:30%;
   z-index: 2;
+  box-shadow: 0 0 20px 20px rgba($dark-blue,0.2);
 }
 &__scroll{
   position: absolute;
   bottom:0;
   right:-30px;
-  
+  z-index: 2;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -223,14 +225,11 @@ a:focus {
 			width: 0.5rem;
 			height: 0.5rem;
 			padding: 0;
-			
 			border: none;
 			border-radius: 100%;
 			background-color: rgba($white, 0.1) !important;
-			
 			text-indent: -9999px;
 		}
-	
 }
 
 .bounce-enter-active{

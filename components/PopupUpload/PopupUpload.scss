@@ -7,8 +7,8 @@
   left:0;
   width:100vw;
   height: 100vh;
-  z-index: +4;
-  background-color: rgba($dark-blue, 0.8);
+  z-index: +5;
+  overflow: hidden;
 
   &__window{
     display: flex;
