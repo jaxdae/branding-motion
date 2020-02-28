@@ -72,7 +72,9 @@
         </transition-group>
       </div>
     </div>
-    <nuxt-link to="/" class="HeroSmall__logo"></nuxt-link>
+    <nuxt-link to="/">
+    <preloader class="Hero__preloader" once></preloader>
+    </nuxt-link>
   </div>
 </template>
 

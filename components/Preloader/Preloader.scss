@@ -1,13 +1,46 @@
 @import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
 .Preloader{
   border-radius:50%;
-  width:100px;
-  height: 100px;
+  width:40px;
+  height:40px;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
+  background: $dark-blue;
+  margin-left: 15px;
 
+  &__wrapper{
+    display:flex;
+    &:hover{
+      .Preloader__once--1{
+        animation: dash 0.8s forwards 0.2s;
+      }
+      .Preloader__once--2{
+        animation: dash 0.8s forwards 0.23s;
+      }
+      .Preloader__once--3{
+        animation: dash 0.8s forwards 0.26s;
+      }
+      .Preloader__once--4{
+        animation: dash2 1.2s forwards;
+      }
+      .Preloader__once--5{
+        animation: dash2 1.2s forwards 0.03s;
+      }
+      .Preloader__once--6{
+        animation: dash2 1.2s forwards 0.06s;
+      }
+    }
+  }
+  &__text{
+    @include font-caps($white);
+    line-height: 16px;
+    text-align: right;
+    font-size: 11px;
+    margin-top:6px;
+  }
   &__svg{
     transform:rotate(180deg);
     transform: rotate(180deg) scale(1.2);
@@ -17,6 +50,16 @@
     fill:none;
     stroke-dasharray: 92;
     stroke-dashoffset: 92;
+    &--7{
+      stroke-width: 30px;
+      stroke:$dark-blue;
+      stroke-dashoffset: 0;
+    }
+  }
+  &__once{
+    fill:none;
+    stroke-dasharray: 92;
+    stroke-dashoffset: 0;
     &--7{
       stroke-width: 30px;
       stroke:$dark-blue;
@@ -37,7 +80,16 @@
 }
 
 @keyframes dash {
-  0% {stroke-dashoffset: 92;}
+   0% {stroke-dashoffset: 0;}
+  40%{stroke-dashoffset: 90;}
+  50%{stroke-dashoffset: 90;}
+  100%{stroke-dashoffset: 0;}
+}
+
+@keyframes dash2 {
+   0% {stroke-dashoffset: 0;}
+  30%{stroke-dashoffset: 90;}
+  65%{stroke-dashoffset: 90;}
   100%{stroke-dashoffset: 0;}
 }
 
