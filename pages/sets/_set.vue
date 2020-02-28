@@ -15,22 +15,25 @@
           {{ `You have ${number} animations saved on this list` }}
         </div>
         <div  v-if="setDetailReady && setDetail[0].animations.length >= 1">
-          <Card
-              v-for="card in setDetail[0].animations"
-              :key="card.id"
-              :id="card.id"
-              :name="card.name"
-              :tags="card.tags"
-              :settagsId="card.tagIds"
-              :description="card.description"
-              :video="card.video"
-              :valueset="card.valueSet"
-              inSet
-              class="Feed__card"
-            >
-            </Card>
+          <transition-group name="fade">
+            <Card
+                v-for="card in setDetail[0].animations"
+                :key="card.id"
+                :id="card.id"
+                :name="card.name"
+                :tags="card.tags"
+                :settagsId="card.tagIds"
+                :description="card.description"
+                :video="card.video"
+                :valueset="card.valueSet"
+                inSet
+                class="Feed__card"
+              >
+              </Card>
+            </transition-group>
             </div>
             <empty-placeholder v-else type="Animation"></empty-placeholder>
+            <preloader class="Sets__preloader" v-if="!setDetailReady"></preloader>
           </div>
         </div>
       </div>
@@ -45,13 +48,13 @@
         </Button>
         <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Home__filters"></Filters>
         <Button
-            v-if="setDetailReady && setDetail[0].animations"
-            label="Remove whole set"
-            class="Sets__remove"
-            :link="'/sets/'"
-            :class="{noset : setDetail[0].animations.length <= 1}"
-            @click.native="removeSet">
-          </Button>
+          v-if="setDetailReady && setDetail[0].animations"
+          label="Remove whole set"
+          class="Sets__remove"
+          :link="'/sets/'"
+          :class="{noset : setDetail[0].animations.length < 1}"
+          @click.native="removeSet">
+        </Button>
       </div>
     </div>
     <Footer></Footer>
@@ -158,4 +161,5 @@ export default {
 <style lang="scss">
 @import '../../styles/views/sets.scss';
 @import '../../styles/views/general.scss';
+@import '../../styles/animations.scss';
 </style>

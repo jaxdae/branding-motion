@@ -39,6 +39,7 @@
       >
       </Card>
        </transition-group>
+       <preloader v-if="!allLoad" class="Feed__preloader"></preloader>
        <empty-placeholder type="Search" v-if="filteredCards.length < 1"></empty-placeholder>
     </div>
   </div>

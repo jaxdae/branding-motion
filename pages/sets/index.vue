@@ -1,9 +1,14 @@
 <template>
   <div class="Sets">
-        <transition name="bounce">
-    <Popup v-if="popupOpen" @popupOpen="setPopupState"></Popup>
-        </transition>
-    <popup-upload v-if="popupUploadOpen" @popupOpen="setPopupState"></popup-upload>
+    <transition name="opacity">
+    <div class="Sets__darker" v-if="popupOpen || popupUploadOpen"></div>
+    </transition>
+    <transition name="scale-up">
+      <Popup v-if="popupOpen" @popupOpen="setPopupState"></Popup>
+    </transition>
+    <transition name="scale-up">
+      <popup-upload v-if="popupUploadOpen" @popupOpen="setPopupState"></popup-upload>
+    </transition>
     <hero-small
       :name="'Animation Sets'"
       :description="'Go through all of your saved sets and animations, edit them and export the complete set once your set is completed.'">
@@ -28,6 +33,7 @@
           >
           </Button>
         </div>
+        <transition-group name="fade">
       <set-card
         v-if="setRemoved && sets.length >= 1"
         v-for="card in sets"
@@ -38,6 +44,8 @@
         :description="card.description"
         :videos="card.videos"
       ></set-card>
+      </transition-group>
+      <preloader class="Sets__preloader" v-if="!setsReady"></preloader>
       <empty-placeholder v-if="sets.length < 1"></empty-placeholder>
     </div>
     <cross-ref-slider
@@ -66,13 +74,11 @@ export default {
     number() {
       return this.sets.length;
     },
-    ...mapState({
-      curatedLoad: 'setoverview/curatedLoad',
-    }),
     ...mapGetters({
       sets: 'setoverview/sets',
       curatedCards: 'setoverview/curatedCards',
-      setRemoved: 'setdetail/setRemoved'
+      setRemoved: 'setdetail/setRemoved',
+      setsReady: 'setoverview/setsReady',
     }),
     modifiedCards() {
       this.curatedCards.forEach(card => {
@@ -111,4 +117,5 @@ export default {
 <style lang="scss">
 @import '../../styles/views/sets.scss';
 @import '../../styles/views/general.scss';
+@import '../../styles/animations.scss';
 </style>

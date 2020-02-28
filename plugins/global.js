@@ -17,6 +17,7 @@ import HeroSmall from '../components/HeroSmall/HeroSmall.vue'
 import Popup from '../components/Popup/Popup.vue'
 import PopupCode from '../components/PopupCode/PopupCode.vue'
 import PopupUpload from '../components/PopupUpload/PopupUpload.vue'
+import Preloader from '../components/Preloader/Preloader.vue'
 import SetCard from '../components/SetCard/SetCard.vue'
 import TopFilter from '../components/TopFilter/TopFilter.vue'
 
@@ -37,5 +38,6 @@ Vue.component('hero-small', HeroSmall);
 Vue.component('Popup', Popup);
 Vue.component('popup-code', PopupCode);
 Vue.component('popup-upload', PopupUpload);
+Vue.component('preloader', Preloader);
 Vue.component('set-card', SetCard);
 Vue.component('top-filter', TopFilter);

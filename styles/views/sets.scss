@@ -4,6 +4,14 @@
 
 .Sets{
 
+  &__darker{
+    width: 100vw;
+    height: 100vh;
+    background-color: $dark-blue;
+    opacity:0.8;
+    position:absolute;
+    z-index: +4;
+  }
   &__content{
   display:flex;
   }
@@ -71,6 +79,9 @@
   }
   
   &__remove.noset{
-    top: 0px;
+    top: 30px;
   }
+  &__preloader{
+        margin:60px auto;
+    }
 }

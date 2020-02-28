@@ -1,6 +1,7 @@
 export const state = () => ({
   curatedLoad: false,
   sets: {},
+  setsReady: false,
   curatedCards: [],
 })
 
@@ -11,6 +12,9 @@ export const getters = {
   curatedCards: state => {
     return state.curatedCards;
   },
+  setsReady: state => {
+    return state.setsReady;
+  }
 }
 
 export const mutations = {
@@ -25,7 +29,11 @@ export const mutations = {
   },
   addToSets: (state, sets) => {
     state.sets.push(sets)
-  }
+  },
+  setsReady: (state, bool) => {
+    console.log(bool)
+    state.setsReady = bool;
+  },
 }
 
 export const actions = {
@@ -167,7 +175,7 @@ export const actions = {
         return animation.animationId;
       });
     }
-    
+    commit('setsReady', true);
     commit('setSets', data);
   },
   async getCuratedSets({ commit }) {

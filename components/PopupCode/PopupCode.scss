@@ -8,8 +8,7 @@
   left:0;
   width:100vw;
   height: 100vh;
-  z-index: +3;
-  background-color: rgba($dark-blue, 0.8);
+  z-index: +5;
 
   &__window{
     padding:45px 60px;
@@ -166,20 +165,3 @@
   color: $white;
 }
 
-.bounce-enter-active {
-  animation: bounce-in 1s;
-}
-.bounce-leave-active {
-  animation: bounce-in 1s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}

@@ -1,5 +1,9 @@
 <template>
   <div class="Detail">
+    <transition name="opacity">
+    <div class="Detail__darker" v-if="popupCodeOpen"></div>
+    </transition>
+    <transition name="scale-up">
     <popup-code
       v-if="popupCodeOpen"
       @popupOpen="switchView"
@@ -7,6 +11,7 @@
       :css="card.effect.css"
       :js="card.effect.js">
     </popup-code>
+    </transition>
     <hero-small :animation="card" :tags="card.tags"></hero-small>
     <top-filter isDetail></top-filter>
     <div class="Detail__wrapper" v-if="cardLoad">

@@ -2,6 +2,16 @@
 @import "../../styles/fonts.scss";
 
 .Detail{
+  position: relative;
+  &__darker{
+    width: 100vw;
+    height: 100vh;
+    background-color: $dark-blue;
+    opacity:0.8;
+    position:fixed;
+    z-index: +4;
+    top:0;
+  }
    &__brandtraits{
      width:23%;
      height:100%;

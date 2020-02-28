@@ -1,0 +1,57 @@
+@import "../../styles/colors.scss";
+.Preloader{
+  border-radius:50%;
+  width:100px;
+  height: 100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+
+  &__svg{
+    transform:rotate(180deg);
+    transform: rotate(180deg) scale(1.2);
+    fill:none;
+  }
+  &__path{
+    fill:none;
+    stroke-dasharray: 92;
+    stroke-dashoffset: 92;
+    &--7{
+      stroke-width: 30px;
+      stroke:$dark-blue;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @for $i from 1 through 3 {
+    &__path--#{$i} { 
+      animation: infinite1 4s infinite ($i * 0.1s - 0.1s);
+    }
+  }
+  @for $i from 4 through 6 {
+    &__path--#{$i} { 
+      animation: infinite2 4s infinite ($i * 0.1s + 0.2s);
+    }
+  }
+}
+
+@keyframes dash {
+  0% {stroke-dashoffset: 92;}
+  100%{stroke-dashoffset: 0;}
+}
+
+@keyframes infinite1 {
+  0% {stroke-dashoffset: 92;}
+  20% {stroke-dashoffset: 0; }
+  70% {stroke-dashoffset: 0; }
+  100%{stroke-dashoffset: 92;}
+}
+
+@keyframes infinite2 {
+  0% {stroke-dashoffset: 92;}
+  20% {stroke-dashoffset: 0; }
+  40% {stroke-dashoffset: 0; }
+  70% {stroke-dashoffset: 92;}
+  100%{stroke-dashoffset: 92;}
+}
