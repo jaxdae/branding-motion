@@ -161,7 +161,7 @@ fieldset[disabled] .multiselect {
 	margin-right: 10px;
 	color: $dark-blue;
 	line-height: 1;
-	background: $light-grey;
+	background: $light-blue;
 	margin-bottom: 5px;
 	white-space: nowrap;
 	overflow: hidden;
@@ -193,7 +193,7 @@ fieldset[disabled] .multiselect {
 
 .multiselect__tag-icon:focus,
 .multiselect__tag-icon:hover {
-	background: $light-grey;
+	background: $light-blue;
 }
 
 .multiselect__tag-icon:focus:after,
@@ -262,7 +262,7 @@ fieldset[disabled] .multiselect {
 	width: 100%;
 	max-height: 240px;
 	overflow: auto;
-	border: 1px solid $light-grey;
+	border: 1px solid $light-blue;
 	border-top: none;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;

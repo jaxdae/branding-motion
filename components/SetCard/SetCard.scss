@@ -5,14 +5,14 @@
   &__wrapper{
     transition: ease-in-out 0.2s;
     height: 275px;
-    background-color: $light-grey;
-    box-shadow: 0 0 15px 2px rgba($light-grey, 0.6);
+    background-color: $light-blue;
+    box-shadow: 10px 10px 20px 20px rgba($dark-blue, 0.1);
     border-radius: 15px;
     position: relative;
     overflow: hidden;
     margin-bottom:45px;
     &:hover{
-      box-shadow: 0 0 30px 3px rgba($light-grey, 0.8);
+      box-shadow: 10px 10px 20px 20px rgba($dark-blue, 0.4);
     }
   }
   &__content{
@@ -52,7 +52,7 @@
     font-family: iconfont;
     font-size:24px;
     content: "\e904";
-    -webkit-text-fill-color: $light-grey;
+    -webkit-text-fill-color: $light-blue;
     -webkit-text-stroke-width: 1px;
     color: $taupe;
     position: absolute;

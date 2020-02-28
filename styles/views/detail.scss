@@ -56,7 +56,7 @@
    &__animation{
      width:calc(54% - 120px);
      height:100%;
-     background: rgba($light-grey, 0.7);
+     background: rgba($light-blue, 0.7);
      border-radius: 15px;
      display:flex;
      position: relative;
@@ -103,7 +103,7 @@
      width: 100%;
      height: 100%;
      position: absolute;
-     background-color: rgba($light-grey, 0.95);
+     background-color: rgba($light-blue, 0.95);
      z-index: +2;
      text-align: right;
    }

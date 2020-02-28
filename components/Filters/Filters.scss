@@ -9,7 +9,7 @@
 
 .Filters{
   position: relative;
-  background-color: rgba($light-grey, 0.7);
+  background-color: rgba($light-blue, 0.7);
   padding:30px 45px 45px;
   &__headline{
     @include font-caps($dark-peach);
@@ -46,7 +46,7 @@
   }
   &__input::after{
     content:'';
-    background: $light-grey;
+    background: $light-blue;
     width: 10px;
     height: 10px;
     display: inline-block;

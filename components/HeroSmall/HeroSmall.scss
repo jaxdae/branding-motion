@@ -16,13 +16,16 @@
 }
 
 .HeroSmall{
-  height: 550px;
-  background-color: $light-grey;
+  height: 400px;
+  background-color: $dark-blue;
+  background-image: url('./../../assets/images/fingerprint.svg');
+  background-size:cover;
   border-radius: 15px 15px 0 0;
   display:flex;
   position: relative;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 10px 10px 30px 20px rgba($dark-blue,0.3);
   &__content{
     height:100%;
     padding-top: 60px;
@@ -51,7 +54,7 @@
 &__waves{
   width: 100%;
   position: absolute;
-  top: 20%;
+  //top: 20%;
   z-index: 0;
   pointer-events: none;
 }
@@ -166,7 +169,7 @@ a:focus {
 			
 			border: none;
 			border-radius: 100%;
-			background-color: rgba($light-grey, 0.1);
+			background-color: rgba($light-blue, 0.1);
 			
 			text-indent: -9999px;
 		}
