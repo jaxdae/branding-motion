@@ -69,17 +69,18 @@
      margin:auto;
    }
    &__switcher{
+     transition: ease all 0.3s;
       position: relative;
       top: calc(50% - 30px);
       left: 30px;
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      box-shadow: 0 0 20px 0 $dark-peach;
       background-color: $dark-peach;
       z-index: +2;
       &:hover{
         cursor: pointer;
+        box-shadow: 0 0 20px 0 $dark-peach;
       }
       &::after{
         font-family: iconfont;

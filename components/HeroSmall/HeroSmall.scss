@@ -97,10 +97,18 @@
     padding: 0 15px;
   }
   &__edit-tags{
+    position: relative;
     display:inline;
+    &:hover{
+      cursor: pointer;
+    }
+    &:hover::after{
+      animation: writing 0.3s infinite;
+      transform-origin: center;
+      transform:scale(3)
+    }
     &::after{
-      position: relative;
-      top:5px;
+      position: absolute;
       transition: ease-in-out 0.3s;
       font-family: iconfont;
       font-size:24px;

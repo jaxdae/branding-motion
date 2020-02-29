@@ -153,4 +153,5 @@ export default {
 
 <style lang="scss">
 @import './AnimationCard.scss';
+@import './../../styles/animations.scss';
 </style>

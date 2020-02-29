@@ -98,4 +98,5 @@ export default {
 
 <style lang="scss">
 @import './HeroSmall.scss';
+@import './../../styles/animations.scss';
 </style>

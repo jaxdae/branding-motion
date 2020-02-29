@@ -45,3 +45,10 @@
 .opacity-leave .opacity-enter-to{
   overflow: scroll;
 }
+
+ @keyframes writing {
+    0% {transform:rotate(0)};
+    25% {transform:rotate(-20deg)};
+    75% {transform:rotate(20deg)};
+    100% {transform:rotate(0)};
+  }

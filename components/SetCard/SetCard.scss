@@ -46,6 +46,10 @@
     &:hover{
       cursor: pointer;
     }
+    &:hover::after{
+      animation: writing 0.3s infinite;
+      transform-origin: center;
+    }
     
     &::after{
     transition: ease-in-out 0.3s;
@@ -54,7 +58,7 @@
     content: "\e904";
     -webkit-text-fill-color: $light-blue;
     -webkit-text-stroke-width: 1px;
-    color: rgba($dark-peach, 0.4);
+    color: $dark-peach;
     position: absolute;
     z-index: +1;
     right:30px;
