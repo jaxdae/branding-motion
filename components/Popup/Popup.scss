@@ -32,10 +32,15 @@
     width:45%;
   }
   &__close{
+    
     &:hover{
       cursor: pointer;
+      &::before{
+      color: $white;
+      }
     }
     &::before{
+    transition: ease all 0.3s;
     font-family: iconfont;
     content: "\e902";
     font-size: 25px;

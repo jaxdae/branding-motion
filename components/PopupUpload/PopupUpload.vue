@@ -74,4 +74,5 @@ export default {
 
 <style lang="scss">
 @import './PopupUpload.scss';
+@import './../../styles/animations.scss'
 </style>

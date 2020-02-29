@@ -35,8 +35,12 @@
   &__close{
     &:hover{
       cursor: pointer;
+      &::before{
+      color: $white;
+      }
     }
     &::before{
+    transition: ease all 0.3s;
     font-family: iconfont;
     content: "\e902";
     font-size: 25px;
@@ -102,17 +106,29 @@
   }
    &__upload{
      position: relative;
-   background: $dark-blue;
+   background: $mid-blue;
    width:100%;
    height:120px;
    border-radius: 15px;
    &:hover{
      cursor: pointer;
    }
+   &:hover::after{
+     animation: upload 1.2s infinite;
+   }
    &::before{
     position: absolute;
     font-family: iconfont;
-    content: "\e910";
+    content: "\e916";
+    font-size: 52px;
+    top:31px;
+    left:30px;
+    color: $dark-peach;
+   }
+   &::after{
+    position: absolute;
+    font-family: iconfont;
+    content: "\e915";
     font-size: 52px;
     top:31px;
     left:30px;
