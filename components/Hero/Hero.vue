@@ -57,6 +57,7 @@
                 {{ tag }}
               </div>
             </div>
+            <nuxt-link :to="'/sets/' + set.id">
             <div class="Hero__content Hero__content--right">
               <div class="Hero__subheadline Hero__subheadline--right">
                 Pre-picked animation sets
@@ -68,6 +69,7 @@
                 {{ set.description }}
               </div>
             </div>
+            </nuxt-link>
           </div>
         </transition-group>
       </div>

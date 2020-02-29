@@ -51,7 +51,7 @@
         <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Home__filters"></Filters>
         <Button
           v-if="setDetailReady && setDetail.animations"
-          label="Remove whole set"
+          :label="displayLabel"
           class="Sets__remove"
           :link="'/sets/'"
           :class="{noset : setDetail.animations.length < 1}"
@@ -115,6 +115,13 @@ export default {
       setDetail: 'setdetail/setDetail',
       setDetailReady: 'setdetail/setDetailReady'
     }),
+    displayLabel() {
+      if(this.setDetail.custom == 0){
+        return 'Add to personal sets'
+      }else {
+        return 'remove whole set'
+      }
+    },
     number(){
       if(this.setDetailReady){
       return this.setDetail.animations.length;
@@ -139,7 +146,18 @@ export default {
   },
   methods: {
     removeSet() {
+      if(this.setDetail.custom == 1){
       this.$store.dispatch('setdetail/removeSet', this.id);
+      }else {
+         let req = {
+            id: this.setDetail.id, 
+            name: this.setDetail.name,
+            desc: this.setDetail.description,
+            tagIds: this.setDetail.tagIds,
+            tags: this.setDetail.tags
+            };
+        this.$store.dispatch('setoverview/saveAsSet', req);
+      }
     },
     exportSet(e){
       this.downloadObjectAsJson(this.setDetail, 'SetExport');

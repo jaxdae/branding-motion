@@ -144,7 +144,7 @@ async function start() {
   })
 
   app.get('/api/sets/:id', (req, res) => {
-    models.sequelize.query("SELECT id, name, description FROM sets WHERE sets.id =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
+    models.sequelize.query("SELECT id, name, description, custom FROM sets WHERE sets.id =" + req.params.id + ";", { type: models.Sequelize.QueryTypes.SELECT })
       .then(data => {
         res.send(data);
       });
