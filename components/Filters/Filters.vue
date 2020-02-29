@@ -39,7 +39,7 @@
           </div>
       </div>
         <div class="Filters__radiogroup">
-          <label>
+          <label :class="{ locked : isLocked}">
               <input
                 :name="filter.left"
                 :checked="input[index] === 1"
@@ -51,7 +51,7 @@
               />
               <span class="radiobox"></span>
           </label>
-            <label>  
+            <label :class="{ locked : isLocked}">  
               <input
                 :name="filter.left"
                 :checked="input[index] === 2"
@@ -63,7 +63,7 @@
               />
               <span class="radiobox"></span>
           </label>
-            <label>  
+            <label :class="{ locked : isLocked}">  
               <input
                 :name="filter.left"
               :checked="input[index] === 3"
@@ -75,7 +75,7 @@
               />
               <span class="radiobox"></span>
           </label>
-            <label>  
+            <label :class="{ locked : isLocked}">  
               <input
                 :name="filter.left"
                 :checked="input[index] === 4"
@@ -87,7 +87,7 @@
               />
               <span class="radiobox"></span>
           </label>
-          <label>
+          <label :class="{ locked : isLocked}">
               <input
                 :name="filter.left"
                 :checked="input[index] === 5"

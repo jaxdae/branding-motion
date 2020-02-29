@@ -177,7 +177,6 @@
 input[type="radio"] {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
 }
 .radiobox {
   position: absolute;
@@ -204,13 +203,24 @@ label{
 }
 
 /* On mouse-over, add a grey background color */
-label:hover input ~ .radiobox {
+label:not(.locked):hover input ~ .radiobox {
   background-color: $bright-yellow;
   border-color: $bright-yellow;
   transform: scale(1.4);
 }
 
+label.locked{
+  &:hover{
+    cursor:not-allowed;
+  }
+}
+
 /* When the radio button is checked, add a blue background */
+label input:checked ~ .radiobox {
+  background-color: $bright-yellow;
+  border-color: $bright-yellow;
+  animation: select 0.3s forwards;
+}
 label input:checked ~ .radiobox {
   background-color: $bright-yellow;
   border-color: $bright-yellow;

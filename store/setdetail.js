@@ -86,7 +86,6 @@ export const actions = {
 
     data[0].animations = animations.data;
     commit('setDetailReady', true);
-    console.log(data)
     commit('setDetail', data[0]);
   },
   async removeSet({ commit }, id) {
