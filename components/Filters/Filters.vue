@@ -38,53 +38,68 @@
           {{ filter.right }}
           </div>
       </div>
-      <div class="Filters__radiogroup">
-        <input
-          :name="filter.left"
-          :checked="input[index] === 1"
-          @click="check(index, 1)"
-          value="1"
-          :disabled="isLocked"
-          class="Filters__input"
-          type="radio"
-        />
-        <input
-          :name="filter.left"
-           :checked="input[index] === 2"
-          @click="check(index, 2)"
-          value="2"
-          :disabled="isLocked"
-          class="Filters__input"
-          type="radio"
-        />
-        <input
-          :name="filter.left"
-         :checked="input[index] === 3"
-          @click="check(index, 3)"
-          value="3"
-          :disabled="isLocked"
-          class="Filters__input"
-          type="radio"
-        />
-        <input
-          :name="filter.left"
-          :checked="input[index] === 4"
-          @click="check(index, 4)"
-          value="4"
-          :disabled="isLocked"
-          class="Filters__input"
-          type="radio"
-        />
-        <input
-          :name="filter.left"
-          :checked="input[index] === 5"
-          @click="check(index, 5)"
-          value="5"
-          :disabled="isLocked"
-          class="Filters__input"
-          type="radio"
-        />
-      </div>
+        <div class="Filters__radiogroup">
+          <label>
+              <input
+                :name="filter.left"
+                :checked="input[index] === 1"
+                @click="check(index, 1)"
+                value="1"
+                :disabled="isLocked"
+                class="Filters__input"
+                type="radio"
+              />
+              <span class="radiobox"></span>
+          </label>
+            <label>  
+              <input
+                :name="filter.left"
+                :checked="input[index] === 2"
+                @click="check(index, 2)"
+                value="2"
+                :disabled="isLocked"
+                class="Filters__input"
+                type="radio"
+              />
+              <span class="radiobox"></span>
+          </label>
+            <label>  
+              <input
+                :name="filter.left"
+              :checked="input[index] === 3"
+                @click="check(index, 3)"
+                value="3"
+                :disabled="isLocked"
+                class="Filters__input"
+                type="radio"
+              />
+              <span class="radiobox"></span>
+          </label>
+            <label>  
+              <input
+                :name="filter.left"
+                :checked="input[index] === 4"
+                @click="check(index, 4)"
+                value="4"
+                :disabled="isLocked"
+                class="Filters__input"
+                type="radio"
+              />
+              <span class="radiobox"></span>
+          </label>
+          <label>
+              <input
+                :name="filter.left"
+                :checked="input[index] === 5"
+                @click="check(index, 5)"
+                value="5"
+                :disabled="isLocked"
+                class="Filters__input"
+                type="radio"
+              />
+              <span class="radiobox"></span>
+          </label>
+        </div>
     </div>
     <Button
       class="Filters__reset"
