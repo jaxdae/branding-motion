@@ -41,6 +41,8 @@
   }
   &__video{
     height:275px;
+    width:31.5%;
+    object-fit: cover;
   }
   &__heart{
     &:hover{

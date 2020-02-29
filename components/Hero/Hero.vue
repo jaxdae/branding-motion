@@ -100,31 +100,10 @@ export default {
         dots: true,
         vertical: true,
         slidesToShow: 3,
+        slidesToScroll:1,
         verticalSwiping: true,
         speed: 800,
         prevArrow: false
-      },
-      waves: {
-        wave01: {
-          x: 0,
-          y: 8
-        },
-        wave02: {
-          x: 0,
-          y: 0
-        },
-        wave03: {
-          x: 0,
-          y: -8
-        },
-        wave04: {
-          x: 0,
-          y: -6
-        },
-        wave05: {
-          x: 0,
-          y: 6
-        }
       },
       firstString: true,
       currentSlide: 0,
