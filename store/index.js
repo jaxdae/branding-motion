@@ -21,7 +21,6 @@ export const state = () => ({
   activeElement: false,
   activeCategory: false,
   activeSearch:false,
-  availableSets: [],
   primaryColor: '#FF0000',
   secondaryColor: '#FFFF00'
 })
@@ -53,9 +52,6 @@ export const getters = {
   },
   activeSearch: state => {
     return state.activeSearch;
-  },
-  availableSets: state => {
-    return state.availableSets;
   },
   primaryColor: state => {
     return state.primaryColor;
@@ -144,9 +140,6 @@ export const mutations = {
   setInitialLoad: (state, bool) => {
     state.initialLoad = bool;
   },
- availableSets: (state, data) => {
-  state.availableSets = data;
- },
   calculateScore: (state) => {
     Object.values(state.allCards).forEach((card, i) => {
       let score = 0;
@@ -170,7 +163,7 @@ export const mutations = {
     state.activeElement = false;
     state.activateCategory = false;
     state.searchTerm = '';
-  }
+  },
 }
 
 export const actions = {
@@ -272,10 +265,6 @@ export const actions = {
     let animationtags = await this.$axios.delete('/api/animations/tags/remove/' + id);
     let animationsets = await this.$axios.delete('/api/animationsets/remove/' + id);
     commit('setdetail/removeFromSet', id);
-  },
-  async getAllSets({ commit }) {
-    let { data } = await this.$axios.get('/api/sets/custom');
-    commit('availableSets', data);
   }
 }
 

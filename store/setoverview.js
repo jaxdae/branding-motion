@@ -3,6 +3,8 @@ export const state = () => ({
   sets: {},
   setsReady: false,
   curatedCards: [],
+  availableSets: [],
+  availableSetsReady: true,
 })
 
 export const getters = {
@@ -14,7 +16,13 @@ export const getters = {
   },
   setsReady: state => {
     return state.setsReady;
-  }
+  },
+    availableSets: state => {
+    return state.availableSets;
+  },
+    availableSetsReady: state => {
+    return state.availableSetsReady;
+  },
 }
 
 export const mutations = {
@@ -33,6 +41,15 @@ export const mutations = {
   setsReady: (state, bool) => {
     state.setsReady = bool;
   },
+   updateAvailableSets: (state, data) => {
+     state.availableSets.push(data);
+  },
+   availableSets: (state, data) => {
+  state.availableSets = data;
+ },
+ setAvailableSetsReady: (state, bool) => {
+   state.availableSetsReady = bool;
+ }
 }
 
 export const actions = {
@@ -218,5 +235,11 @@ export const actions = {
 
     sets.data.tags = req.tags;
     commit('addToSets', sets.data);
+    commit('updateAvailableSets', sets.data);
+    commit('setAvailableSetsReady', true);
   },
+   async getAllSets({ commit }) {
+    let { data } = await this.$axios.get('/api/sets/custom');
+    commit('availableSets', data);
+  }
 }

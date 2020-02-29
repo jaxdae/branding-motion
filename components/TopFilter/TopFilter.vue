@@ -203,7 +203,6 @@ export default {
       }
     },
     setSecondaryColor() {
-      console.log("set secondary", this.secondaryColor)
       this.$store.commit('setSecondaryColor', this.secondaryColor);
     },
     keepHashPrimary(e){

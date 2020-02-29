@@ -96,7 +96,8 @@ export default {
   },
   computed: {
 ...mapGetters({
-      availableSets: 'availableSets'
+      availableSets: 'setoverview/availableSets',
+      availableSetsReady: 'setoverview/availableSetsReady'
     }),
     link() {
       if(this.inSet){
@@ -107,14 +108,28 @@ export default {
     }
   },
   methods: {
-    save() {
+     save() {
       if(!this.isSaved){
         if(this.availableSets.length > 1){
           this.showListChooser = true;
         }else{
-        this.saveToSet(0);
+        if(this.availableSets.length < 1){
+          this.createSet();
+        }else{
+          this.saveToSet(0);
+        }
         }
       }
+    },
+    async createSet() {
+      let req = {
+          name: 'My first set', 
+          desc: 'This is a default set',
+          tags: ['personal','simple'],
+          tagIds: [5,13]
+        };
+      await this.$store.dispatch('setoverview/createNewSet', req);
+      this.saveToSet(0);
     },
     saveToSet(index) {
       let req = {
@@ -131,7 +146,7 @@ export default {
     }
   },
   mounted(){
-    this.$store.dispatch('getAllSets');
+    this.$store.dispatch('setoverview/getAllSets');
   }
 };
 </script>
