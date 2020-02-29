@@ -315,6 +315,20 @@ async function start() {
       },
     })
   })
+
+  app.put('/api/sets/update/:id', (req, res) => {
+    models.sets.update({
+      name: req.body.name,
+      description: req.body.description
+    },{
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(response => {
+        res.send(response);
+      });
+  })
   
   // Give nuxt middleware to express
   app.use(nuxt.render)

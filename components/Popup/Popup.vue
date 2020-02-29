@@ -2,7 +2,7 @@
   <div class="Popup">
     <div class="Popup__window">
       <div class="Popup__close" @click="close"></div>
-      <h1 class="Popup__title">Create a new Set</h1>
+      <h1 class="Popup__title">{{displayTitle}}</h1>
       <div class="Popup__left">
         <h2 class="Popup__headline">Name</h2>
         <p class="Popup__subheadline">Up to 30 characters</p>
@@ -26,9 +26,9 @@
       </div>
       <Button
         class="Popup__button"
-        :link="'/sets'"
-        :label="'Create set'"
-        @click.native="addSet"
+        :link="displayLink"
+        :label="displayButtonText"
+        @click.native="addOrEditSet"
       ></Button>
     </div>
   </div>
@@ -37,6 +37,28 @@
 <script>
 export default {
   name: 'Popup',
+  props: {
+    edit: {
+      type: Boolean,
+      default: false
+    },
+    oldName: {
+      type: String,
+      default: ''
+    },
+    oldDescription: {
+      type: String,
+      default: ''
+    },
+    oldTags: {
+      type: Array,
+      default: () => []
+    },
+    setId: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       name: '',
@@ -46,15 +68,36 @@ export default {
     };
   },
   computed: {
+    displayTitle() {
+      if(this.edit){
+        return "Edit this set"
+      }else{
+        return "Create a new Set"
+      }
+    },
     displayTags() {
       let displayTags = this.tags.map(tag => {
         return tag.name;
       })
       return displayTags;
+    },
+    displayButtonText() {
+      if(this.edit) {
+        return "Save set"
+      }else {
+        return "Create set"
+      }
+    },
+    displayLink() {
+      if(this.edit){
+        return '/sets/' + this.setId;
+      }else{
+        return  '/sets'
+      }
     }
   },
   methods: {
-    addSet() {
+    addOrEditSet() {
       if(this.name !== '', this.description, this.selectedTags.length > 0){
         let ids = [];
         this.selectedTags.forEach(selectedTag => {
@@ -65,8 +108,14 @@ export default {
           desc: this.description,
           tags: this.selectedTags,
           tagIds: ids,
+          setId: this.setId
         };
-        this.$store.dispatch('setoverview/createNewSet', req);
+        if(this.edit){
+          this.$store.dispatch('setdetail/updateSet', req);
+        }
+        else {
+          this.$store.dispatch('setoverview/createNewSet', req);
+        }
         this.close();
       }
     },
@@ -85,6 +134,14 @@ export default {
   async mounted() {
     let tags = await this.$axios.get('/api/settags');
     this.tags = tags.data;
+
+    if(this.edit){
+      this.name = this.oldName;
+      this.description = this.oldDescription;
+      this.oldTags.forEach(tag => {
+        this.selectedTags.push(tag);
+      })
+    }
   }
 };
 </script>

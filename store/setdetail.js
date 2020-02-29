@@ -30,18 +30,22 @@ export const mutations = {
   },
   removeFromSet: (state, id) => {
     state.setDetailReady = false;
-    var filtered = state.setDetail[0].animations.filter((element) => {
+    var filtered = state.setDetail.animations.filter((element) => {
        return element.id != id; 
       });
-    state.setDetail[0].animations = filtered;
+    state.setDetail.animations = filtered;
     state.setDetailReady = true;
   },
   addToSet: (state, data) => {
-    if(state.setDetail[0]){
-    state.setDetail[0].animations.push(data);
+    if(state.setDetail){
+    state.setDetail.animations.push(data);
     }
+  },
+  updateSet: (state, set) => {
+    let newSet = set;
+    newSet.animations = state.setDetail.animations;
+    state.setDetail = newSet;
   }
-  
 }
 
 export const actions = {
@@ -82,7 +86,8 @@ export const actions = {
 
     data[0].animations = animations.data;
     commit('setDetailReady', true);
-    commit('setDetail', data);
+    console.log(data)
+    commit('setDetail', data[0]);
   },
   async removeSet({ commit }, id) {
     commit('setRemoved', false);
@@ -101,5 +106,27 @@ export const actions = {
     let setssettags = this.$axios.delete('/api/setssettags/remove/' + id);
 
     commit('setRemoved', true);
+  },
+  async updateSet({ commit }, req) {
+     let updatedSet = await this.$axios.put('/api/sets/update/' + req.setId, {
+      name: req.name,
+      description: req.desc
+    });
+    
+    await this.$axios.delete('/api/setssettags/remove/' + req.setId);
+    
+    req.tagIds.forEach(async tag => {
+      await this.$axios.post('/api/setssettags/add/', {
+        setId: req.setId,
+        settagsId: tag
+      })
+    })
+    
+    let set = {}
+    set.name = req.name;
+    set.description = req.desc;
+    set.tags = req.tags;
+    set.tagIds = req.tagIds;
+    commit('updateSet', set)
   }
 }

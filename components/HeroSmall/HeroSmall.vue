@@ -1,11 +1,25 @@
 <template>
   <div class="HeroSmall">
+        <transition name="opacity">
+    <div class="Sets__darker" v-if="popupOpen"></div>
+    </transition>
+    <transition name="scale-up">
+      <Popup
+        v-if="popupOpen"
+        edit
+        :oldName="name"
+        :oldDescription="description"
+        :oldTags="tags"
+        :setId="setId"
+        @popupOpen="closePopup">
+      </Popup>
+    </transition>
     <div class="HeroSmall__main">
       <transition name="fade-in-up">
         <div v-if="animation" class="HeroSmall__intro">
-          <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
-            {{ tag }}
-          </div>
+            <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
+              {{ tag }}
+            </div>
           <div class="HeroSmall__headline HeroSmall__headline--left">
             {{ animation.name }}
           </div>
@@ -14,8 +28,11 @@
           </div>
         </div>
         <div v-else class="HeroSmall__intro">
+           <div class="HeroSmall__tags">
           <div v-if="tag" v-for="tag in tags" :key="tag" class="HeroSmall__tag">
             {{ tag }}
+          </div>
+          <div class="HeroSmall__edit-tags" v-if="editable" @click="openPopup"></div>
           </div>
           <div class="HeroSmall__headline HeroSmall__headline--left">
             {{ name }}
@@ -53,33 +70,28 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    editable: {
+      type: Boolean,
+      default: false,
+    },
+    setId: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
-      waves: {
-        wave01: {
-          x: 0,
-          y: 8
-        },
-        wave02: {
-          x: 0,
-          y: 0
-        },
-        wave03: {
-          x: 0,
-          y: -8
-        },
-        wave04: {
-          x: 0,
-          y: -6
-        },
-        wave05: {
-          x: 0,
-          y: 6
-        }
-      }
+      popupOpen: false
     };
+  },
+  methods: {
+    openPopup() {
+      this.popupOpen = true;
+    },
+    closePopup() {
+      this.popupOpen = false;
+    }
   }
 };
 </script>

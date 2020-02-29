@@ -31,7 +31,6 @@ export const mutations = {
     state.sets.push(sets)
   },
   setsReady: (state, bool) => {
-    console.log(bool)
     state.setsReady = bool;
   },
 }

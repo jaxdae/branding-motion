@@ -1,10 +1,12 @@
 <template>
   <div class="Set">
-    <hero-small v-if="setDetail[0]"
-      :id="setDetail[0].id"
-      :name="setDetail[0].name"
-      :description="setDetail[0].description"
-      :tags="setDetail[0].tags"
+    <hero-small v-if="setDetail"
+      editable
+      :id="setDetail.id"
+      :name="setDetail.name"
+      :description="setDetail.description"
+      :tags="setDetail.tags"
+      :setId="$route.params.set"
       >
     </hero-small>
     <div class="Sets__content">
@@ -14,10 +16,10 @@
           <div class="Sets__results">
           {{ `You have ${number} animations saved on this list` }}
         </div>
-        <div  v-if="setDetailReady && setDetail[0].animations.length >= 1">
+        <div  v-if="setDetailReady && setDetail.animations.length >= 1">
           <transition-group name="fade">
             <Card
-                v-for="card in setDetail[0].animations"
+                v-for="card in setDetail.animations"
                 :key="card.id"
                 :id="card.id"
                 :name="card.name"
@@ -39,7 +41,7 @@
       </div>
       <div class="Sets__right">
         <Button
-          v-if="setDetailReady && setDetail[0].animations.length >= 1"
+          v-if="setDetailReady && setDetail.animations.length >= 1"
             label="Export this set"
             :link="'/sets/'+$route.params.set"
             class="Home__cart"
@@ -48,11 +50,11 @@
         </Button>
         <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Home__filters"></Filters>
         <Button
-          v-if="setDetailReady && setDetail[0].animations"
+          v-if="setDetailReady && setDetail.animations"
           label="Remove whole set"
           class="Sets__remove"
           :link="'/sets/'"
-          :class="{noset : setDetail[0].animations.length < 1}"
+          :class="{noset : setDetail.animations.length < 1}"
           @click.native="removeSet">
         </Button>
       </div>
@@ -115,13 +117,13 @@ export default {
     }),
     number(){
       if(this.setDetailReady){
-      return this.setDetail[0].animations.length;
+      return this.setDetail.animations.length;
       }
     },
     averageIdentity() {
       if(this.setDetailReady){
-      if(this.setDetail[0].animations.length>0){
-      let valueSets = this.setDetail[0].animations.map(animation => {
+      if(this.setDetail.animations.length>0){
+      let valueSets = this.setDetail.animations.map(animation => {
         return animation.valueSet;
       });
      let result = valueSets.reduce(
