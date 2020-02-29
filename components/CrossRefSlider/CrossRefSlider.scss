@@ -48,6 +48,9 @@
     border-color: $taupe;
     background-color:transparent;
     font-size: 0;
+    &:hover{
+       animation: toggleleft 1s infinite;
+    }
     &::after{
       font-family: iconfont;
     font-size:24px;
@@ -138,4 +141,10 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+}
+
+@keyframes toggleleft {
+  0% {transform: rotate(180deg) translateX(0)}
+  50% {transform: rotate(180deg) translateX(10px)}
+  100% {transform:rotate(180deg) translateX(0)}
 }

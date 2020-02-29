@@ -149,7 +149,11 @@ a:focus {
 
   .slick-arrow{
     position: absolute;
+     &:active{
+      border-style:solid;
+    }
   }
+
 
   .slick-next{
     cursor: pointer;
@@ -161,11 +165,16 @@ a:focus {
     z-index: 999;
     background-color:transparent;
     font-size: 0;
+    transition: ease all 0.4s;
+
+     &:hover{
+       animation: toggle 1s infinite;
+    }
     &::after{
       font-family: iconfont;
     font-size:24px;
     content: "\e90b";
-    color: $white;
+    color: $dark-blue;
     }
   }
 
@@ -198,8 +207,14 @@ a:focus {
 			border: none;
 			border-radius: 100%;
 			background-color: rgba($white, 0.3) !important;
-			text-indent: -9999px;
+      text-indent: -9999px;
 		}
+}
+
+@keyframes toggle {
+  0% {transform: translateX(0)}
+  50% {transform: translateX(10px)}
+  100% {transform: translateX(0)}
 }
 
 .bounce-enter-active{
