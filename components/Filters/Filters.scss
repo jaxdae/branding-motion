@@ -189,6 +189,8 @@
 
 input[type="checkbox"],
 input[type="radio"] {
+  -webkit-appearance: none; /* Remove default appearance styling for Webkit */
+  -moz-appearance: none; /* Remove default appearance styling for Firefox */
   background-color:transparent;
     opacity: 1;
     position: relative;
@@ -201,6 +203,11 @@ input[type="radio"] {
     }
     &:hover{
       cursor: pointer;
+      transform: scale(1.5);
+      .Filters__input::after{
+        background: $bright-yellow;
+        transform: scale(1.5);
+      }
     }
 }
 

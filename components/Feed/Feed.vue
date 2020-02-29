@@ -5,7 +5,6 @@
     </div>
     <div class="Feed__filter-wrapper">
       <div class="Feed__left">
-        <transition-group name="fade-in-left">
         <div
           v-for="(filter, index) in $store.getters.activeTagsElements"
           :key="filter"
@@ -14,7 +13,6 @@
           {{ filter }}
           <span @click="removeElement(index)" class="Feed__close"></span>
         </div>
-        </transition-group>
         <div
           v-for="(filter, index) in $store.getters.activeTagsCategories"
           :key="filter.id"
