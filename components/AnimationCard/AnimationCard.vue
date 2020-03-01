@@ -7,18 +7,21 @@
         </video>
       </nuxt-link>
       <div class="AnimationCard__content">
-        <div v-if="showListChooser" class="AnimationCard__wishlist-overlay">
-          <div class="AnimationCard__wishlist-wrapper">
-            <div
-              v-for="(sets, index) in availableSets"
-              :key="sets.id"
-              class="AnimationCard__save-option"
-              @click="saveToSet(index)"
-            >
-              {{sets.name}}
+        <transition name="fade">
+          <div v-if="showListChooser" class="AnimationCard__wishlist-overlay">
+            <div class="AnimationCard__close" @click="showListChooser=false"></div>
+            <div class="AnimationCard__wishlist-wrapper">
+              <div
+                v-for="(sets, index) in availableSets"
+                :key="sets.id"
+                class="AnimationCard__save-option"
+                @click="saveToSet(index)"
+              >
+                {{sets.name}}
+              </div>
             </div>
           </div>
-        </div>
+        </transition>
         <div class="AnimationCard__tags">
           <div v-if="tags" v-for="tag in tags" :key="tag.id" class="AnimationCard__tag">
             {{ tag }}

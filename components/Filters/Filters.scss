@@ -206,6 +206,7 @@ label{
 label:not(.locked):hover input ~ .radiobox {
   background-color: $bright-yellow;
   border-color: $bright-yellow;
+  //box-shadow: 0 0 5px 2px $bright-yellow;
   transform: scale(1.4);
 }
 
@@ -219,11 +220,7 @@ label.locked{
 label input:checked ~ .radiobox {
   background-color: $bright-yellow;
   border-color: $bright-yellow;
-  animation: select 0.3s forwards;
-}
-label input:checked ~ .radiobox {
-  background-color: $bright-yellow;
-  border-color: $bright-yellow;
+  //box-shadow: 0 0 5px 2px $bright-yellow;
   animation: select 0.3s forwards;
 }
 

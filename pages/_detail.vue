@@ -35,6 +35,7 @@
         class="Detail__animation"
       >
       <div v-if="showListChooser" class="Detail__select-overlay">
+        <div class="AnimationCard__close" @click="showListChooser=false"></div>
         <div class="Detail__available-sets">
           <div
             v-for="(sets, index) in availableSets"
@@ -179,7 +180,7 @@ export default {
       cardLoad: 'animationdetail/cardLoad',
       currentVariables: 'animationdetail/currentVariables',
       convertedVariables: 'animationdetail/convertedVariables',
-      availableSets: 'availableSets'
+      availableSets: 'setoverview/availableSets'
     }),
     buttonText() {
       if(this.card.default == 0){
@@ -224,7 +225,7 @@ export default {
   mounted() {
     this.$store.dispatch('animationdetail/getAnimation', this.$route.params.detail)
     this.$store.dispatch('animationdetail/getCrossrefSets', this.$route.params.detail)
-    this.$store.dispatch('getAllSets');
+    this.$store.dispatch('setoverview/getAllSets');
   }
 };
 </script>
