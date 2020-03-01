@@ -34,7 +34,7 @@
         :tags="card.tags"
         :description="card.description"
         :video="card.video"
-        :valueset="card.valueSet"
+        :valueset="card.valueset"
         class="Feed__card"
       >
       </Card>

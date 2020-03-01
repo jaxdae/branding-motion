@@ -19,11 +19,11 @@
     <div class="Detail__wrapper" v-if="cardLoad">
       <filters
         :filteroptions="brandtraits"
-        :valueset="card.valueSet"
+        :valueset="card.valueset"
         :key=1
         @isCollapsed="collapse"
         collapse
-        isValueSet
+        isvalueset
         isLocked
         noLockIcon
         class="Detail__background"

@@ -143,7 +143,7 @@ export const mutations = {
   calculateScore: (state) => {
     Object.values(state.allCards).forEach((card, i) => {
       let score = 0;
-      Object.values(card.valueSet).forEach((value, index) => {
+      Object.values(card.valueset).forEach((value, index) => {
         if (state.currentBrandSet[Object.keys(state.currentBrandSet)[index]]){
           score += Math.abs(value - state.currentBrandSet[Object.keys(state.currentBrandSet)[index]])
         }
@@ -206,7 +206,7 @@ export const actions = {
     customanimation.data.tags = tags.data.map(tag => {
       return tag.name;
     });
-    customanimation.data.valueSet = {
+    customanimation.data.valueset = {
       rational: customanimation.data.rational,
       innovative: customanimation.data.innovative,
       personal: customanimation.data.personal,
@@ -221,7 +221,7 @@ export const actions = {
   async getAllCards({ commit }) {
     let { data } = await this.$axios.get('/api/animations/all');
     for (let i = 0; i < data.length; i++) {
-      data[i].valueSet = {
+      data[i].valueset = {
         rational: data[i].rational,
         innovative: data[i].innovative,
         personal: data[i].personal,
@@ -242,7 +242,7 @@ export const actions = {
   async getInitialCards({ commit }) {
     let { data } = await this.$axios.get('/api/animations/all/limit');
     for (let i = 0; i < data.length; i++) {
-      data[i].valueSet = {
+      data[i].valueset = {
         rational: data[i].rational,
         innovative: data[i].innovative,
         personal: data[i].personal,

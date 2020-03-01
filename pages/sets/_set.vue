@@ -30,7 +30,7 @@
                 :settagsId="card.tagIds"
                 :description="card.description"
                 :video="card.video"
-                :valueset="card.valueSet"
+                :valueset="card.valueset"
                 inSet
                 class="Feed__card"
               >
@@ -51,7 +51,7 @@
             @click.native="exportSet"
         >
         </Button>
-        <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isValueSet class="Home__filters"></Filters>
+        <Filters v-if="averageIdentity" :filteroptions="filteroptions" isLocked :valueset="averageIdentity" isvalueset class="Home__filters"></Filters>
         <Button
           v-if="setDetailReady && setDetail.animations"
           :label="displayLabel"
@@ -133,11 +133,11 @@ export default {
     averageIdentity() {
       if(this.setDetailReady){
       if(this.setDetail.animations.length>0){
-      let valueSets = this.setDetail.animations.map(animation => {
-        return animation.valueSet;
+      let valuesets = this.setDetail.animations.map(animation => {
+        return animation.valueset;
       });
-     let result = valueSets.reduce(
-      (a, c) => (Object.keys(c).forEach(k => (a[k] = (a[k] || 0) + c[k]/valueSets.length).toFixed(0)), a), {}
+     let result = valuesets.reduce(
+      (a, c) => (Object.keys(c).forEach(k => (a[k] = (a[k] || 0) + c[k]/valuesets.length).toFixed(0)), a), {}
       );
      Object.entries(result).forEach(([key, value]) => {
       result[key] = +value.toFixed(0)

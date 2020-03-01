@@ -77,7 +77,7 @@ export default {
       type: String,
       required: true
     },
-    valueSet: {
+    valueset: {
       type: Object,
       default: () => {}
     },

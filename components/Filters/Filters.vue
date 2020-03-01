@@ -137,7 +137,7 @@ export default {
       type: Object,
       default: () => {}
     },
-    isValueSet: {
+    isvalueset: {
       type: Boolean,
       default: false
     },
@@ -185,7 +185,7 @@ export default {
           this.$store.commit('animationdetail/setCurrentVariables', identity);
         })
         return this.currentVariables
-      }else if(this.isValueSet){
+      }else if(this.isvalueset){
         this.checkboxValues = this.valueset
         return this.checkboxValues;
       }else {
@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     check(valueset, index) { 
-      if(!this.isVariables && !this.isValueSet){
+      if(!this.isVariables && !this.isvalueset){
       if (parseInt(this.checkboxValues[valueset]) === index) {
         this.checkboxValues[valueset] = 0;
         this.$store.commit('removeValue', valueset);

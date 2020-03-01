@@ -43,7 +43,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    valueSet: {
+    valueset: {
       type: Object,
       default: () => {}
     },

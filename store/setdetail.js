@@ -64,7 +64,7 @@ export const actions = {
     let animations = await this.$axios.get('/api/sets/animation/' + id);
 
     for (let i = 0; i < animations.data.length; i++) {
-      animations.data[i].valueSet = {
+      animations.data[i].valueset = {
         rational: animations.data[i].rational,
         innovative: animations.data[i].innovative,
         personal: animations.data[i].personal,

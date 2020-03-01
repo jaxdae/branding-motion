@@ -109,7 +109,7 @@ export const actions = {
       data.tags = tags.data.map(tag => {
         return tag.name;
       });
-      data.valueSet = {
+      data.valueset = {
         rational: data.rational,
         innovative: data.innovative,
         personal: data.personal,
