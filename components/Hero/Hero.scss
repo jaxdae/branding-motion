@@ -15,7 +15,7 @@
   box-shadow: 10px 10px 30px 20px rgba($dark-blue,0.3);
   &__content{
     height:100%;
-    padding-top: 60px;
+    padding-top: 40px;
   }
 
   &__left{
@@ -34,7 +34,7 @@
   &__intro{
     height:80%;
     position: relative;
-    top:20%;
+    top:15%;
     animation: fade-in 1s forwards;
   }
 
@@ -130,6 +130,11 @@ text-align: center;
   position: absolute;
   top: 20px;
   right: 30px;
+}
+&__setlink{
+  margin-top:30px;
+  position: absolute;
+  width:65%;
 }
 
 }

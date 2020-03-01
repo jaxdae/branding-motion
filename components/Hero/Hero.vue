@@ -16,6 +16,7 @@
             filters. Recieve completely adjustable results in seconds. Save them
             on lists and export the code in your preferred language!
           </div>
+          <Button class="Hero__setlink" :label="'Create your first set'" :link="'/sets'"></Button>
         </div>
         <div class="Hero__scroll">
             <span class="Hero__scroll-text">Scroll</span>
