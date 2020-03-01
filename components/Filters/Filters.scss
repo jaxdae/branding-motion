@@ -2,24 +2,22 @@
 @import '../../styles/fonts.scss';
 @import '../../styles/grid.scss';
 
-.Filters.collapsed{
-  width:5%;
-  height: 100%;
-}
+
 
 .Filters{
   position: relative;
   background-color: rgba($light-blue, 0.7);
   padding:30px 45px 45px;
   &__headline{
+    transition: ease all 0.3s;
     @include font-caps($dark-peach);
     display:inline-block;
   }
   &__headline.collapsed{
-    transform: translate(-130px, 30px) rotate(270deg);
+    transform: rotate(-90deg) translateX(-160px);
     transform-origin: right;
+    white-space: nowrap;
     display: block;
-    width:130px;
   }
   &__filtergroup{
     padding-top:25px;
@@ -49,23 +47,30 @@
     &:hover{
         cursor: pointer;
       }
+    &:hover::after{
+      animation: zoom-out 0.5s forwards;
+    }
     &::after{
       font-family: iconfont;
       content: "\e90e";
       font-size:25px;
-      position: relative;
+      position: absolute;
+      right:30px;
       color:$dark-peach;
     }
   }
   &__collapse.collapsed{
+    &:hover::after{
+      animation: zoom-in 0.5s forwards;
+    }
     &::after{
     font-family: iconfont;
     content: "\e90c";
     font-size: 25px;
-    position: relative;
+    position: absolute;
     color: #d9af99;
-    top: -25px;
-    left: 50%;
+    top: 30px;
+    left: calc(50% - 12px);
     }
   }
   &__reset{
@@ -240,4 +245,41 @@ label input:checked ~ .radiobox:after {
   0% {transform: scale(1.4)}
   50% {transform: scale(1.8)}
   100% {transform: scale(1.4)}
+}
+
+@keyframes zoom-out {
+  0% {transform: scale(1)}
+  50% {transform: scale(0.8)}
+  100% {transform: scale(1)}
+}
+
+@keyframes zoom-in {
+  0% {transform: scale(1)}
+  50% {transform: scale(1.2)}
+  100% {transform: scale(1)}
+}
+
+.blur-delay-enter-active {
+  animation: blur-delay .5s;
+}
+.blur-delay-active {
+  animation: blur-delay1 .5s;
+}
+@keyframes blur-delay {
+  0% {opacity: 0;}
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes blur-delay1 {
+  0% {opacity: 1;}
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }

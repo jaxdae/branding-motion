@@ -54,7 +54,9 @@
      justify-content: space-between;
    }
    &__animation{
-     width:calc(54% - 120px);
+     transition: ease all 0.3s;
+     width:54%;
+     margin: 0 60px;
      height:100%;
      background: rgba($light-blue, 0.7);
      border-radius: 15px;
@@ -94,6 +96,7 @@
       }
    }
    &__background{
+     transition: ease all 0.3s;
      border-radius: 0 15px 15px 0;
      height: 100%;
      width:23%;

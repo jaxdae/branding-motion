@@ -22,6 +22,7 @@
       v-if="isLocked && !noLockIcon"
       class="Filters__locked"
     ></div>
+    <transition-group name="blur-delay">
     <div
       v-for="(filter, index) in filteroptions"
       v-if="!isCollapsed || !collapse"
@@ -101,6 +102,7 @@
           </label>
         </div>
     </div>
+    </transition-group>
     <Button
       class="Filters__reset"
       v-if="isVariables"
