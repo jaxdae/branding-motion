@@ -1,8 +1,8 @@
 <template>
   <div class="Preloader__wrapper">
   <div v-if="once" class="Preloader__text">Branding <br/> motion</div>
-  <div class="Preloader">
-    <svg class="Preloader__svg" width="93px" height="57px" viewBox="0 0 93 57" version="1.1">
+  <div class="Preloader" :class="{Preloader__bigger : !once}">
+    <svg class="Preloader__svg" :class="{Preloader__svgbig : !once}" width="93px" height="57px" viewBox="0 0 93 57" version="1.1">
       <g transform="translate(0.000000, -18.000000)" stroke="#D9AF99" stroke-width="4">
         <g v-if="!once" transform="translate(0.000000, 20.000000)">
           <path class="Preloader__path Preloader__path--4" d="M1,35.3035954 C15.7181543,38.1144303 29.884821,32.4164263 43.5,18.2095833 C57.115179,4.00274026 71.2818457,-1.40808551 86,1.97710598"></path>

@@ -10,7 +10,11 @@
   overflow:hidden;
   background: $dark-blue;
   margin-left: 15px;
-
+  &__bigger{
+    width:200px;
+    height:200px;
+    background: $mid-blue;
+  }
   &__wrapper{
     display:flex;
     &:hover{
@@ -46,13 +50,16 @@
     transform: rotate(180deg) scale(1.2);
     fill:none;
   }
+  &__svgbig{
+    transform: rotate(180deg) scale(2.5);
+  }
   &__path{
     fill:none;
     stroke-dasharray: 92;
     stroke-dashoffset: 92;
     &--7{
       stroke-width: 30px;
-      stroke:$dark-blue;
+      stroke:$mid-blue;
       stroke-dashoffset: 0;
     }
   }
