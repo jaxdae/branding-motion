@@ -7,21 +7,36 @@
       <div class="PopupCode__left">
         <div class="PopupCode__code">
           <h2 class="PopupCode__headline">HTML / Template</h2>
-          <span class="PopupCode__copy" v-clipboard="() => html" v-clipboard:success="onHtmlCopy">{{copyTextHtml}}</span>
+          <span
+            class="PopupCode__copy"
+            :class="{copied: copyTextHtml == 'copied'}"
+            v-clipboard="() => html" v-clipboard:success="onHtmlCopy">
+            {{copyTextHtml}}
+          </span>
           <div class="PopupCode__codeblock">
             <pre v-highlightjs><code>{{ html }}</code></pre>
           </div>
         </div>
         <div class="PopupCode__code">
           <h2 class="PopupCode__headline">CSS / Styling</h2>
-          <span class="PopupCode__copy" v-clipboard="() => css" v-clipboard:success="onCssCopy">{{copyTextCss}}</span>
+          <span
+            class="PopupCode__copy"
+            :class="{copied: copyTextCss == 'copied'}"
+            v-clipboard="() => css" v-clipboard:success="onCssCopy">
+            {{copyTextCss}}
+          </span>
           <div class="PopupCode__codeblock">
             <pre v-highlightjs><code>{{ cssWithVariables }}</code></pre>
           </div>
         </div>
         <div class="PopupCode__code">
         <h2 class="PopupCode__headline">JavaScript / Script</h2>
-        <span class="PopupCode__copy" v-clipboard="() => js" v-clipboard:success="onJsCopy">{{copyTextJs}}</span>
+        <span
+          class="PopupCode__copy"
+          :class="{copied: copyTextJs == 'copied'}"
+          v-clipboard="() => js" v-clipboard:success="onJsCopy">
+          {{copyTextJs}}
+        </span>
         <div class="PopupCode__codeblock">
         <pre v-highlightjs><code>{{ js }}</code></pre>
         </div>
