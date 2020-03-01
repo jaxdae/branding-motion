@@ -6,22 +6,19 @@
     &__cards{
         margin-right:30px;
     }
-
     &__filter-wrapper{
-        display:flex;
-        justify-content: space-between;
-        align-items: baseline;
-    }
-    &__left{
-        display: flex;
+        display: inline-block;
+        width:100%;
     }
     &__filter{
-            padding:0 15px;
-            border-radius: 15px;
-            background-color: $bright-yellow;
-            @include font-caps($white);
-            margin-right:15px;
-
+        padding:0 15px;
+        border-radius: 15px;
+        background-color: $bright-yellow;
+        display: inline-block;
+        @include font-caps($white);
+        margin-right:15px;
+        transition: ease all 0.5s;
+        position: relative;
     }
     &__search-results{
         @include font-blocktext($dark-grey);
@@ -52,24 +49,20 @@
     &__preloader{
         margin:60px auto;
     }
+    &__transition{
+        display:flex;
+        display: inline-block;
+    }
 }
 
 .flip-list-move {
   transition: transform 1s;
 }
 
-// .fade-enter-active,
-// .fade-leave-active {
-//   transition: all .5s;
-// }
-
-// .fade-in-left-enter,
-// .fade-in-left-leave-to {
-//   opacity: 0;
-//   transform: translateX(100px);
-// }
-
-// .fade-in-left-enter-to,
-// .fade-in-left-leave{
-//   transform: translateY(0);
-// }
+.fade-in-left-enter, .fade-in-left-leave-to{
+  opacity: 0;
+  transform: translateX(30px);
+}
+.fade-in-left-leave-active {
+  position: absolute;
+}

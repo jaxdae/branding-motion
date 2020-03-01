@@ -4,24 +4,26 @@
       {{ `${number} results for "${searchTerm}"` }}
     </div>
     <div class="Feed__filter-wrapper">
-      <div class="Feed__left">
-        <div
-          v-for="(filter, index) in $store.getters.activeTagsElements"
-          :key="filter"
-          class="Feed__filter"
-        >
-          {{ filter }}
-          <span @click="removeElement(index)" class="Feed__close"></span>
-        </div>
-        <div
-          v-for="(filter, index) in $store.getters.activeTagsCategories"
-          :key="filter.id"
-          class="Feed__filter"
-        >
-          {{ filter }}
-          <span @click="removeCategory(index)" class="Feed__close"></span>
-        </div>
-      </div>
+        <transition-group class="Feed__transition" name="fade-in-left" tag="div">
+          <div
+            v-for="(filter, index) in $store.getters.activeTagsElements"
+            :key="filter"
+            class="Feed__filter"
+          >
+            {{ filter }}
+            <span @click="removeElement(index)" class="Feed__close"></span>
+          </div>
+        </transition-group>
+        <transition-group class="Feed__transition" name="fade-in-left">
+          <div
+            v-for="(filter, index) in $store.getters.activeTagsCategories"
+            :key="filter"
+            class="Feed__filter"
+          >
+            {{ filter }}
+            <span @click="removeCategory(index)" class="Feed__close"></span>
+          </div>
+        </transition-group>
     </div>
     <div class="Feed__cards">
        <transition-group name="flip-list" tag="div" class="Feed__transition-group">
