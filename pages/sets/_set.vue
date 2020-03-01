@@ -9,6 +9,9 @@
       :setId="$route.params.set"
       >
     </hero-small>
+    <div class="Sets__back-wrapper">
+      <nuxt-link class="Sets__back" to="/sets"></nuxt-link>
+    </div>
     <div class="Sets__content">
       <div class="Home__left">
         <div class="Sets__feed">

@@ -15,7 +15,6 @@
       </Popup>
     </transition>
     <div class="HeroSmall__main">
-      <transition name="fade-in-up">
         <div v-if="animation" class="HeroSmall__intro">
             <div v-for="tag in tags" :key="tag" class="HeroSmall__tag">
               {{ tag }}
@@ -41,7 +40,6 @@
            {{ description }}
           </div>
         </div>
-      </transition>
     </div>
     <nuxt-link to="/">
     <preloader class="Hero__preloader" once></preloader>

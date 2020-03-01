@@ -3,6 +3,31 @@
 @import '../../styles/colors.scss';
 
 .Sets{
+  &__back-wrapper{
+    display: inline;
+    position: relative;
+  }
+  &__back{
+    top: 45px;
+  width:60px;
+  height:60px;
+  border: 1px solid $light;
+  border-radius: 50%;
+  position: absolute;
+  transform:rotate(180deg);
+  &:hover{
+    animation: toggleleft 1s infinite;
+  }
+  &::after{
+    top:calc(50% - 12px);
+    left:calc(50% - 12px);
+      position: absolute;
+      font-family: iconfont;
+      font-size:24px;
+      content: "\e90b";
+      color:$white;
+    }
+}
   &__darker{
     width: 100vw;
     height: 100vh;

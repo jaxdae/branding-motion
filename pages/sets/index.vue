@@ -13,7 +13,11 @@
       :name="'Animation Sets'"
       :description="'Go through all of your saved sets and animations, edit them and export the complete set once your set is completed.'">
     </hero-small>
+    <div class="Sets__back-wrapper">
+      <nuxt-link class="Sets__back" to="/"></nuxt-link>
+    </div>
     <div class="Sets__overview-feed">
+      
       <div class="Sets__info">
         <div class="Sets__results">
           {{ `You have ${number} personal animation sets` }}
