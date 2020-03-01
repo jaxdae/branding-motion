@@ -35,6 +35,7 @@
     height:80%;
     position: relative;
     top:20%;
+    animation: fade-in 1s forwards;
   }
 
 &__subheadline{
@@ -73,7 +74,7 @@
 &__scroll{
   position: absolute;
   bottom:0;
-  right:-30px;
+  right:0;
   z-index: 2;
   display:flex;
   justify-content: center;
@@ -258,3 +259,14 @@ a:focus {
     opacity: 0.8;
   }
 }
+
+@keyframes fade-in{
+ 0% {
+   transform: translateY(50px);
+   opacity: 0;
+  };
+ 100% {
+   transform: translate(0);
+   opacity: 1;
+  }
+ }

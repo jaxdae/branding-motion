@@ -16,10 +16,10 @@
             filters. Recieve completely adjustable results in seconds. Save them
             on lists and export the code in your preferred language!
           </div>
-          <div class="Hero__scroll">
+        </div>
+        <div class="Hero__scroll">
             <span class="Hero__scroll-text">Scroll</span>
           </div>
-        </div>
       </div>
       <slick
         ref="slick"
