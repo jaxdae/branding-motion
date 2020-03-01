@@ -201,4 +201,18 @@
     100% {transform:scale(1)}
   }
   scrollbar-color: rgba($dark-peach,0.4) $light-blue;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 15px;
+}
+
+::-webkit-scrollbar-track-piece  {
+    background-color: $light-blue;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  border-radius: 10px;
+    background-color: rgba($dark-peach, 0.4);
+}
 }
