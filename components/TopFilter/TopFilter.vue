@@ -65,6 +65,14 @@
         class="TopFilter__search-button"
         @click="search"
       >
+        <svg class="TopFilter__svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="fingerprint" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+            <path class="TopFilter__path TopFilter__path--1" d="M42.6856004,50 C40.2341375,39.5731997 40.2341375,31.7757423 42.6856004,26.6076277 C46.3627947,18.8554558 55.6505347,15.2590558 65.3721196,15.9565328 C75.0937044,16.6540099 81.8891361,24.7629589 83.4464007,35.587269" id="Path-2" stroke="#000000" stroke-width="2"></path>
+            <path class="TopFilter__path TopFilter__path--2" d="M48.2798034,57.9098143 C48.8281054,57.1234813 49.4015043,55.7752624 50,53.8651574 C50.8977435,51 45.8962646,38.1136522 48.2798034,33 C50.6633421,27.8863478 58.7679512,22.807161 65.8839756,25.67407 C73,28.5409789 79,39.0430431 78.2895051,52.3724138" id="Path-3" stroke="#000000" stroke-width="2"></path>
+            <path class="TopFilter__path TopFilter__path--3" d="M56.2202242,60 C56.536889,59.5888939 56.9218953,57.7349264 57.375243,54.4380976 C58.0552645,49.4928545 52.1017643,34.8153857 60.1571492,32.9357438 C68.2125342,31.0561019 73,43.2644754 72.2487078,57.2473388" id="Path-4" stroke="#000000" stroke-width="2"></path>
+            <path class="TopFilter__path TopFilter__path--4" d="M62.3677103,41.3769873 C63.6322897,44.9819337 63.6322897,54.7863899 63,58.7804967" id="Path-5" stroke="#000000" stroke-width="2"></path>
+          </g>
+        </svg>
       </div>
     </div>
 

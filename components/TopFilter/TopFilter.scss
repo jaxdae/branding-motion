@@ -37,38 +37,74 @@ padding-top:10px;
   margin-right: $grid-gutter;
 }
 &__search-button {
+  overflow: hidden;
   width: grid-span(1);
   height: 100%;
   background-color: $light;
   position: absolute;
   top:0;
   right: 0;
-  transition: 0.2s all ease-out;
+  transition: 0.1s all ease-out;
   cursor: pointer;
   border-radius: 0 0 15px 0;
   &:hover{
-    transition: 0.2s all ease-out;
+    transition: 0.1s all ease-out;
     background-color: $bright-yellow;
+    .TopFilter__path--1{
+      animation: fingerprint-1 0.5s forwards 0.3s;
+    }
+    .TopFilter__path--2{
+      animation: fingerprint-2 0.6s forwards 0.2s;
+    }
+    .TopFilter__path--3{
+      animation: fingerprint-3 0.7s forwards 0.1s;
+    }
+    .TopFilter__path--4{
+      animation: fingerprint-4 0.8s forwards;
+    }
   }
   &:hover::before{
     transition: 0.2s all ease-out;
     color: $white;
+    font-weight: normal;
+    transform:scale(2) translate(-5px,4px);
+    transform-origin: center;
   }
   &::before {
     transition: 0.2s all ease-out;
     font-family: iconfont;
-    content: "\e90a";
+    content: "\e913";
     color: $dark-blue;
     position: absolute;
     font-size: 40px;
     font-weight: bold;
     top: calc(50% - 20px);
     left: calc(50% - 20px);
-    height: 100%;
-    width: 100%;
   }
 }
-
+&__svg{
+  transform: scale(0.8) translate(-13px,8px);
+}
+&__path{
+  stroke: $white;
+  &--1{
+    
+    stroke-dasharray: 80px;
+    stroke-dashoffset: 80px;
+  }
+  &--2{
+    stroke-dasharray: 78px;
+    stroke-dashoffset: 78px;
+  }
+  &--3{
+    stroke-dasharray: 60px;
+    stroke-dashoffset: 60px;
+  }
+  &--4{
+    stroke-dasharray: 18px;
+    stroke-dashoffset: -18px;
+  }
+}
 &__back-button {
   width: grid-span(1);
   height: 100%;
@@ -131,4 +167,21 @@ padding-top:10px;
     z-index: 3;
   }
 }
+}
+
+  @keyframes fingerprint-1{
+  0%{stroke-dashoffset: 80px}
+  100%{stroke-dashoffset: 0}
+}
+ @keyframes fingerprint-2{
+  0%{stroke-dashoffset: 78px}
+  100%{stroke-dashoffset: 0}
+}
+ @keyframes fingerprint-3{
+  0%{stroke-dashoffset: 60px}
+  100%{stroke-dashoffset: 0}
+}
+ @keyframes fingerprint-4{
+  0%{stroke-dashoffset: -18px}
+  100%{stroke-dashoffset: 0}
 }
