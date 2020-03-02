@@ -53,7 +53,7 @@
               <div
                 v-for="tag in set.tags"
                 :key="tag.id"
-                class="AnimationCard__tag"
+                class="Hero__tag"
               >
                 {{ tag }}
               </div>

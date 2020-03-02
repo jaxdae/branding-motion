@@ -3,7 +3,7 @@
 @import "../../styles/grid.scss";
 
 .Hero{
-  height: 630px;
+  height: auto;
   background-image: url('./../../assets/images/fingerprint.svg');
   background-color: $dark-blue;
   background-size:cover;
@@ -13,33 +13,67 @@
   justify-content: center;
   overflow: hidden;
   box-shadow: 10px 10px 30px 20px rgba($dark-blue,0.3);
+  @media (min-width:1024px){
+      height:500px;
+    }
   @media (min-width:1200px){
-     height: 630px;
+      height:630px;
     }
   @media (min-width:1440px){
       height:740px;
     }
   &__content{
     height:100%;
-    padding-top: 40px;
+    padding-top: 0;
+     @media (min-width:1200px){
+      padding-top: 40px;
+    }
   }
 
   &__left{
     position: relative;
-    padding: 0 30px 0 60px;
+    width:100%;
+    padding: 90px 30px 90px 30px;
+    @media (min-width:586px){
+      padding: 30px 30px 90px 30px;
+    }
+     @media (min-width:768px){
+      padding: 60px 60px 120px 60px;
+    }
+    @media (min-width:1024px){
+      width:36%;
+      padding: 0 30px 0 60px;
+    }
     
     @media (min-width:1440px){
       padding: 0 30px 0 0;
+    }
+  }
+  &__right{
+    width:44%;
+    padding-right:105px;
+    display:none;
+     @media (min-width:1024px){
+      display:block;
+      width:40%;
+    }
+     @media (min-width:1440px){
+      padding-right:45px;
     }
   }
   &__middle{
     height:100%;
     top:0;
     z-index: +1;
-    width:248px;
+    width:200px;
     overflow: hidden;
     background-color: $dark-blue;
     box-shadow: -10px 0 20px 10px rgba($dark-blue,0.35);
+    display:none;
+    @media (min-width:1024px){
+      display:block;
+      width:248px;
+    }
     @media (min-width:1200px){
       width:248px;
     }
@@ -50,29 +84,20 @@
   &__intro{
     height:80%;
     position: relative;
-    top:15%;
+    top:0;
     animation: fade-in 1s forwards;
+    @media (min-width:1024px){
+      top:15%;
+    }
   }
 
 &__subheadline{
   @include font-caps($dark-peach);
-   width:300px;
-   @media (min-width:1440px){
-     width:346px;
-    }
-   @media (min-width:1200px){
-     width:300px;
-    }
+   width:100%;
 }
 &__headline{
   padding-bottom:20px;
-  width:300px;
-  @media (min-width:1440px){
-     width:346px;
-    }
-   @media (min-width:1200px){
-     width:300px;
-    }
+  width:100%;
   &--left{
     @include font-headline($white);
   }
@@ -81,13 +106,7 @@
   }
 }
 &__description{
-   width:300px;
-   @media (min-width:1200px){
-     width:300px;
-    }
-    @media (min-width:1440px){
-     width:346px;
-    }
+   width:100%;
   &--left{
     @include font-blocktext($white);
   }
@@ -97,18 +116,16 @@
 }
 &__info{
   background-color: $light;
-  width: 340px;
+  width: 100%;
   height: 80%;
   border-radius: 0 0 15px 0;
-  padding: 45px;
+  padding: 30px;
   margin-bottom:60%;
+  margin-right:30px;
   z-index: 2;
   box-shadow: 0 0 20px 20px rgba($dark-blue,0.5);
   @media (min-width:1200px){
-      width:340px;
-    }
-  @media (min-width:1440px){
-      width: 430px;
+      padding: 45px;
     }
 }
 &__scroll{
@@ -148,16 +165,22 @@ text-align: center;
  } 
 }
 &__video{
-  height:200px;
+  height:170px;
   object-fit:cover;
+  @media (min-width:1200px){
+      height:215px;
+    }
   @media (min-width:1440px){
       height:246.66px;
     }
 }
 &__single-video{
   width:100%;
-  height:215px;
+  height:170px;
   object-fit:cover;
+    @media (min-width:1200px){
+      height:215px;
+    }
   @media (min-width:1440px){
       height:246.66px;
     }
@@ -191,6 +214,15 @@ text-align: center;
      width:65%;
     }
 }
+ &__tag{
+    border-radius: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: $bright-yellow;
+    @include font-caps($white);
+    display: inline-block;
+    padding: 0 15px;
+    }
 
 }
 
@@ -227,9 +259,9 @@ a:focus {
   .slick-next{
     cursor: pointer;
     right:105px;
-    bottom:35px;
-    width:60px;
-    height:60px;
+    bottom:30px;
+    width:40px;
+    height:40px;
     border-radius: 50%;
     z-index: 999;
     background-color:transparent;
@@ -244,9 +276,13 @@ a:focus {
     font-size:24px;
     content: "\e90b";
     color: $white;
+    @media (min-width:1024px){
+      font-size:18px;
     }
-    @media (min-width:1200px){
-      right:220px;
+    }
+   @media (min-width:1200px){
+      width:60px;
+      height:60px;
       bottom:35px;
     }
     @media (min-width:1440px){
@@ -258,16 +294,21 @@ a:focus {
       right:-60px;
     }
   }
+  
 
 .slick-dots {
 	display: flex;
   justify-content: center;
   position: absolute;
   z-index: 999;
-    left:600px;
-    bottom:7.5%;
+    left:700px;
+    bottom:6.5%;
     @media (min-width:1024px){
-      left:680px;
+      left:63%;
+    }
+     @media (min-width:1200px){
+      left:65%;
+      bottom:7.5%;
     }
     @media (min-width:1440px){
       left:780px;
@@ -294,7 +335,7 @@ a:focus {
 			border-radius: 100%;
 			background-color: rgba($white, 0.3) !important;
       text-indent: -9999px;
-		}
+    }
 }
 
 @keyframes toggle {
