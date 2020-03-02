@@ -4,16 +4,23 @@
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  line-height: 28px;
+  line-height: 24px;
   text-transform: uppercase;
+  @media (min-width:1440px){
+     line-height: 28px;
+    }
 }
 
 @mixin font-headline($color){
     color: $color;
   font-family: "Futura";
-  font-size: 55px;
+  font-size: 48px;
   font-weight: 500;
-  line-height: 80px;
+  line-height: 60px;
+  @media (min-width:1440px){
+     font-size: 50px;
+     line-height: 80px;
+    }
 }
 
 @mixin card-headline($color){
@@ -26,10 +33,14 @@
 
 @mixin font-blocktext($color){
     font-family: "Merriweather Sans";	
-    font-size: 14px;	
+    font-size: 12px;	
     font-weight: 300;	
-    line-height: 28px;
+    line-height: 24px;
     color: $color;
+    @media (min-width:1440px){
+     font-size: 13px;
+     line-height: 26px;
+    }
 }
 
 .caps {

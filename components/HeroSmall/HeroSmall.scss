@@ -116,36 +116,7 @@
       color:$white;
     }
   }
-}
-@keyframes wave {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes scrollDown {
-  from {
-    transform: translateY(-10px);
-  }
-
-  to {
-    transform: translateY(0px);
-  }
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus,
-a:focus {
-    outline: none;
-}
-
-  .slick-arrow{
-    position: absolute;
-  }
-
-  .slick-next{
+   .slick-next{
     cursor: pointer;
     bottom:50%;
     right:-90px;
@@ -162,8 +133,10 @@ a:focus {
     color: $white;
     }
   }
-
-.slick-dots {
+  .slick-arrow{
+    position: absolute;
+  }
+  .slick-dots {
 	display: flex;
   justify-content: center;
   position: absolute;
@@ -198,6 +171,32 @@ a:focus {
 		}
 	
 }
+}
+@keyframes wave {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scrollDown {
+  from {
+    transform: translateY(-10px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+    outline: none;
+}
+
+
 
 .bounce-enter-active{
   animation: bounce-in 0.4s 0.15s;

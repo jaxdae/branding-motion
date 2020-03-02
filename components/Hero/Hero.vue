@@ -104,7 +104,7 @@ export default {
         slidesToScroll:1,
         verticalSwiping: true,
         speed: 800,
-        prevArrow: false
+        prevArrow: false,
       },
       firstString: true,
       currentSlide: 0,

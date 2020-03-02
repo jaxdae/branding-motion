@@ -40,10 +40,15 @@
   }
   &__text{
     @include font-caps($white);
-    line-height: 16px;
+    line-height: 16px !important;
     text-align: right;
     font-size: 11px;
     margin-top:6px;
+    display:none;
+    
+     @media (min-width:1630px){
+      display:block;
+    }
   }
   &__svg{
     transform:rotate(180deg);

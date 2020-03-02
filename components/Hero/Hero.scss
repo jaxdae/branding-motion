@@ -3,7 +3,7 @@
 @import "../../styles/grid.scss";
 
 .Hero{
-  height: 740px;
+  height: 630px;
   background-image: url('./../../assets/images/fingerprint.svg');
   background-color: $dark-blue;
   background-size:cover;
@@ -13,6 +13,12 @@
   justify-content: center;
   overflow: hidden;
   box-shadow: 10px 10px 30px 20px rgba($dark-blue,0.3);
+  @media (min-width:1200px){
+     height: 630px;
+    }
+  @media (min-width:1440px){
+      height:740px;
+    }
   &__content{
     height:100%;
     padding-top: 40px;
@@ -20,16 +26,26 @@
 
   &__left{
     position: relative;
-    padding-right: 30px;
+    padding: 0 30px 0 60px;
+    
+    @media (min-width:1440px){
+      padding: 0 30px 0 0;
+    }
   }
   &__middle{
     height:100%;
     top:0;
     z-index: +1;
-    width:422px;
+    width:248px;
     overflow: hidden;
     background-color: $dark-blue;
     box-shadow: -10px 0 20px 10px rgba($dark-blue,0.35);
+    @media (min-width:1200px){
+      width:248px;
+    }
+    @media (min-width:1440px){
+      width:350px;
+    }
   }
   &__intro{
     height:80%;
@@ -40,11 +56,23 @@
 
 &__subheadline{
   @include font-caps($dark-peach);
-   width:346px;
+   width:300px;
+   @media (min-width:1440px){
+     width:346px;
+    }
+   @media (min-width:1200px){
+     width:300px;
+    }
 }
 &__headline{
   padding-bottom:20px;
-  width:346px;
+  width:300px;
+  @media (min-width:1440px){
+     width:346px;
+    }
+   @media (min-width:1200px){
+     width:300px;
+    }
   &--left{
     @include font-headline($white);
   }
@@ -53,7 +81,13 @@
   }
 }
 &__description{
-   width:346px;
+   width:300px;
+   @media (min-width:1200px){
+     width:300px;
+    }
+    @media (min-width:1440px){
+     width:346px;
+    }
   &--left{
     @include font-blocktext($white);
   }
@@ -63,13 +97,19 @@
 }
 &__info{
   background-color: $light;
-  width: 492px;
+  width: 340px;
   height: 80%;
   border-radius: 0 0 15px 0;
   padding: 45px;
-  margin-bottom:30%;
+  margin-bottom:60%;
   z-index: 2;
   box-shadow: 0 0 20px 20px rgba($dark-blue,0.5);
+  @media (min-width:1200px){
+      width:340px;
+    }
+  @media (min-width:1440px){
+      width: 430px;
+    }
 }
 &__scroll{
   position: absolute;
@@ -84,7 +124,12 @@
   height: 140px;
   width: 103px;
   border-radius: 15px 0 0 0;
+  display:none;
  @include font-caps($white);
+
+  @media (min-width:1440px){
+      display:flex;
+    }
 
 }
 &__scroll-text{
@@ -103,13 +148,19 @@ text-align: center;
  } 
 }
 &__video{
-  height:246.66px;
+  height:200px;
   object-fit:cover;
+  @media (min-width:1440px){
+      height:246.66px;
+    }
 }
 &__single-video{
   width:100%;
-  height:246.66px;
+  height:215px;
   object-fit:cover;
+  @media (min-width:1440px){
+      height:246.66px;
+    }
 }
 &__logo{
     position: absolute;
@@ -131,10 +182,14 @@ text-align: center;
   top: 20px;
   right: 30px;
 }
+
 &__setlink{
   margin-top:30px;
   position: absolute;
-  width:65%;
+  width:100%;
+   @media (min-width:1440px){
+     width:65%;
+    }
 }
 
 }
@@ -171,8 +226,8 @@ a:focus {
 
   .slick-next{
     cursor: pointer;
-    bottom:50%;
-    right:-90px;
+    right:105px;
+    bottom:35px;
     width:60px;
     height:60px;
     border-radius: 50%;
@@ -188,7 +243,19 @@ a:focus {
       font-family: iconfont;
     font-size:24px;
     content: "\e90b";
-    color: $dark-blue;
+    color: $white;
+    }
+    @media (min-width:1200px){
+      right:220px;
+      bottom:35px;
+    }
+    @media (min-width:1440px){
+      bottom:45px;
+    right:43px;
+    }
+    @media (min-width:1600px){
+      bottom:50%;
+      right:-60px;
     }
   }
 
@@ -197,9 +264,14 @@ a:focus {
   justify-content: center;
   position: absolute;
   z-index: 999;
-    right:350px !important;
+    left:600px;
     bottom:7.5%;
-	
+    @media (min-width:1024px){
+      left:680px;
+    }
+    @media (min-width:1440px){
+      left:780px;
+    }
 	margin: 0;
 	padding: 1rem 0;
 	
