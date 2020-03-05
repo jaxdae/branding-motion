@@ -1,7 +1,7 @@
 <template>
   <div class="AnimationCard">
     <div class="AnimationCard__wrapper">
-      <nuxt-link :to="link" class="AnimationCard__link">
+      <nuxt-link :to="link" class="AnimationCard__link--left">
         <video autoplay muted loop class="AnimationCard__video">
           <source :src="video" type="video/mp4" />
         </video>

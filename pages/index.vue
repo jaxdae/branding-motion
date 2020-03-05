@@ -1,7 +1,8 @@
 <template>
   <div class="Home">
     <Hero :sets="curatedCards"></Hero>
-    <top-filter class="Home__topfilter"></top-filter>
+    <top-filter v-if="$mq !== 'md'&& $mq !=='sm'" class="Home__topfilter"></top-filter>
+    <mobile-filters v-else></mobile-filters>
     <div class="Home__content">
       <div class="Home__left">
         <Feed :allCards="displayCards" :allLoad="displayLoad">

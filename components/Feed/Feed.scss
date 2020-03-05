@@ -16,7 +16,7 @@
         background-color: $bright-yellow;
         display: inline-block;
         @include font-caps($white);
-        margin-right:15px;
+        margin: 7.5px;
         transition: ease all 0.5s;
         position: relative;
     }

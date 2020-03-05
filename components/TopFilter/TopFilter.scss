@@ -4,6 +4,11 @@
 @import "../../styles/multiselect.scss";
 
 .TopFilter{
+  &__multiselect{
+  position: absolute !important;
+  bottom: -1px;
+  padding-top:8px;
+}
   &__filter-headline{
 @include font-caps($dark-peach);
 margin-left:15px;
@@ -35,6 +40,13 @@ padding-top:10px;
   width: grid-span(3);
   position: relative;
   margin-right: $grid-gutter;
+   .multiselect__tags {
+	min-height: 40px;
+	display: block;
+	padding: 12px 40px 0 8px;
+	background: #fff;
+	font-size: 14px
+}
 }
 &__search-button {
   overflow: hidden;
@@ -168,6 +180,8 @@ padding-top:10px;
   }
 }
 }
+
+
 
   @keyframes fingerprint-1{
   0%{stroke-dashoffset: 80px}

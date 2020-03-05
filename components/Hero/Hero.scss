@@ -273,11 +273,11 @@ a:focus {
     }
     &::after{
       font-family: iconfont;
-    font-size:24px;
+    font-size:18px;
     content: "\e90b";
     color: $white;
     @media (min-width:1024px){
-      font-size:18px;
+      font-size:24px;
     }
     }
    @media (min-width:1200px){
@@ -301,13 +301,10 @@ a:focus {
   justify-content: center;
   position: absolute;
   z-index: 999;
-    left:700px;
+    left:63%;
     bottom:6.5%;
-    @media (min-width:1024px){
-      left:63%;
-    }
      @media (min-width:1200px){
-      left:65%;
+      left:60.5%;
       bottom:7.5%;
     }
     @media (min-width:1440px){

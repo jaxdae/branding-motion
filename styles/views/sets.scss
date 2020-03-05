@@ -3,9 +3,13 @@
 @import '../../styles/colors.scss';
 
 .Sets{
+  overflow-x:hidden;
   &__back-wrapper{
-    display: inline;
+    display: none;
     position: relative;
+    @media (min-width:768px){
+      display: inline;
+    }
   }
   &__back{
     top: 45px;
@@ -51,8 +55,11 @@
   &__overview-feed{
     @include grid-width();
     padding:0;
-    margin-top:60px;
+    margin-top:30px;
     position: relative;
+    @media (min-width:768px){
+      margin-top:60px;
+    }
   }
 
   &__feed{
@@ -61,7 +68,10 @@
 
   &__results{
     @include font-blocktext($dark-grey);
-    margin-bottom: 30px;
+    margin-bottom: 75px;
+    @media (min-width:768px){
+      margin-bottom: 30px;
+    }
   }
 
   &__info{
@@ -71,9 +81,20 @@
   &__button{
     position: absolute;
     right:0;
+    top:30px;
+    width:100%;
+    @media (min-width:768px){
+      top:0;
+      display: block;
+      width:initial;
+    }
     &--import{
+      display:none;
       position: absolute;
       right: 300px;
+      @media (min-width:768px){
+      display: block;
+    }
     }
   }
 

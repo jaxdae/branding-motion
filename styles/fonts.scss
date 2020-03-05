@@ -34,9 +34,13 @@
 @mixin card-headline($color){
   font-family: "Futura";	
   color: $color;
-  font-size: 29px;
+  font-size: 26px;
   font-weight: 500;
-  line-height: 39px;
+  line-height: 36px;
+  @media (min-width:768px){
+     font-size: 29px;
+     line-height: 39px;
+    }
 }
 
 @mixin font-blocktext($color){

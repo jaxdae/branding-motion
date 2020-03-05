@@ -105,6 +105,7 @@ export default {
         verticalSwiping: true,
         speed: 800,
         prevArrow: false,
+        autoplay: true,
       },
       firstString: true,
       currentSlide: 0,

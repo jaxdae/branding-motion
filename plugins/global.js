@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 import highlight from 'vue-highlightjs';
 import clipboard from 'v-clipboard';
+import VueMq from 'vue-mq';
 
 import Card from '../components/AnimationCard/AnimationCard.vue'
 import Button from '../components/Button/Button.vue'
@@ -14,6 +15,7 @@ import Filters from '../components/Filters/Filters.vue'
 import Footer from '../components/Footer/Footer.vue'
 import Hero from '../components/Hero/Hero.vue'
 import HeroSmall from '../components/HeroSmall/HeroSmall.vue'
+import MobileFilters from '../components/MobileFilters/MobileFilters.vue'
 import Popup from '../components/Popup/Popup.vue'
 import PopupCode from '../components/PopupCode/PopupCode.vue'
 import PopupUpload from '../components/PopupUpload/PopupUpload.vue'
@@ -23,6 +25,13 @@ import TopFilter from '../components/TopFilter/TopFilter.vue'
 
 Vue.use(highlight);
 Vue.use(clipboard);
+Vue.use(VueMq, {
+  breakpoints: {
+    sm: 450,
+    md: 992,
+    lg: Infinity,
+  }
+})
 
 Vue.component('Card', Card);
 Vue.component('Button', Button);
@@ -35,6 +44,7 @@ Vue.component('Filters', Filters);
 Vue.component('Footer', Footer);
 Vue.component('Hero', Hero);
 Vue.component('hero-small', HeroSmall);
+Vue.component('mobile-filters', MobileFilters);
 Vue.component('Popup', Popup);
 Vue.component('popup-code', PopupCode);
 Vue.component('popup-upload', PopupUpload);

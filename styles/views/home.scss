@@ -11,27 +11,52 @@
   }
 
   &__left{
-    width:75%;
-    margin-left: calc((100% - 1200px) / 2);
+    width:100%;
+    .Feed__cards{
+      margin-right: 0;
+    }
+
+    @media (min-width:1200px){
+      width:70%;
+      margin-right: 30px;
+    }
+
+    @media (min-width:1440px){
+      width:75%;
+    }
+    
+    @media (min-width:1440px){
+     margin-left: calc((100% - 1200px) / 2);
+    }
   }
 
   &__right{
     position:sticky;
     top:120px;
-    width:25%;
-    height: 735px;
+    width:30%;
+    height: 713px;
+    display:none;
+
+    @media (min-width:1200px){
+      display:block;
+    }
+
+    @media (min-width:1440px){
+      width:25%;
+      height: 735px;
+    }
   }
 
   &__filters{
     position: relative;
-    top: 95px;
+    top: 110px;
     border-radius: 15px 0 0 15px;
   }
 
   &__cart{
     position: absolute;
     right:0;
-    top:30px;
+    top:45px;
     width: 100%;
   }
 

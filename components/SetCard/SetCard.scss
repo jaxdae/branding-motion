@@ -2,25 +2,39 @@
 @import "../../styles/fonts.scss";
 
 .SetCard{
+    a.SetCard__link{
+      @media (min-width:768px){
+        height:100%;
+        width: 100%;
+        display:block;
+      }
+  }
   &__wrapper{
     transition: ease-in-out 0.2s;
-    height: 275px;
     background-color: $light-blue;
     box-shadow: 10px 10px 20px 20px rgba($dark-blue, 0.1);
     border-radius: 15px;
     position: relative;
     overflow: hidden;
     margin-bottom:45px;
+    display:flex;
+    flex-flow: row wrap;
+    @media (min-width:768px){
+      height: 275px;
+    }
     &:hover{
       box-shadow: 10px 10px 20px 20px rgba($dark-blue, 0.4);
     }
   }
   &__content{
-    width:calc(40% - 45px);
-    position:absolute;
+    width: 100%;
     right:0;
     top:0;
     padding:35px;
+    @media (min-width:768px){
+      position:absolute;
+      width:calc(40% - 45px);
+    }
   }
   &__tag{
     border-radius: 15px;
@@ -40,9 +54,13 @@
     @include font-blocktext($dark-grey);
   }
   &__video{
+    margin-bottom: -3px;
     height:275px;
-    width:31.5%;
+    width:100%;
     object-fit: cover;
+    @media (min-width:768px){
+      width:31.5%;
+    }
   }
   &__heart{
     &:hover{

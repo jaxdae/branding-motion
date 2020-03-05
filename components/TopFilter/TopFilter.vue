@@ -18,6 +18,7 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Elements</h2>
         <multiselect
+          class="TopFilter__multiselect"
           :value="activeTagsElements"
           :options="optionsElements"
           @select="addElement"
@@ -41,6 +42,7 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Categories</h2>
         <multiselect
+          class="TopFilter__multiselect"
           :value="activeTagsCategories"
           :options="optionsCategories"
           @select="addCategory"
@@ -83,7 +85,8 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline caps">Programming language</h2>
         <multiselect
-        disabled
+          disabled
+          class="TopFilter__multiselect"
           :value="activeTagsElements"
           :options="optionsElements"
           @select="addElement"
@@ -107,7 +110,7 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Primary color</h2>
         <input
-          class="TopFilter__input"
+          class="TopFilter__input TopFilter__multiselect"
           v-model="primaryColor"
           @keyup.enter="setPrimaryColor"
           @keydown="keepHashPrimary"
@@ -118,7 +121,7 @@
       <div class="TopFilter__filter-box">
         <h2 class="TopFilter__filter-headline">Secondary color</h2>
         <input
-          class="TopFilter__input"
+          class="TopFilter__input TopFilter__multiselect"
           v-model="secondaryColor"
           @keyup.enter="setSecondaryColor"
           @keydown="keepHashSecondary"

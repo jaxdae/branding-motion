@@ -16,16 +16,22 @@
 }
 
 .HeroSmall{
-  height: 400px;
+  height: 300px;
   background-color: $dark-blue;
   background-image: url('./../../assets/images/fingerprint.svg');
   background-size:cover;
   border-radius: 15px 15px 0 0;
+  padding: 30px;
   display:flex;
   position: relative;
   justify-content: center;
   overflow: hidden;
   box-shadow: 10px 10px 30px 20px rgba($dark-blue,0.3);
+  @media (min-width:768px){
+    height: 400px;
+    padding: 60px;
+  }
+
   &__content{
     height:100%;
     padding-top: 60px;
@@ -83,9 +89,13 @@
 &__main {
   display:flex;
   position: relative;
-  width: $grid-width;
+  max-width: $grid-width;
   align-items: center;
+  width:100%;
   border-radius: 15px 15px 0 0;
+  @media (min-width:1200px){
+    width: $grid-width;
+  }
 }
 
 &__tag{
