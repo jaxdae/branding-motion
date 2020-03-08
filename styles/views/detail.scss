@@ -20,10 +20,12 @@
      width: 5%;
    }
    &__left{
-     width:23%;
+     width:28%;
      height: 100%;
      position: relative;
-     //overflow: hidden;
+     @media (min-width:1600px){
+      width: 23%;
+    }
    }
    &__adjustments .Filters__filtergroup .Filters__labels .Filters__label--left:hover,
    &__adjustments .Filters__filtergroup .Filters__labels .Filters__label--right:hover{
@@ -55,17 +57,30 @@
    }
    &__animation{
      transition: ease all 0.3s;
-     width:54%;
-     margin: 0 60px;
+     width:calc(77% - 120px);
+     margin: 0 0 0 0;
      height:100%;
      background: rgba($light-blue, 0.7);
      border-radius: 15px;
      display:flex;
      position: relative;
      z-index: 0;
+     @media (min-width:1440px){
+      width: 44%;
+      margin: 0 60px;
+    }
+    @media (min-width:1600px){
+      width: 54%;
+    }
    }
    &__animation.wider{
-     width: calc(72% - 120px);
+     width: calc(77% - 120px);
+     @media (min-width:1440px){
+      width: calc(72% - 120px);
+    }
+    @media (min-width:1600px){
+      width: calc(72% - 120px);
+    }
    }
    &__component{
      margin:auto;
@@ -99,7 +114,14 @@
      transition: ease all 0.3s;
      border-radius: 0 15px 15px 0;
      height: 100%;
-     width:23%;
+     width:28%;
+     display:none;
+     @media (min-width:1440px){
+      display: block;
+    }
+    @media (min-width:1600px){
+      width: 23%;
+    }
    }
    &__select-overlay{
      border-radius: 15px;
@@ -139,6 +161,9 @@
       width: calc(100% - 90px);
       bottom: 90px;
       right: 45px; 
+    }
+    &__empty{
+      margin:60px 0 0 30px;
     }
 }
 

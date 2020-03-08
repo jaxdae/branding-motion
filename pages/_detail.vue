@@ -15,7 +15,7 @@
     </popup-code>
     </transition>
     <hero-small :animation="card" :tags="card.tags"></hero-small>
-    <span v-if="$mq == 'lg'" class="Detail__desktop">
+    <mq-layout :mq="['xxl', 'max']">
       <top-filter isDetail></top-filter>
       <div class="Detail__wrapper" v-if="cardLoad">
         <filters
@@ -32,7 +32,7 @@
         </filters>
         <Effect
           :type="card.effect.type"
-          :class="{ wider: !isCollapsed }"
+          :class="{ wider: !isCollapsed}"
           class="Detail__animation"
         >
         <div v-if="showListChooser" class="Detail__select-overlay">
@@ -78,14 +78,16 @@
           </filters>
         </div>
       </div>
-    </span>
-    <empty-placeholder
-      v-else
-      subheadline="Not available on mobile"
-      headline="Oops! Looks like you're on a mobile device!"
-      body="In order to make adjustments on the animations you need to be on a desktop sized screen!"
-    >
-    </empty-placeholder>
+    </mq-layout>
+    <mq-layout :mq="['xs', 'sm', 'md', 'lg', 'xl']">
+      <empty-placeholder
+        class="Detail__empty"
+        subheadline="Not available on mobile"
+        headline="Oops! Looks like you're on a mobile device!"
+        body="In order to make adjustments on the animations you need to be on a desktop sized screen!"
+      >
+      </empty-placeholder>
+    </mq-layout>
     <cross-ref-slider
       v-if="crossrefCards"
       :cards="crossrefCards"

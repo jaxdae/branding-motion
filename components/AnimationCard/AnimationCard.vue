@@ -104,13 +104,13 @@ export default {
     }),
     link() {
       if(this.inSet){
-        if(this.$mq == 'lg'){
+        if(this.$mq == 'lg' || this.$mq == 'xl' || this.$mq == 'xxl' || this.$mq == 'max') {
           return '/' + this.id.toString();
         }else{
           return '/sets/' + this.$route.params.set;
         }
       }else {
-        if(this.$mq == 'lg'){
+        if(this.$mq == 'lg' || this.$mq == 'xl' || this.$mq == 'xxl' || this.$mq == 'max'){
           return this.id.toString();
         }else {
           return '/';
