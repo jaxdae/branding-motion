@@ -6,6 +6,13 @@
 .CrossRefSlider{
   max-width: $grid-width;
   margin:auto;
+  height: 580px;
+  @media (min-width:992px){
+      height: 630px;
+    }
+  @media (min-width:1440px){
+      height: auto;
+    }
   &__subheadline{
     @include font-caps($dark-peach);
     margin-top:90px;
@@ -19,8 +26,8 @@
 }
  .slick-next{
     cursor: pointer;
-    top:calc(50% - 30px);
-    right:-80px;
+    top:-90px;
+    right:15px;
     width:60px;
     height:60px;
     border-radius: 50%;
@@ -28,6 +35,7 @@
     border-color: $taupe;
     background-color:transparent;
     font-size: 0;
+    display: none;
     &::after{
       font-family: iconfont;
     font-size:24px;
@@ -35,11 +43,18 @@
     color: $taupe;
     font-weight:bold;
     }
+    @media (min-width:768px){
+      display: block;
+    }
+    @media (min-width:1440px){
+      top:calc(50% - 30px);
+      right:-80px;
+    }
   }
    .slick-prev{
     cursor: pointer;
-    top:calc(50% - 30px);
-    left:-80px;
+    top:-90px;
+    right: 120px;
     width:60px;
     transform: rotate(180deg);
     height:60px;
@@ -48,6 +63,14 @@
     border-color: $taupe;
     background-color:transparent;
     font-size: 0;
+    display:none;
+    @media (min-width:768px){
+      display: block;
+    }
+    @media (min-width:1440px){
+      top:calc(50% - 30px);
+      left:-80px;
+    }
     &:hover{
        animation: toggleleft 1s infinite;
     }
@@ -70,12 +93,13 @@
 .slick-list
 {
     position: relative;
-
     display: block;
-    overflow: hidden;
-
+    overflow: visible;
     margin: 0;
     padding: 0;
+    @media (min-width:1440px){
+      overflow: hidden;
+    }
 }
 .slick-list:focus
 {

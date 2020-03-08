@@ -53,8 +53,22 @@ export default {
     return {
       slickOptions: {
         slidesToShow: 3,
-        slidesToScroll: 3,
-        speed: 800
+        slidesToScroll: 1,
+        speed: 800,
+        responsive: [
+          {
+            breakpoint: 1440,
+            settings: {
+              slidesToShow: 2,
+            }
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 1,
+            }
+          }
+        ]
       }
     };
   },

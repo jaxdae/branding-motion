@@ -5,10 +5,15 @@
 .Sets{
   overflow-x:hidden;
   &__back-wrapper{
-    display: none;
     position: relative;
+    display:none;
     @media (min-width:768px){
+      display: block;
+      height: 75px;
+    }
+    @media (min-width:1600px){
       display: inline;
+      height: 0;
     }
   }
   &__back{
@@ -81,7 +86,8 @@
   &__button{
     position: absolute;
     right:0;
-    top:30px;
+    padding: 0 30px;
+    top:40px;
     width:100%;
     @media (min-width:768px){
       top:0;
@@ -89,11 +95,18 @@
       width:initial;
     }
     &--import{
+      padding: 0 30px;
       display:none;
       position: absolute;
+      right: 265px;
+      @media (min-width:1200px){
       right: 300px;
-      @media (min-width:768px){
+      }
+      @media (min-width:992px){
       display: block;
+      }
+      @media (min-width:768px){
+      width:initial;
     }
     }
   }
