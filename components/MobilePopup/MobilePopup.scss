@@ -1,0 +1,60 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.MobilePopup{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height: 100vh;
+  z-index: 5;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &__filters{
+    width:100%;
+    padding: 15px;
+    @media (min-width:576px){
+      padding: 30px 45px 45px 45px;
+    }
+  }
+  &__window{
+    padding:30px 30px;
+    width: calc(100% - 60px);
+    background-color: $light-blue;
+    box-shadow: 0 0 15px 2px rgba($light-blue, 0.6);
+    border-radius: 15px;
+    margin:auto;
+    margin-bottom:30px;
+    position: relative;
+    top:30px;
+    @media (min-width:768px){
+      width: 50%;
+    }
+  }
+  &__close{
+    position: relative;
+    z-index: 4;
+    top:-30px;
+    right: -30px;
+    @media (min-width:576px){
+      right:0;
+    }
+    &:hover{
+      cursor: pointer;
+      &::before{
+      color: $white;
+      }
+    }
+    &::before{
+    transition: ease all 0.3s;
+    font-family: iconfont;
+    content: "\e902";
+    font-size: 25px;
+    position: absolute;
+    top:45px;
+    right:45px;
+    color: $dark-peach;
+    }
+  }
+}

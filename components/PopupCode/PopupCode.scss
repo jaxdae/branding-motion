@@ -28,6 +28,16 @@
     margin-bottom:3%;
     position: relative;
     top:5%;
+    @media (min-width:768px){
+      width:75%;
+      top:5%;
+    }
+    @media (min-width:1024px){
+      top:12.5%;
+    }
+    @media (min-width:1600px){
+      width:50%;
+    }
   }
   &__close{
     &:hover{

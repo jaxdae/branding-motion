@@ -16,6 +16,7 @@ import Footer from '../components/Footer/Footer.vue'
 import Hero from '../components/Hero/Hero.vue'
 import HeroSmall from '../components/HeroSmall/HeroSmall.vue'
 import MobileFilters from '../components/MobileFilters/MobileFilters.vue'
+import MobilePopup from '../components/MobilePopup/MobilePopup.vue'
 import Popup from '../components/Popup/Popup.vue'
 import PopupCode from '../components/PopupCode/PopupCode.vue'
 import PopupUpload from '../components/PopupUpload/PopupUpload.vue'
@@ -49,6 +50,7 @@ Vue.component('Footer', Footer);
 Vue.component('Hero', Hero);
 Vue.component('hero-small', HeroSmall);
 Vue.component('mobile-filters', MobileFilters);
+Vue.component('mobile-popup', MobilePopup);
 Vue.component('Popup', Popup);
 Vue.component('popup-code', PopupCode);
 Vue.component('popup-upload', PopupUpload);

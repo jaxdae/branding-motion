@@ -1,8 +1,31 @@
 <template>
   <div class="Home">
+    <mq-layout :mq="['xs', 'sm', 'md', 'lg', 'xl']">
+    <transition name="opacity">
+      <div class="Sets__darker" v-if="openPopup"></div>
+    </transition>
+    <transition name="scale-up">
+        <mobile-popup
+          v-if="openPopup"
+          @closePopup="close">
+        </mobile-popup>    
+    </transition>
+    </mq-layout>
     <Hero :sets="curatedCards"></Hero>
-    <top-filter v-if="$mq !== 'md'&& $mq !=='sm'" class="Home__topfilter"></top-filter>
-    <mobile-filters v-else></mobile-filters>
+    <mq-layout :mq="['xxl', 'max']">
+      <top-filter class="Home__topfilter"></top-filter>
+    </mq-layout>
+    <mq-layout :mq="['xs', 'sm', 'md', 'lg', 'xl']">
+      <div class="Home__setmobile">
+      <Button
+          class="Home__cart--mobile"
+          :label="'View animation sets'"
+          :link="'/sets'"
+        >
+        </Button>
+      </div>
+      <mobile-filters @popupOpen="open"></mobile-filters>
+    </mq-layout>
     <div class="Home__content">
       <div class="Home__left">
         <Feed :allCards="displayCards" :allLoad="displayLoad">
@@ -11,11 +34,11 @@
       <div class="Home__right">
         <Button
           class="Home__cart"
-          :label="'View animation set'"
+          :label="'View animation sets'"
           :link="'/sets'"
         >
         </Button>
-        <Filters :filteroptions="filteroptions" class="Home__filters"></Filters>
+        <Filters :filteroptions="filteroptions" onHome class="Home__filters"></Filters>
       </div>
     </div>
  <Footer></Footer>
@@ -31,6 +54,7 @@ export default {
     return {
       elements: [],
       categories: [],
+      openPopup: false,
       filteroptions: {
         rational: {
           left: 'rational',
@@ -97,6 +121,12 @@ export default {
     tags(categories, elements) {
       this.elements = elements;
       this.categories = categories;
+    },
+    open() {
+      this.openPopup = true;
+    },
+    close(){
+      this.openPopup = false;
     }
   },
   mounted() {

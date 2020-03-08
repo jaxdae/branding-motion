@@ -14,7 +14,10 @@
           placeholder="Enter search term"
           @keyup.enter="search"
         />
-        <div class="MobileFilters__filter-button"></div>
+        <div
+          class="MobileFilters__filter-button"
+          @click="openFilterPopup"
+        ></div>
       </div>
       <div class="MobileFilters__filter-box">
         <h2 class="MobileFilters__filter-headline caps">Elements</h2>
@@ -140,6 +143,9 @@ export default {
       this.searchParam = '';
       this.search(this.searchParam);
     },
+    openFilterPopup(){
+      this.$emit('popupOpen', true);
+    }
   },
   mounted() {
       this.searchParam = this.searchTerm;

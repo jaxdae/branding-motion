@@ -89,7 +89,6 @@ export default {
     ]),
     ...mapGetters([
       'searchTerm',
-      'currentBrandSet',
       'activeSearch',
       'activeElement',
       'activeCategory',

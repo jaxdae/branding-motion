@@ -154,6 +154,10 @@ export default {
     noLockIcon: {
       type: Boolean,
       default: false,
+    },
+    onHome: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -176,7 +180,8 @@ export default {
  
   computed: {
      ...mapGetters({
-      currentVariables: 'animationdetail/currentVariables'
+      currentVariables: 'animationdetail/currentVariables',
+      currentBrandSet: 'currentBrandSet',
     }),
     input(){
       if(this.isVariables){
@@ -239,6 +244,11 @@ export default {
     }
   },
   mounted() {
+    if(this.onHome){
+    Object.entries(this.currentBrandSet).forEach(identity => {
+      this.checkboxValues[identity[0]] = identity[1];
+    })
+    }
     if(this.variables){
       this.resettedSet = this.variables;
     }

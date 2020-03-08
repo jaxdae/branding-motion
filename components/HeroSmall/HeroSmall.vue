@@ -1,7 +1,7 @@
 <template>
   <div class="HeroSmall">
-        <transition name="opacity">
-    <div class="Sets__darker" v-if="popupOpen"></div>
+    <transition name="opacity">
+      <div class="Sets__darker" v-if="popupOpen"></div>
     </transition>
     <transition name="scale-up">
       <Popup

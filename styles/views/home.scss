@@ -55,6 +55,17 @@
     right:0;
     top:45px;
     width: 100%;
+    &--mobile{
+      position: absolute;
+      width:calc(100% - 60px);
+      margin-top:30px;
+      @media (min-width:768px){
+      width:calc(100% - 120px);
+    }
+    }
+  }
+  &__setmobile{
+    height:60px;
   }
 
   &__topfilter{
