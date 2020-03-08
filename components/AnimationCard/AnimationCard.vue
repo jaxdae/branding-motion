@@ -104,9 +104,17 @@ export default {
     }),
     link() {
       if(this.inSet){
-        return '/' + this.id.toString();
-      }else{
-        return this.id.toString();
+        if(this.$mq == 'lg'){
+          return '/' + this.id.toString();
+        }else{
+          return '/sets/' + this.$route.params.set;
+        }
+      }else {
+        if(this.$mq == 'lg'){
+          return this.id.toString();
+        }else {
+          return '/';
+        }
       }
     }
   },

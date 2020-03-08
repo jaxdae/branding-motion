@@ -32,6 +32,14 @@
     padding: 60px;
   }
 
+  &__preloader{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    .Preloader__text{
+      display:block;
+    }
+  }
   &__content{
     height:100%;
     padding-top: 60px;

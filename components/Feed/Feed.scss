@@ -3,6 +3,8 @@
 @import '../../styles/colors.scss';
 
 .Feed{
+    position: relative;
+    top: 35px;
     &__cards{
         margin-right:30px;
     }
@@ -47,7 +49,7 @@
         }
     }
     &__preloader{
-        margin:60px auto;
+        margin:60px calc(50% - 100px);
     }
     &__transition{
         display:flex;
@@ -57,6 +59,25 @@
 
 .flip-list-move {
   transition: transform 1s;
+}
+.flip-list-enter, .flip-list-leave-to{
+  opacity: 0;
+  transform: translateY(30px);
+}
+.flip-list-leave-active{
+  position: absolute;
+}
+
+.fade-in-up-enter, .fade-in-up-leave-to{
+    opacity: 0;
+    transform: translateY(30px);
+}
+.fade-in-up-leave, .fade-in-up-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-up-enter-active, .fade-in-up-leave-active{
+    transition: ease all 0.5s;
 }
 
 .fade-in-left-enter, .fade-in-left-leave-to{

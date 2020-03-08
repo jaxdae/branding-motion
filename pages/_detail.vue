@@ -15,68 +15,77 @@
     </popup-code>
     </transition>
     <hero-small :animation="card" :tags="card.tags"></hero-small>
-    <top-filter isDetail></top-filter>
-    <div class="Detail__wrapper" v-if="cardLoad">
-      <filters
-        :filteroptions="brandtraits"
-        :valueset="card.valueset"
-        :key=1
-        @isCollapsed="collapse"
-        collapse
-        isvalueset
-        isLocked
-        noLockIcon
-        class="Detail__background"
-      >
-      </filters>
-      <Effect
-        :type="card.effect.type"
-        :class="{ wider: !isCollapsed }"
-        class="Detail__animation"
-      >
-      <div v-if="showListChooser" class="Detail__select-overlay">
-        <div class="AnimationCard__close" @click="showListChooser=false"></div>
-        <div class="Detail__available-sets">
-          <div
-            v-for="(sets, index) in availableSets"
-            :key="sets.id"
-            class="Detail__save-option"
-            @click="saveToSet(index)"
-          >
-          {{sets.name}}
-          </div>
-        </div>
-      </div>
-        <component
-          :is="card.effect.name"
-          class="Detail__component"
-          :vars="convertedVariables"
-        />
-        <div @click="switchView" class="Detail__switcher"></div>
-        <Button
-          class="Detail__add"
-          :link="$route.params.detail"
-          :label="buttonText"
-          @click.native="addOrSave"
-        ></Button>
-      </Effect>
-      <div class="Detail__left">
-        <Button
-          class="Detail__cart"
-          :label="'View animation set'"
-          :link="'/sets'"
-        >
-        </Button>
+    <span v-if="$mq == 'lg'" class="Detail__desktop">
+      <top-filter isDetail></top-filter>
+      <div class="Detail__wrapper" v-if="cardLoad">
         <filters
-          :filteroptions="filteroptions"
-          :name="'Adjustments'"
-          class="Detail__adjustments"
-          isVariables
-          :variables="card.variables"
+          :filteroptions="brandtraits"
+          :valueset="card.valueset"
+          :key=1
+          @isCollapsed="collapse"
+          collapse
+          isvalueset
+          isLocked
+          noLockIcon
+          class="Detail__background"
         >
         </filters>
+        <Effect
+          :type="card.effect.type"
+          :class="{ wider: !isCollapsed }"
+          class="Detail__animation"
+        >
+        <div v-if="showListChooser" class="Detail__select-overlay">
+          <div class="AnimationCard__close" @click="showListChooser=false"></div>
+          <div class="Detail__available-sets">
+            <div
+              v-for="(sets, index) in availableSets"
+              :key="sets.id"
+              class="Detail__save-option"
+              @click="saveToSet(index)"
+            >
+            {{sets.name}}
+            </div>
+          </div>
+        </div>
+          <component
+            :is="card.effect.name"
+            class="Detail__component"
+            :vars="convertedVariables"
+          />
+          <div @click="switchView" class="Detail__switcher"></div>
+          <Button
+            class="Detail__add"
+            :link="$route.params.detail"
+            :label="buttonText"
+            @click.native="addOrSave"
+          ></Button>
+        </Effect>
+        <div class="Detail__left">
+          <Button
+            class="Detail__cart"
+            :label="'View animation set'"
+            :link="'/sets'"
+          >
+          </Button>
+          <filters
+            :filteroptions="filteroptions"
+            :name="'Adjustments'"
+            class="Detail__adjustments"
+            isVariables
+            :variables="card.variables"
+          >
+          </filters>
+        </div>
       </div>
-    </div>
+    </span>
+    <empty-placeholder
+      v-else
+      subheadline="Not available on mobile"
+      headline="Oops! Looks like you're on a mobile device!"
+      body="In order to make adjustments on the animations you need to be on a desktop sized screen!"
+    >
+    </empty-placeholder>
     <cross-ref-slider
       v-if="crossrefCards"
       :cards="crossrefCards"

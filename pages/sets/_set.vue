@@ -37,7 +37,13 @@
               </Card>
             </transition-group>
             </div>
-            <empty-placeholder v-else type="Animation"></empty-placeholder>
+            <empty-placeholder
+              v-else
+              type="Animation"
+              subheadline="No animations found"
+              headline="Oops! Looks like you haven't saved any animations yet!"
+              body="Get started by exploring all animations or go back to the set overview"
+            ></empty-placeholder>
             <preloader class="Sets__preloader" v-if="!setDetailReady"></preloader>
           </div>
         </div>

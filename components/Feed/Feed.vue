@@ -1,8 +1,10 @@
 <template>
   <div class="Feed">
-    <div v-show="!onList && searchTerm" class="Feed__search-results">
-      {{ `${number} results for "${searchTerm}"` }}
-    </div>
+    <transition name="fade-in-up">
+      <div v-show="!onList && searchTerm" class="Feed__search-results">
+        {{ `${number} results for "${searchTerm}"` }}
+      </div>
+    </transition>
     <div class="Feed__filter-wrapper">
         <transition-group class="Feed__transition" name="fade-in-left" tag="div">
           <div
@@ -42,7 +44,13 @@
       </Card>
        </transition-group>
        <preloader v-if="!allLoad" class="Feed__preloader"></preloader>
-       <empty-placeholder type="Search" v-if="filteredCards.length < 1"></empty-placeholder>
+       <empty-placeholder
+        type="Search"
+        v-if="filteredCards.length < 1"
+        subheadline="No animations found"
+        headline="Oops! Looks like your search didn't score any results!"
+        body="Try typing in a different search term, delete some tags or reset the whole filter"
+      ></empty-placeholder>
     </div>
   </div>
 </template>

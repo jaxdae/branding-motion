@@ -42,7 +42,7 @@
         </div>
     </div>
     <nuxt-link to="/">
-    <preloader class="Hero__preloader" once></preloader>
+    <preloader class="HeroSmall__preloader" once></preloader>
     </nuxt-link>
   </div>
 </template>
