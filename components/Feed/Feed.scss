@@ -6,7 +6,10 @@
     position: relative;
     top: 35px;
     &__cards{
-        margin-right:30px;
+        margin-right:0;
+    @media (min-width:1200px){
+      margin-right:30px;
+    }
     }
     &__filter-wrapper{
         display: inline-block;

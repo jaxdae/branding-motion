@@ -17,8 +17,18 @@
         <div class="Sets__feed">
           <div class="Sets__feed--inner">
           <div class="Sets__results">
-          {{ `You have ${number} animations saved on this list` }}
+          {{ `You have ${$mq} animations saved on this list` }}
         </div>
+        <mq-layout :mq="['xs', 'sm', 'md', 'lg', 'xl']">
+        <Button
+          v-if="setDetailReady && setDetail.animations"
+          :label="displayLabel"
+          class="Sets__remove--mobile"
+          :link="'/sets/'"
+          :class="{noset : setDetail.animations.length < 1}"
+          @click.native="removeSet">
+        </Button>
+        </mq-layout>
         <div  v-if="setDetailReady && setDetail.animations.length >= 1">
           <transition-group name="fade">
             <Card

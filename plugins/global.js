@@ -27,9 +27,13 @@ Vue.use(highlight);
 Vue.use(clipboard);
 Vue.use(VueMq, {
   breakpoints: {
-    sm: 450,
+    xs: 576,
+    sm: 768,
     md: 992,
-    lg: Infinity,
+    lg: 1024,
+    xl: 1200,
+    xxl: 1440,
+    max: Infinity,
   }
 })
 

@@ -35,7 +35,7 @@
     border-color: $taupe;
     background-color:transparent;
     font-size: 0;
-    display: none;
+    display: none !important;
     &::after{
       font-family: iconfont;
     font-size:24px;
@@ -44,7 +44,7 @@
     font-weight:bold;
     }
     @media (min-width:768px){
-      display: block;
+      display: block !important;
     }
     @media (min-width:1440px){
       top:calc(50% - 30px);
@@ -63,9 +63,9 @@
     border-color: $taupe;
     background-color:transparent;
     font-size: 0;
-    display:none;
+    display:none !important;
     @media (min-width:768px){
-      display: block;
+      display: block !important;
     }
     @media (min-width:1440px){
       top:calc(50% - 30px);

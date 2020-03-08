@@ -12,13 +12,10 @@
 
   &__left{
     width:100%;
-    .Feed__cards{
-      margin-right: 0;
-    }
 
     @media (min-width:1200px){
       width:70%;
-      margin-right: 30px;
+      
     }
 
     @media (min-width:1440px){
