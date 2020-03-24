@@ -3,6 +3,7 @@ import Vue from 'vue';
 import highlight from 'vue-highlightjs';
 import clipboard from 'v-clipboard';
 import VueMq from 'vue-mq';
+import Slick from 'vue-slick';
 
 import Card from '../components/AnimationCard/AnimationCard.vue'
 import Button from '../components/Button/Button.vue'
@@ -23,6 +24,7 @@ import PopupUpload from '../components/PopupUpload/PopupUpload.vue'
 import Preloader from '../components/Preloader/Preloader.vue'
 import SetCard from '../components/SetCard/SetCard.vue'
 import TopFilter from '../components/TopFilter/TopFilter.vue'
+import Slider2 from '../effects/slider-2.vue'
 
 Vue.use(highlight);
 Vue.use(clipboard);
@@ -57,3 +59,5 @@ Vue.component('popup-upload', PopupUpload);
 Vue.component('preloader', Preloader);
 Vue.component('set-card', SetCard);
 Vue.component('top-filter', TopFilter);
+Vue.component('slider-2', Slider2);
+Vue.component('slick', Slick);

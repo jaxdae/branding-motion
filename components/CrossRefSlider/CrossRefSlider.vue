@@ -20,13 +20,9 @@
 
 <script>
 import '../../assets/fonts/iconfont.scss';
-import Slick from 'vue-slick';
 
 export default {
   name: 'TopFilter',
-  components: {
-    Slick
-  },
   props: {
     cards: {
       type: Array,

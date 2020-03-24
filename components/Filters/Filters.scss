@@ -177,12 +177,13 @@
     &__label--flexible:hover .tooltip-flexible{
       visibility: visible;
     }
-}
-
-input[type="radio"] {
+    input[type="radio"] {
   position: absolute;
   opacity: 0;
 }
+}
+
+
 .radiobox {
   position: absolute;
   left: -5px;

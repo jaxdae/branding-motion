@@ -17,7 +17,7 @@
         <div class="Sets__feed">
           <div class="Sets__feed--inner">
           <div class="Sets__results">
-          {{ `You have ${$mq} animations saved on this list` }}
+          {{ `You have ${number} animations saved on this list` }}
         </div>
         <mq-layout :mq="['xs', 'sm', 'md', 'lg', 'xl']">
         <Button

@@ -40,61 +40,61 @@
           </div>
       </div>
         <div class="Filters__radiogroup">
-          <label :class="{ locked : isLocked}">
+          <label :class="{ locked : isLocked, locked : !variablesActive[index] && isVariables}"> 
               <input
                 :name="filter.left"
                 :checked="input[index] === 1"
                 @click="check(index, 1)"
                 value="1"
-                :disabled="isLocked"
+                :disabled="isLocked || !variablesActive[index] && isVariables"
                 class="Filters__input"
                 type="radio"
               />
               <span class="radiobox"></span>
           </label>
-            <label :class="{ locked : isLocked}">  
+            <label :class="{ locked : isLocked, locked : !variablesActive[index] && isVariables}">
               <input
                 :name="filter.left"
                 :checked="input[index] === 2"
                 @click="check(index, 2)"
                 value="2"
-                :disabled="isLocked"
+                :disabled="isLocked || !variablesActive[index] && isVariables"
                 class="Filters__input"
                 type="radio"
               />
               <span class="radiobox"></span>
           </label>
-            <label :class="{ locked : isLocked}">  
+            <label :class="{ locked : isLocked, locked : !variablesActive[index] && isVariables}">  
               <input
                 :name="filter.left"
               :checked="input[index] === 3"
                 @click="check(index, 3)"
                 value="3"
-                :disabled="isLocked"
+                :disabled="isLocked || !variablesActive[index] && isVariables"
                 class="Filters__input"
                 type="radio"
               />
               <span class="radiobox"></span>
           </label>
-            <label :class="{ locked : isLocked}">  
+            <label :class="{ locked : isLocked, locked : !variablesActive[index] && isVariables}">  
               <input
                 :name="filter.left"
                 :checked="input[index] === 4"
                 @click="check(index, 4)"
                 value="4"
-                :disabled="isLocked"
+                :disabled="isLocked || !variablesActive[index] && isVariables"
                 class="Filters__input"
                 type="radio"
               />
               <span class="radiobox"></span>
           </label>
-          <label :class="{ locked : isLocked}">
+          <label :class="{ locked : isLocked, locked : !variablesActive[index] && isVariables}">
               <input
                 :name="filter.left"
                 :checked="input[index] === 5"
                 @click="check(index, 5)"
                 value="5"
-                :disabled="isLocked"
+                :disabled="isLocked || !variablesActive[index] && isVariables"
                 class="Filters__input"
                 type="radio"
               />
@@ -175,6 +175,13 @@ export default {
       isCollapsed: false,
       isSet: false,
       resettedSet: {},
+      variablesActive: {
+        hard: true,
+        rectilineal: true,
+        rough: true,
+        slow: true,
+        static: true,
+      }
     };
   },
  
@@ -251,6 +258,12 @@ export default {
     }
     if(this.variables){
       this.resettedSet = this.variables;
+      Object.entries(this.currentVariables).forEach((variable, index) => {
+        console.log(variable);
+        if(variable[1] == 0){
+          this.variablesActive[variable[0]] = false;
+        }
+    })
     }
   }
 };

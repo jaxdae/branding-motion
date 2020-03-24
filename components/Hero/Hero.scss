@@ -223,40 +223,7 @@ text-align: center;
     display: inline-block;
     padding: 0 15px;
     }
-
-}
-
-@keyframes scrollDown {
-  from {
-    transform: translateY(-10px);
-  }
-
-  to {
-    transform: translateY(0px);
-  }
-}
-
-.slick-slide{
-margin-top:-3px;
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus,
-a:focus {
-    outline: none;
-}
-
-  .slick-arrow{
-    position: absolute;
-     &:active{
-      border-style:solid;
-    }
-  }
-
-
-  .slick-next{
+     .slick-next{
     cursor: pointer;
     right:105px;
     bottom:30px;
@@ -294,6 +261,40 @@ a:focus {
       right:-60px;
     }
   }
+.slick-arrow{
+    position: absolute;
+     &:active{
+      border-style:solid;
+    }
+  }
+}
+
+@keyframes scrollDown {
+  from {
+    transform: translateY(-10px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.slick-slide{
+margin-top:-3px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+    outline: none;
+}
+
+  
+
+
+ 
   
 
 .slick-dots {

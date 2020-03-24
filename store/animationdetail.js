@@ -73,13 +73,31 @@ export const mutations = {
           state.convertedVariables[identity.name] = 'ease-in-out'
         }
         if (identity.value == 4) {
-          state.convertedVariables[identity.name] = 'cubic-bezier(0.77, 0, 0.175, 1)'
+          state.convertedVariables[identity.name] = 'cubic-bezier(0.65,0,.076,1)'
         }
         if (identity.value == 5) {
           state.convertedVariables[identity.name] = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
         }
       }
     break;
+      case 'rectilineal': {
+        if (identity.value == 1) {
+          state.convertedVariables.rectilineal = '0';
+        }
+        if (identity.value == 2) {
+          state.convertedVariables.rectilineal = '5px';
+        }
+        if (identity.value == 3) {
+          state.convertedVariables.rectilineal = '10px';
+        }
+        if (identity.value == 4) {
+          state.convertedVariables.rectilineal = '15px';
+        }
+        if (identity.value == 5) {
+          state.convertedVariables.rectilineal = '30px';
+        }
+      }
+      break;
       case 'hard': {
         if (identity.value == 1) {
           state.convertedVariables.hard01 = '0 0 0 0';

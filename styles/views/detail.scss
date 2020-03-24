@@ -47,6 +47,7 @@
     right:30px;
     bottom:30px;
     width:30%;
+    background-color: $dark-blue;
   }
    &__wrapper{
      margin-top:60px;
@@ -60,7 +61,7 @@
      width:calc(77% - 120px);
      margin: 0 0 0 0;
      height:100%;
-     background: rgba($light-blue, 0.7);
+     background: $dark-blue;
      border-radius: 15px;
      display:flex;
      position: relative;
@@ -84,12 +85,13 @@
    }
    &__component{
      margin:auto;
+     overflow:hidden;
    }
    &__switcher{
      transition: ease all 0.3s;
-      position: relative;
+      position: absolute;
       top: calc(50% - 30px);
-      left: 30px;
+      right: -30px;
       width: 60px;
       height: 60px;
       border-radius: 50%;

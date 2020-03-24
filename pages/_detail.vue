@@ -18,7 +18,7 @@
     <mq-layout :mq="['xxl', 'max']">
       <top-filter isDetail></top-filter>
       <div class="Detail__wrapper" v-if="cardLoad">
-        <filters
+        <!-- <filters
           :filteroptions="brandtraits"
           :valueset="card.valueset"
           :key=1
@@ -29,12 +29,13 @@
           noLockIcon
           class="Detail__background"
         >
-        </filters>
+        </filters> -->
         <Effect
           :type="card.effect.type"
           :class="{ wider: !isCollapsed}"
-          class="Detail__animation"
+          class="Detail__animation wider"
         >
+        <div @click="switchView" class="Detail__switcher"></div>
         <div v-if="showListChooser" class="Detail__select-overlay">
           <div class="AnimationCard__close" @click="showListChooser=false"></div>
           <div class="Detail__available-sets">
@@ -53,7 +54,6 @@
             class="Detail__component"
             :vars="convertedVariables"
           />
-          <div @click="switchView" class="Detail__switcher"></div>
           <Button
             class="Detail__add"
             :link="$route.params.detail"

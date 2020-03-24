@@ -65,8 +65,8 @@ export default {
           right: 'traditional'
         },
         maskuline: {
-          left: 'maskuline',
-          right: 'feminine'
+          left: 'feminine',
+          right: 'maskuline'
         },
         personal: {
           left: 'personal',

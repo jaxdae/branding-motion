@@ -18,9 +18,9 @@ for (const filename of effectList) {
     .replace(/\\"/g, '"')
     .replace(/ :style="cssProps"/, '')
   
-  const css = /<style(.*?)scoped>(.*?)<\/style>/g // find css between style tags
+  const css = /<style(.*?)>(.*?)<\/style>/g // find css between style tags
     .exec(JSON.stringify(raw))[0]
-    .replace(/<\/?style((.*?)scoped)?>/g, '') // remove style tags
+    .replace(/<\/?style((.*?))?>/g, '') // remove style tags
     .replace(/^\\n/, '') // remove leading linebreak
     .replace(/\\n/g, '\n'); // replace \n with newlines
 

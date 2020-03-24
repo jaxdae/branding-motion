@@ -21,8 +21,8 @@ export const state = () => ({
   activeElement: false,
   activeCategory: false,
   activeSearch:false,
-  primaryColor: '#FF0000',
-  secondaryColor: '#FFFF00'
+  primaryColor: '#262935',
+  secondaryColor: '#D9AF99'
 })
 
 export const getters = {

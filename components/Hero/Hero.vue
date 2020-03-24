@@ -75,9 +75,9 @@
         </transition-group>
       </div>
     </div>
-    <nuxt-link to="/">
+    <!-- <nuxt-link to="/">
     <preloader class="Hero__preloader" once></preloader>
-    </nuxt-link>
+    </nuxt-link> -->
   </div>
 </template>
 

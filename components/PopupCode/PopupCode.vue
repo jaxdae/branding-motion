@@ -83,6 +83,7 @@ export default {
       .replace(/(?:var\(\-\-slow\))/g,this.convertedVariables.slow + 's')
       .replace(/(?:var\(\-\-static\))/g, this.convertedVariables.static)
       .replace(/(?:var\(\-\-hard01\))/g, this.convertedVariables.hard01)
+      .replace(/(?:var\(\-\-rectilineal\))/g, this.convertedVariables.rectilineal)
       .replace(/(?:var\(\-\-primaryColor\))/g, this.primaryColor)
       .replace(/(?:var\(\-\-secondaryColor\))/g, this.secondaryColor)
       return filteredCss

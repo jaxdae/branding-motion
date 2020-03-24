@@ -109,23 +109,7 @@
       color:$white;
     }
   }
-   .slick-next{
-    cursor: pointer;
-    bottom:50%;
-    right:-90px;
-    width:60px;
-    height:60px;
-    border-radius: 50%;
-    z-index: 999;
-    background-color:transparent;
-    font-size: 0;
-    &::after{
-      font-family: iconfont;
-    font-size:24px;
-    content: "\e90b";
-    color: $white;
-    }
-  }
+  
   .slick-arrow{
     position: absolute;
   }
@@ -164,6 +148,23 @@
 		}
 	
 }
+ .slick-next{
+    cursor: pointer;
+    bottom:50%;
+    right:-90px;
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+    z-index: 999;
+    background-color:transparent;
+    font-size: 0;
+    &::after{
+      font-family: iconfont;
+    font-size:24px;
+    content: "\e90b";
+    color: $white;
+    }
+  }
 }
 @keyframes wave {
   to {
