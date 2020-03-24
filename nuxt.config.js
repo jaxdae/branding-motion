@@ -44,7 +44,6 @@ module.exports = {
   modules: [
     '@nuxtjs/axios'
   ],
-  axios: {},
   /*
    ** Build configuration
    */
