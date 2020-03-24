@@ -39,7 +39,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   axios: {
-    baseURL: development ? 'http://localhost:3000/' : 'mysql://be6c7309de8f03:f0013e25@eu-cdbr-west-02.cleardb.net/heroku_07e5ad34e269a7f?reconnect=true'
+    baseURL: 'mysql://be6c7309de8f03:f0013e25@eu-cdbr-west-02.cleardb.net/heroku_07e5ad34e269a7f?reconnect=true'
   },
   modules: [
     '@nuxtjs/axios'
