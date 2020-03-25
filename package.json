@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Bachelor Thesis: Branded interactions",
   "author": "Jacqueline Dähn",
+  "engines": {
+    "npm": "6.x"
+  },
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
