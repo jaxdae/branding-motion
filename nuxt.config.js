@@ -39,6 +39,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   axios: {
+    baseURL: 'https://awesome-curie-46daf7.netlify.com/'
   },
   modules: [
     '@nuxtjs/axios'
