@@ -39,7 +39,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   axios: {
-    baseURL: process.env.CLEARDB_DATABASE_URL
+    baseURL: process.env.URL
   },
   modules: [
     '@nuxtjs/axios'
