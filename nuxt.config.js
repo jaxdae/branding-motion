@@ -39,7 +39,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   axios: {
-    baseURL: 'https://awesome-curie-46daf7.netlify.com/'
+    baseURL: process.env.CLEARDB_DATABASE_URL
   },
   modules: [
     '@nuxtjs/axios'
