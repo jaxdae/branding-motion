@@ -38,9 +38,6 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  axios: {
-    baseURL: process.env.CLEARDB_DATABASE_URL
-  },
   modules: [
     '@nuxtjs/axios'
   ],
