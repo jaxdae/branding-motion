@@ -332,9 +332,10 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render)
   // Listen the server
+  console.log(newport, newhost);
   const newport = process.env.PORT || 3000;
-  const newhost = process.env.HOST;
-  app.listen(newport, process.env.HOST)
+  const newhost = process.env.DB_HOST;
+  app.listen(newport, process.env.DB_HOST)
   consola.ready({
     message: `Server listening on http://${newhost}:${newport}`,
     badge: true
