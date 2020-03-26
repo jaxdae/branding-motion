@@ -333,11 +333,9 @@ async function start() {
   app.use(nuxt.render)
   // Listen the server
   const newport = process.env.PORT || 3000;
-  const newhost = process.env.DB_HOST;
-  console.log(process.DB_HOST);
-  app.listen(newport, process.env.DB_HOST)
+  app.listen(newport, host)
   consola.ready({
-    message: `Server listening on http://${newhost}:${newport}`,
+    message: `Server listening on http://${host}:${newport}`,
     badge: true
   })
 }
