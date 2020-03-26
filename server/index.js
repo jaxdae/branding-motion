@@ -333,7 +333,7 @@ async function start() {
   app.use(nuxt.render)
   // Listen the server
   const newport = process.env.PORT || 3000;
-  app.listen(newport, host)
+  app.listen(newport)
   consola.ready({
     message: `Server listening on http://${host}:${newport}`,
     badge: true
