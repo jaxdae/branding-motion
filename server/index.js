@@ -331,9 +331,9 @@ async function start() {
   
   // Give nuxt middleware to express
   app.use(nuxt.render)
-
+console.log(process.env.PORT);
   // Listen the server
-  const newport = process.env.PORT;
+  const newport = process.env.PORT || 3000;
   app.listen(newport, host)
   consola.ready({
     message: `Server listening on http://${host}:${newport}`,
