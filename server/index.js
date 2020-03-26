@@ -331,7 +331,6 @@ async function start() {
   
   // Give nuxt middleware to express
   app.use(nuxt.render)
-console.log(process.env.PORT, process.env.HOST);
   // Listen the server
   const newport = process.env.PORT || 3000;
   const newhost = process.env.HOST;
