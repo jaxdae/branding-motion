@@ -239,6 +239,7 @@ export default {
   },
   methods:{
     handleBeforeChange(event, slick, currentSlide){
+      
     },
     handleAfterChange(event, slick, currentSlide) {
     },

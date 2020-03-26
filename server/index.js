@@ -2,7 +2,6 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
-var cors = require('cors');
 const app = express()
 
 const models = require('./models/index.js')
@@ -43,7 +42,6 @@ async function start() {
     await nuxt.ready()
   }
 
-  app.use(cors());
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended : false }))
   
