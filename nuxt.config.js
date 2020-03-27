@@ -14,7 +14,11 @@ module.exports = {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, 
+      { rel: 'stylesheet', href:'https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700&display=swap'},
+      { rel: 'stylesheet', href: 'https://use.typekit.net/ujl0mxs.css'}
+    ]
   },
   /*
    ** Customize the progress-bar color

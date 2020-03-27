@@ -4,7 +4,7 @@
   v-if="ready"
   :style="cssProps"
   :options="slickOptions"
-  ref="slick"
+  ref="slicker"
   class="slick"
   @beforeChange="handleBeforeChange"
   @afterChange="handleAfterChange">
@@ -12,7 +12,7 @@
         <img :src="card.image">
       </div>
  </slick>
- <div class="headlines">
+ <div ref="headlines" class="headlines">
  <h1 v-for="card in cardData" class="headline" :key="card.headline">{{card.headline}}</h1>
  </div>
  </span>
@@ -21,16 +21,21 @@
 <style lang="scss">
 @import '../styles/slick.scss';
 .slider-1{
+  overflow:hidden;
   .headlines{
-    display: flex;
+    transition: ease all 1s;
+    display: inline-flex;
     flex-flow: row wrap;
     align-items: center;
     position: absolute;
     height: 100%;
-    top:0;
+    top:calc(50% - 30px);
     left:20%;
+    pointer-events: none;
+
   }
   .headline{
+    transition: ease all 1s;
     -webkit-text-stroke: 1px white;
     color: transparent;
   width:100%;
@@ -52,6 +57,7 @@
   justify-content: center;
   position: relative;
   height:400px;
+  top:45px;
 }
 
 .slick-next{
@@ -173,7 +179,8 @@ export default {
       slickOptions: {
         vertical: true,
         verticalSwiping: true,
-        arrows: false
+        arrows: false,
+        slidesToShow: 1
       },
       cardData: [
         {
@@ -192,27 +199,27 @@ export default {
           image: '/mountain2.jpeg'
         },
         {
-          headline: 'Lac Blanc',
+          headline: 'Lac Blanc2',
           content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
           image: '/mountain.jpeg'
         },
         {
-          headline: 'Matterhorn',
+          headline: 'Matterhorn2',
           content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
           image: '/mountain1.jpeg'
         },
         {
-          headline: 'Iceland',
+          headline: 'Iceland2',
           content: 'lorem ipsum dolor sit amet',
           image: '/mountain2.jpeg'
         },
         {
-          headline: 'Matterhorn',
+          headline: 'Matterhorn3',
           content: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
           image: '/mountain1.jpeg'
         },
         {
-          headline: 'Iceland',
+          headline: 'Iceland3',
           content: 'lorem ipsum dolor sit amet',
           image: '/mountain2.jpeg'
         }
@@ -242,6 +249,15 @@ export default {
       
     },
     handleAfterChange(event, slick, currentSlide) {
+      let headlines = [...document.getElementsByClassName('headline')];
+      headlines.forEach(headline => {
+        headline.style.color = 'transparent';
+        headline.style.zIndex = '-1';
+      })
+      headlines[currentSlide].style.color = 'white';
+      headlines[currentSlide].style.zIndex = '1';
+      console.log(currentSlide);
+      this.$refs.headlines.style.transform = 'translateY('+ currentSlide*-90 +'px)'
     },
   },
   mounted(){

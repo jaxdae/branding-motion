@@ -259,7 +259,6 @@ export default {
     if(this.variables){
       this.resettedSet = this.variables;
       Object.entries(this.currentVariables).forEach((variable, index) => {
-        console.log(variable);
         if(variable[1] == 0){
           this.variablesActive[variable[0]] = false;
         }
