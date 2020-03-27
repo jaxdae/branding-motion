@@ -334,8 +334,8 @@ async function start() {
   
   // Listen the server
   const newport = process.env.PORT || 3000;
-  app.listen(newport, host)
-  // app.listen(newport);
+  //app.listen(newport, host)
+  app.listen(newport);
   consola.ready({
     message: `Server listening on http://${host}:${newport}`,
     badge: true
