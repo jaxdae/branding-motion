@@ -21,6 +21,9 @@
     @include font-headline($white);
     margin-bottom:30px;
   }
+  .slick-arrow{
+      position: absolute;
+  }
   .slick-next{
     cursor: pointer;
     top:-90px;
@@ -40,6 +43,9 @@
     color: $taupe;
     font-weight:bold;
     }
+     &:hover{
+       animation: toggle 1s infinite;
+    }
     @media (min-width:768px){
       display: block !important;
     }
@@ -48,6 +54,9 @@
       right:-80px;
     }
   }
+.slick-slider{
+    position: relative;
+}
     /* the slides */
 .slick-slide {
     margin: 20px 16px;
@@ -87,14 +96,7 @@
     font-weight:bold;
     }
   }
-}
- .slick-slider{
-  position: relative;
-}
- 
-   
-
-.slick-list
+  .slick-list
 {
     position: relative;
     display: block;
@@ -169,8 +171,10 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+}
 @keyframes toggleleft {
   0% {transform: rotate(180deg) translateX(0)}
   50% {transform: rotate(180deg) translateX(10px)}
   100% {transform:rotate(180deg) translateX(0)}
 }
+

@@ -41,9 +41,9 @@
           </div>
         </div>
     </div>
-    <!-- <nuxt-link to="/">
+    <nuxt-link to="/">
     <preloader class="HeroSmall__preloader" once></preloader>
-    </nuxt-link> -->
+    </nuxt-link>
   </div>
 </template>
 

@@ -75,9 +75,9 @@
         </transition-group>
       </div>
     </div>
-    <!-- <nuxt-link to="/">
+    <nuxt-link to="/">
     <preloader class="Hero__preloader" once></preloader>
-    </nuxt-link> -->
+    </nuxt-link>
   </div>
 </template>
 
@@ -100,26 +100,32 @@ export default {
       slickOptions: {
         dots: true,
         vertical: true,
-        slidesToShow: 3,
-        slidesToScroll:1,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         verticalSwiping: true,
         speed: 800,
         prevArrow: false,
-        autoplay: true,
+        //autoplay: true,
       },
       firstString: true,
-      currentSlide: 0,
+      currentSlide: 1,
     };
   },
   methods: {
     change(event, slick, currentSlide) {
+      
       if(this.currentSlide < this.sets.length - 1){
-      this.currentSlide = slick.currentSlide + 1;
+      this.currentSlide = slick.currentSlide;
       }else{
         this.currentSlide = 0;
       }
+      console.log(this.currentSlide, slick.currentSlide, this.sets)
     }
   },
+  mounted(){
+    //this.$refs.slick.goTo(1);
+    console.log(this.$refs.slick)
+  }
 };
 </script>
 

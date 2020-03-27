@@ -279,10 +279,6 @@ text-align: center;
   }
 }
 
-.slick-slide{
-margin-top:-3px;
-}
-
 input:focus,
 select:focus,
 textarea:focus,
@@ -290,12 +286,10 @@ button:focus,
 a:focus {
     outline: none;
 }
-
-  
-
-
- 
-  
+.slick-vertical .slick-slide{
+  position: relative;
+  top: -45px;
+}
 
 .slick-dots {
 	display: flex;
